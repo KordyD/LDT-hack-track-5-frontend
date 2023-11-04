@@ -6,12 +6,16 @@ import classes from './Root.module.css';
 
 export const Root = () => {
   return (
-    <Box className={classes.wrapper}>
-      <Header />
-      <Box component='main' p={'xl'} className={classes.outlet}>
-        <Outlet />
+    <>
+      <Box className={classes.wrapper}>
+        <Box className={classes.headerWrapper}>
+          <Header />
+        </Box>
+        <Box component='main' className={classes.outlet}>
+          <Outlet />
+        </Box>
+        <Footer />
       </Box>
-      <Footer />
-    </Box>
+    </>
   );
 };

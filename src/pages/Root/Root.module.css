@@ -6,4 +6,10 @@
 
 .outlet {
   flex-grow: 1;
+  padding: 25px;
+}
+
+.headerWrapper {
+  padding-left: 25px;
+  padding-right: 25px;
 }
