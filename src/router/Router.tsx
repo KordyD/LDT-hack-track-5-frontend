@@ -8,6 +8,7 @@ import { Shop } from '../pages/Shop/Shop';
 import { Greetings } from '../pages/Greetings/Greetings.tsx';
 import { Register } from '../pages/Register/Register.tsx';
 import { Login } from '../pages/Login/Login.tsx';
+import { Article } from '../pages/Article/Article';
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: 'knowledge',
         element: <Knowledge />,
+      },
+      {
+        path: 'knowledge/:articleId',
+        element: <Article />,
       },
       {
         path: 'team',
