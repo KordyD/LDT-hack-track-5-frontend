@@ -9,12 +9,3 @@
   display: flex;
   gap: 25px;
 }
-
-.root {
-  width: 100%;
-}
-
-.input {
-  border-radius: var(--mantine-radius-xl);
-  border-color: var(--mantine-color-indigo-6);
-}
