@@ -13,3 +13,10 @@
 .containerImage {
   flex-grow: 0.5;
 }
+
+.containerButtons {
+  display: flex;
+  gap: 10px;
+  flex-grow: 0.3;
+  justify-content: flex-end;
+}
