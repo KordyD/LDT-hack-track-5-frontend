@@ -1,11 +1,4 @@
-import {
-  ActionIcon,
-  Anchor,
-  Box,
-  Container,
-  Image,
-  Paper,
-} from '@mantine/core';
+import { ActionIcon, Anchor, Box, Image } from '@mantine/core';
 import { PiSliders } from 'react-icons/pi';
 import { FiSearch } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
@@ -13,8 +6,8 @@ import classes from './Header.module.css';
 
 export const Header = () => {
   return (
-    <Paper component='header' p='xl'>
-      <Container className={classes.container} fluid>
+    <Box component='header' p='xl'>
+      <Box className={classes.container}>
         <Box className={classes.containerImage}>
           <Image w={80} h={12} src='/src/assets/proscom-logo.svg' />
         </Box>
@@ -43,7 +36,7 @@ export const Header = () => {
             <FiSearch />
           </ActionIcon>
         </Box>
-      </Container>
-    </Paper>
+      </Box>
+    </Box>
   );
 };

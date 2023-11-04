@@ -1,10 +1,10 @@
-import { Anchor, Box, Flex, List, Paper, Text } from '@mantine/core';
+import { Anchor, Box, Flex, List, Text } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import classes from './Footer.module.css';
 
 export const Footer = () => {
   return (
-    <Paper component='footer' p='xl' className={classes.wrapper}>
+    <Box component='footer' p='xl' className={classes.wrapper}>
       <Box component='nav' className={classes.wrapperLinks}>
         <Anchor component={Link} to='/'>
           Главная
@@ -52,6 +52,6 @@ export const Footer = () => {
           </List.Item>
         </List>
       </Box>
-    </Paper>
+    </Box>
   );
 };
