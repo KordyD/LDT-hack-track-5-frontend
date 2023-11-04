@@ -13,12 +13,12 @@ import classes from './Header.module.css';
 
 export const Header = () => {
   return (
-    <Paper component='nav' p='xl'>
+    <Paper component='header' p='xl'>
       <Container className={classes.container} fluid>
         <Box className={classes.containerImage}>
           <Image w={80} h={12} src='/src/assets/proscom-logo.svg' />
         </Box>
-        <Box className={classes.containerLinks}>
+        <Box component='nav' className={classes.containerLinks}>
           <Anchor component={Link} to='/'>
             Главная
           </Anchor>
