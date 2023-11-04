@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.containerLinks {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.containerImage {
+  flex-grow: 0.5;
+}
