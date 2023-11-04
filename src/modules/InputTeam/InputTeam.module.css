@@ -9,3 +9,18 @@
   display: flex;
   gap: 25px;
 }
+
+.inputRoot {
+  width: 100%;
+}
+
+.input {
+  border-color: var(--mantine-primary-color-filled);
+  border-radius: var(--mantine-radius-xl);
+}
+
+.button {
+  padding-left: 45px;
+  padding-right: 45px;
+  border-radius: var(--mantine-radius-xl);
+}
