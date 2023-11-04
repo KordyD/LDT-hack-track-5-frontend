@@ -5,6 +5,7 @@ import { Knowledge } from '../pages/Knowledge/Knowledge';
 import { Team } from '../pages/Team/Team';
 import { Account } from '../pages/Account/Account';
 import { Shop } from '../pages/Shop/Shop';
+import { Article } from '../pages/Article/Article';
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
       {
         path: 'knowledge',
         element: <Knowledge />,
+      },
+      {
+        path: 'knowledge/:articleId',
+        element: <Article />,
       },
       {
         path: 'team',
