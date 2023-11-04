@@ -20,3 +20,8 @@
   flex-grow: 0.3;
   justify-content: flex-end;
 }
+
+.icons {
+  width: 24px;
+  height: 24px;
+}

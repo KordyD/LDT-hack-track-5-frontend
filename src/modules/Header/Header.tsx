@@ -1,7 +1,9 @@
-import { ActionIcon, Anchor, Box, Image } from '@mantine/core';
+import { Anchor, Box, Image } from '@mantine/core';
+import { CustomNavLink } from '../../components/NavLink/NavLink';
+import { CustomActionIcon } from '../../components/ActionIcon/ActionIcon';
+import { IconContext } from 'react-icons';
 import { PiSliders } from 'react-icons/pi';
 import { FiSearch } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
 import classes from './Header.module.css';
 
 export const Header = () => {
@@ -12,29 +14,31 @@ export const Header = () => {
           <Image w={80} h={12} src='/src/assets/proscom-logo.svg' />
         </Box>
         <Box component='nav' className={classes.containerLinks}>
-          <Anchor component={Link} to='/'>
+          <Anchor component={CustomNavLink} to='/'>
             Главная
           </Anchor>
-          <Anchor component={Link} to='knowledge'>
+          <Anchor component={CustomNavLink} to='knowledge'>
             Справочник
           </Anchor>
-          <Anchor component={Link} to='account'>
+          <Anchor component={CustomNavLink} to='account'>
             Мой кабинет
           </Anchor>
-          <Anchor component={Link} to='team'>
+          <Anchor component={CustomNavLink} to='team'>
             Команда
           </Anchor>
-          <Anchor component={Link} to='shop'>
+          <Anchor component={CustomNavLink} to='shop'>
             Активности
           </Anchor>
         </Box>
         <Box className={classes.containerButtons}>
-          <ActionIcon variant='transparent'>
-            <PiSliders />
-          </ActionIcon>
-          <ActionIcon variant='transparent'>
-            <FiSearch />
-          </ActionIcon>
+          <IconContext.Provider value={{ className: classes.icons }}>
+            <CustomActionIcon>
+              <PiSliders />
+            </CustomActionIcon>
+            <CustomActionIcon>
+              <FiSearch />
+            </CustomActionIcon>
+          </IconContext.Provider>
         </Box>
       </Box>
     </Box>
