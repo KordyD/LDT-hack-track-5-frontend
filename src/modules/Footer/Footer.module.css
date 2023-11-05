@@ -1,21 +1,13 @@
 .wrapper {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  background-color: var(--mantine-color-gray-2);
-  gap: 100px;
+  background-color: var(--mantine-color-gray-light);
 }
 
-.list {
-  list-style: none;
-}
-
-.wrapperLinks {
-  flex-grow: 1;
+.containerLinks {
   display: flex;
-  justify-content: flex-end;
-  gap: 50px;
+  justify-content: space-between;
+  margin-top: 25px;
 }
 
-.wrapperInfo {
-  max-width: 300px;
+.proscom {
+  color: var(--mantine-color-gray-filled);
 }

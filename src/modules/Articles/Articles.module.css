@@ -1,0 +1,16 @@
+.group {
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+}
+
+.card {
+  box-shadow: var(--mantine-shadow-md);
+  padding: 25px;
+  border: 1px solid var(--mantine-color-default-border);
+  border-radius: var(--mantine-radius-xl);
+}

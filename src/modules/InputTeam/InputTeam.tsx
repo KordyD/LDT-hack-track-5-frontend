@@ -3,21 +3,31 @@ import classes from './InputTeam.module.css';
 
 export const InputTeam = () => {
   return (
-    <Box mb='xl'>
+    <>
       <Box className={classes.wrapperInputs}>
-        <TextInput radius='xl' w='100%' placeholder='Имя' />
-        <TextInput radius='xl' w='100%' placeholder='Город' />
-        <TextInput radius='xl' w='100%' placeholder='Должность' />
-        <TextInput radius='xl' w='100%' placeholder='Отдел' />
+        <TextInput
+          placeholder='Имя'
+          classNames={{ root: classes.inputRoot, input: classes.input }}
+        />
+        <TextInput
+          placeholder='Город'
+          classNames={{ root: classes.inputRoot, input: classes.input }}
+        />
+        <TextInput
+          placeholder='Должность'
+          classNames={{ root: classes.inputRoot, input: classes.input }}
+        />
+        <TextInput
+          placeholder='Отдел'
+          classNames={{ root: classes.inputRoot, input: classes.input }}
+        />
       </Box>
       <Box className={classes.wrapperButtons}>
-        <Button radius='xl' px='45px' color='indigo'>
-          Найти
-        </Button>
-        <Button radius='xl' px='45px' color='indigo' variant='light'>
+        <Button className={classes.button}>Найти</Button>
+        <Button className={classes.button} variant='light'>
           Очистить
         </Button>
       </Box>
-    </Box>
+    </>
   );
 };

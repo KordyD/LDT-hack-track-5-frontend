@@ -1,3 +1,14 @@
 .wrapperInput {
   flex-grow: 1;
 }
+
+.input {
+  border-color: var(--mantine-primary-color-filled);
+  border-radius: var(--mantine-radius-xl);
+}
+
+.button {
+  border-radius: var(--mantine-radius-xl);
+  padding-left: 45px;
+  padding-right: 45px;
+}

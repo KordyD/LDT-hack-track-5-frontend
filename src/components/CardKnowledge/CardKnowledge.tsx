@@ -1,6 +1,15 @@
-import { Box, Button, Card, Group, Stack, Text } from '@mantine/core';
+import {
+  Box,
+  Button,
+  Card,
+  Group,
+  ScrollArea,
+  Stack,
+  Text,
+} from '@mantine/core';
 import { ReactElement } from 'react';
-
+import { IconContext } from 'react-icons';
+import classes from './CardKnowledge.module.css';
 interface CardKnowledge {
   heading: string;
   icon: ReactElement;
@@ -15,26 +24,29 @@ export const CardKnowledge = ({
   styleDark = false,
 }: CardKnowledge) => {
   return (
-    <Card
-      shadow='md'
-      p='lg'
-      radius='xl'
-      withBorder
-      bg={styleDark ? 'gray.3' : ''}
-    >
+    <Card className={`${classes.card} ${styleDark ? classes.dark : ''}`}>
+      <Stack className={classes.wrapper}>
+        <Box>
+          <Group>
+            <IconContext.Provider value={{ className: classes.icon }}>
+              <Box>{icon}</Box>
+              <Text fz={30}>{heading}</Text>
+            </IconContext.Provider>
+          </Group>
+          <ScrollArea.Autosize mah={450}>
+            <Stack>
+              {articles.map((item, index) => (
+                <Box key={index}>
+                  <Text>{item.heading}</Text>
+                  <Text className={classes.text}>{item.text}</Text>
+                </Box>
+              ))}
+            </Stack>
+          </ScrollArea.Autosize>
+        </Box>
+      </Stack>
+
       <Box>
-        <Group>
-          <Box c='indigo'>{icon}</Box>
-          <Text>{heading}</Text>
-        </Group>
-        <Stack>
-          {articles.map((item, index) => (
-            <Box key={index}>
-              <Text>{item.heading}</Text>
-              <Text>{item.text}</Text>
-            </Box>
-          ))}
-        </Stack>
         <Button
           fullWidth
           mt='lg'

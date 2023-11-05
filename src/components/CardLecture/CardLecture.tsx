@@ -1,14 +1,14 @@
-import { Button, Card, Container, Text } from '@mantine/core';
-
+import { Box, Button, Card, Text } from '@mantine/core';
+import classes from './CardLecture.module.css';
 export const CardLecture = () => {
   return (
-    <Card bg='indigo'>
-      <Text c='gray.0'>Курс видеолекций</Text>
-      <Container fluid>
-        <Button variant='outline' color='gray.0'>
+    <Card className={classes.card}>
+      <Text className={classes.text}>Курс видеолекций</Text>
+      <Box className={classes.wrapper}>
+        <Button variant='outline' className={classes.button}>
           Начать
         </Button>
-      </Container>
+      </Box>
     </Card>
   );
 };
