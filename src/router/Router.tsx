@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
         element: <Team />,
       },
       {
-        path: 'account',
+        path: 'mission',
         element: <Mission />,
       },
       {
