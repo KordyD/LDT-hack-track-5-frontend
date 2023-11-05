@@ -1,3 +1,3 @@
-export const Account = () => {
+export const Mission = () => {
   return <div>Account</div>;
 };

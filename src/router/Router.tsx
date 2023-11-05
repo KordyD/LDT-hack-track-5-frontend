@@ -3,7 +3,7 @@ import { Root } from '../pages/Root/Root';
 import { Main } from '../pages/Main/Main';
 import { Knowledge } from '../pages/Knowledge/Knowledge';
 import { Team } from '../pages/Team/Team';
-import { Account } from '../pages/Account/Account';
+import { Mission } from '../pages/Mission/Mission.tsx';
 import { Shop } from '../pages/Shop/Shop';
 import { Greetings } from '../pages/Greetings/Greetings.tsx';
 import { Register } from '../pages/Register/Register.tsx';
@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'account',
-        element: <Account />,
+        element: <Mission />,
       },
       {
         path: 'shop',

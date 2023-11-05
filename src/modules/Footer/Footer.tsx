@@ -13,8 +13,8 @@ export const Footer = () => {
           <Anchor component={CustomNavLink} to='knowledge'>
             Справочник
           </Anchor>
-          <Anchor component={CustomNavLink} to='account'>
-            Мой кабинет
+          <Anchor component={CustomNavLink} to='mission'>
+            Задания
           </Anchor>
           <Anchor component={CustomNavLink} to='team'>
             Команда

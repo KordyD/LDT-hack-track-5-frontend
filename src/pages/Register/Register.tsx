@@ -5,15 +5,9 @@ import classes from './Register.module.css';
 import { NavLink } from 'react-router-dom';
 
 export const Register = () => {
-  let form: UseFormReturnType<
-    { password: string; againPassword: string; email: string },
-    (values: { password: string; againPassword: string; email: string }) => {
-      password: string;
-      againPassword: string;
-      email: string;
-    }
-  >;
-  form = useForm({
+  const navigate = useNavigate();
+
+  const form = useForm<IRegister>({
     initialValues: {
       email: '',
       password: '',
@@ -40,7 +34,10 @@ export const Register = () => {
     <Flex className={classes.register} mt='210px'>
       <form
         className={classes.register__form}
-        onSubmit={form.onSubmit((values) => console.log(values))}
+        onSubmit={form.onSubmit((values: IRegister) => {
+          console.log(values);
+          navigate('/login', { replace: true });
+        })}
       >
         <Text className={classes.register__title}>Регистрация</Text>
         <TextInput
@@ -70,12 +67,7 @@ export const Register = () => {
           placeholder='Повторите пароль'
           {...form.getInputProps('againPassword')}
         />
-        <Button
-          type='submit'
-          className={classes.register__button}
-          component={NavLink}
-          to='/login'
-        >
+        <Button type='submit' className={classes.register__button}>
           Далее
         </Button>
       </form>
