@@ -5,6 +5,7 @@ import { IconContext } from 'react-icons';
 import { BsBell } from 'react-icons/bs';
 import { MdAccountCircle } from 'react-icons/md';
 import classes from './Header.module.css';
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
   return (
@@ -35,7 +36,7 @@ export const Header = () => {
             </CustomActionIcon>
           </IconContext.Provider>
           <IconContext.Provider value={{ className: classes.icon2 }}>
-            <CustomActionIcon>
+            <CustomActionIcon component={Link} to={'account'}>
               <MdAccountCircle />
             </CustomActionIcon>
           </IconContext.Provider>
