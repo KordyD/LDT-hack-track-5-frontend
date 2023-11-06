@@ -59,7 +59,7 @@ export const VideoLecture = () => {
             {...form.getInputProps('videoName')}
           />
 
-          <Group justify='flex-start' mt='md' mt='40px'>
+          <Group justify='flex-start' mt='md'>
             <Button
               className={`${classes.lecturevideo__button} ${classes.lecturevideo__buttonSearch}`}
               type='submit'
@@ -86,8 +86,8 @@ export const VideoLecture = () => {
         m='70px 0 140px'
       >
         {video.map((item) => (
-          <Grid.Col span={4}>
-            <LectureVideo video={item} key={item.id} />
+          <Grid.Col span={4} key={item.id}>
+            <LectureVideo video={item} />
           </Grid.Col>
         ))}
       </Grid>
