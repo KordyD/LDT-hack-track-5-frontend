@@ -1,0 +1,122 @@
+.missionAccordion {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    margin: 30px 0;
+}
+
+.missionAccordion__item {
+    border-radius: 36px;
+    background: #FFF;
+    border: none;
+
+}
+
+.missionAccordion__label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.missionAccordion__control {
+    border-radius: 36px;
+    padding: 0 112px 45px;
+}
+
+.missionAccordion__chevron {
+    width: 30px;
+}
+
+.missionAccordion__control:hover {
+    background: #FFF;
+}
+
+.missionAccordion__panel {
+
+}
+
+.missionAccordion__title {
+    color: #5277F6;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 60px;
+    margin-bottom: 30px;
+}
+
+.missionAccordion__text {
+    border-radius: 36px;
+    display: flex;
+    padding: 10px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.missionAccordion__progress {
+    color: #5277F6;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    margin-bottom: 66px;
+}
+
+.missionAccordion__taskRoot {
+    padding: 0;
+    background: transparent;
+    height: 90px;
+}
+
+.missionAccordion__task:hover {
+    background: rgba(82, 119, 246, 0.1);
+    color: #5277F6;
+}
+
+.missionAccordion__task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #CFCDCD;
+    width: 100%;
+    color: #252525;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+.missionAccordion__labelButton {
+    max-width: 745px;
+}
+
+.missionAccordion__statusAp {
+    color: #535353;
+    text-align: right;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+.missionAccordion__statusDn {
+    color: #5277F6;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+.buttonTest {
+    border-radius: 48px;
+    background: #F8F8F8;
+    width: 100%;
+    margin: 60px 0 90px;
+}
+
+.buttonTestInner {
+    color: #5277F6;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+}

@@ -1,17 +1,17 @@
 import { Button, Flex, Text, TextInput } from '@mantine/core';
 import classes from '../Register/Register.module.css';
-import { NavLink } from 'react-router-dom';
-import { useForm, UseFormReturnType } from '@mantine/form';
+import { useForm } from '@mantine/form';
+import { useNavigate } from 'react-router-dom';
+
+interface ILogin {
+  email: string;
+  password: string;
+}
 
 export const Login = () => {
-  let form: UseFormReturnType<
-    { password: string; email: string },
-    (values: { password: string; email: string }) => {
-      password: string;
-      email: string;
-    }
-  >;
-  form = useForm({
+  const navigate = useNavigate();
+
+  const form = useForm<ILogin>({
     initialValues: {
       email: '',
       password: '',
@@ -21,7 +21,10 @@ export const Login = () => {
     <Flex className={classes.register} mt='210px'>
       <form
         className={classes.register__form}
-        onSubmit={form.onSubmit((values) => console.log(values))}
+        onSubmit={form.onSubmit((values) => {
+          console.log(values);
+          navigate('/', { replace: true });
+        })}
       >
         <Text className={classes.register__title}>Войти</Text>
         <TextInput
@@ -42,12 +45,7 @@ export const Login = () => {
           placeholder='Пароль'
           {...form.getInputProps('password')}
         />
-        <Button
-          type='submit'
-          className={classes.register__button}
-          component={NavLink}
-          to='/login'
-        >
+        <Button type='submit' className={classes.register__button}>
           Войти
         </Button>
       </form>

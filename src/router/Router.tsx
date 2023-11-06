@@ -3,12 +3,13 @@ import { Root } from '../pages/Root/Root';
 import { Main } from '../pages/Main/Main';
 import { Knowledge } from '../pages/Knowledge/Knowledge';
 import { Team } from '../pages/Team/Team';
-import { Account } from '../pages/Account/Account';
+import { Mission } from '../pages/Mission/Mission.tsx';
 import { Shop } from '../pages/Shop/Shop';
 import { Greetings } from '../pages/Greetings/Greetings.tsx';
 import { Register } from '../pages/Register/Register.tsx';
 import { Login } from '../pages/Login/Login.tsx';
 import { Article } from '../pages/Article/Article';
+import { Account } from '../pages/Account/Account.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -32,8 +33,8 @@ export const router = createBrowserRouter([
         element: <Team />,
       },
       {
-        path: 'account',
-        element: <Account />,
+        path: 'mission',
+        element: <Mission />,
       },
       {
         path: 'shop',
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+      },
+      {
+        path: 'account',
+        element: <Account />,
       },
     ],
   },

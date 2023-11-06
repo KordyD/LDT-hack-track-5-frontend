@@ -11,7 +11,7 @@ export const Header = () => {
   return (
     <Container size='xl'>
       <Box className={classes.container} component='header'>
-        <Image w={80} h={12} src='/src/assets/proscom-logo.svg' />
+        <Image w={80} h={12} src='/src/assets/icon/proscom-logo.svg' />
         <Box component='nav' className={classes.containerLinks}>
           <Anchor component={CustomNavLink} to='/'>
             Главная
@@ -19,7 +19,7 @@ export const Header = () => {
           <Anchor component={CustomNavLink} to='knowledge'>
             Справочник
           </Anchor>
-          <Anchor component={CustomNavLink} to='account'>
+          <Anchor component={CustomNavLink} to='mission'>
             Мой кабинет
           </Anchor>
           <Anchor component={CustomNavLink} to='team'>

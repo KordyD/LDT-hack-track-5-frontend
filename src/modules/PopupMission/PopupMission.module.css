@@ -1,0 +1,114 @@
+.popupMission {
+  flex-direction: column;
+  max-width: 1310px;
+  margin: 0 auto 100px;
+  border-radius: 36px;
+  background: #fff;
+  position: absolute;
+}
+
+.popupMission__container {
+  flex-direction: column;
+  margin: 61px 112px 121px;
+}
+
+.popupMission__box {
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100;
+  margin-bottom: 80px;
+}
+
+.popupMission__button {
+  background: transparent;
+  color: var(--Primary, #5277f6);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+.popupMission__title {
+  color: var(--Primary, #5277f6);
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 60px;
+}
+
+.popupMission__bag {
+  height: 40px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.popupMission__coin {
+  color: var(--text-2, #535353);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.popupMission__boxTime {
+  width: 252px;
+  height: 50px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+
+.popupMission__time {
+  color: var(--Primary, #5277f6);
+  text-align: center;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+.popupMission__containerText {
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 80px;
+}
+
+.popupMission__text {
+  color: var(--text-1, #252525);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+}
+
+.popupMission__containerPhoto {
+  flex-direction: row;
+  gap: 50px;
+  margin-bottom: 130px;
+}
+
+.popupMission__buttonFinish {
+  display: flex;
+  width: 1084px;
+  height: 90px;
+  padding: 20px 70px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 48px;
+  background: var(--back-back, #f8f8f8);
+  color: var(--Primary, #5277f6);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.popupClose {
+  display: none;
+}
