@@ -9,6 +9,7 @@ import { Greetings } from '../pages/Greetings/Greetings.tsx';
 import { Register } from '../pages/Register/Register.tsx';
 import { Login } from '../pages/Login/Login.tsx';
 import { Article } from '../pages/Article/Article';
+import { Account } from '../pages/Account/Account.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+      },
+      {
+        path: 'account',
+        element: <Account />,
       },
     ],
   },
