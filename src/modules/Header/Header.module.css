@@ -17,9 +17,15 @@
   display: flex;
   gap: 10px;
   justify-content: flex-end;
+  align-items: center;
 }
 
-.icons {
+.icon1 {
+  color: var(--mantine-color-text);
   width: 24px;
   height: 24px;
+}
+.icon2 {
+  width: 48px;
+  height: 48px;
 }

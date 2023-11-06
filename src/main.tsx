@@ -5,6 +5,8 @@ import { router } from './router/Router.tsx';
 import { MantineProvider } from '@mantine/core';
 import { theme } from './theme/Theme.ts';
 import '@mantine/core/styles.layer.css';
+import '@mantine/dates/styles.layer.css';
+import './theme/Fonts.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

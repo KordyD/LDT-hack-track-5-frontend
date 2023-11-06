@@ -24,7 +24,7 @@ export const CardTeam = ({
   return (
     <Card className={classes.card}>
       <Card.Section>
-        <Image src={image} fallbackSrc='/src/assets/placeholder.jpg' />
+        <Image src={image} fallbackSrc='/src/assets/images/placeholder.jpg' />
       </Card.Section>
       <Text className={classes.name}>{name}</Text>
       <Text>{city}</Text>
