@@ -5,8 +5,8 @@ import { CustomNavLink } from '../../components/NavLink/NavLink';
 export const Footer = () => {
   return (
     <Box component='footer' className={classes.wrapper}>
-      <Container>
-        <Box component='nav' className={classes.containerLinks}>
+      <Box component='nav' p={25}>
+        <Container size='lg' className={classes.containerLinks}>
           <Anchor component={CustomNavLink} to='/'>
             Главная
           </Anchor>
@@ -22,12 +22,13 @@ export const Footer = () => {
           <Anchor component={CustomNavLink} to='shop'>
             Активности
           </Anchor>
-        </Box>
-        <Box my='50px' ta='center'>
-          <Text span>Поддержка: </Text>
-          <Anchor>8 999 999 99 99</Anchor>
-        </Box>
-      </Container>
+        </Container>
+      </Box>
+
+      <Box my='50px' ta='center'>
+        <Text span>Поддержка: </Text>
+        <Anchor>8 999 999 99 99</Anchor>
+      </Box>
       <Divider />
       <Container>
         <Box mb='50px' ta='center'>

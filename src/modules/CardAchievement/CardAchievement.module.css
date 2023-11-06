@@ -1,0 +1,20 @@
+.card {
+  box-shadow: var(--mantine-shadow-xl);
+  border-radius: var(--mantine-radius-xl);
+}
+
+.group {
+  gap: 35px;
+}
+
+.wrapperButton {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button {
+  &:active {
+    transform: none;
+  }
+}
