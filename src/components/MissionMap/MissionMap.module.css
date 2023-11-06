@@ -1,0 +1,41 @@
+.missionmap {
+    max-width: 982px;
+    height: 580px;
+    position: relative;
+}
+
+.missionmap__box {
+    position: absolute;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: none;
+    transition: opacity 0.2s ease, background 0.3s ease;
+    opacity: 0.5;
+}
+
+.missionmap__box1 {
+    top: 343px;
+    left: -495px;
+    width: 250px;
+}
+
+.missionmap__box2 {
+    top: 374px;
+    left: -224px;
+    width: 362px;
+}
+.missionmap__box3 {
+    top: 170px;
+    left: -407px;
+    width: 350px;
+}
+
+.missionmap__box:hover {
+    opacity: 1;
+    background: var(--Radial, radial-gradient(43.85% 43.8% at 50% 50.2%, rgba(119, 255, 71, 0.70) 0%, rgba(237, 240, 255, 0.41) 100%));
+}
+
+.missionmap__boxActive {
+    opacity: 1;
+    background: var(--Radial, radial-gradient(43.85% 43.8% at 50% 50.2%, rgba(119, 255, 71, 0.70) 0%, rgba(237, 240, 255, 0.41) 100%));
+}
