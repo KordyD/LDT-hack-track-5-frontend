@@ -1,10 +1,13 @@
 .popupMission {
-  flex-direction: column;
   max-width: 1310px;
+}
+
+.popupMission__popup {
+  flex-direction: column;
+  width: 100%;
   margin: 0 auto 100px;
   border-radius: 36px;
   background: #fff;
-  position: absolute;
 }
 
 .popupMission__container {
@@ -30,6 +33,7 @@
 
 .popupMission__title {
   color: var(--Primary, #5277f6);
+  max-width: 300px;
   font-size: 60px;
   font-style: normal;
   font-weight: 400;
