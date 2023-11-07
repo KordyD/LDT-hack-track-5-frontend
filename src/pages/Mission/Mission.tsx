@@ -6,7 +6,6 @@ import gift from '../../assets/icon/gift.svg';
 import classes from './Mission.module.css';
 import { MissionAccordion } from '../../modules/MissionAccordion/MissionAccordion';
 import MissionMap from '../../components/MissionMap/MissionMap';
-import { VideoLecture } from '../VideoLecture/VideoLecture';
 
 export const Mission = () => {
   return (
@@ -42,7 +41,6 @@ export const Mission = () => {
         </Flex>
         <MissionMap />
         <MissionAccordion />
-        <VideoLecture />
       </Flex>
     </Container>
   );
