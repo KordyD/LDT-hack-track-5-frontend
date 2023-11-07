@@ -11,6 +11,11 @@ import { Login } from '../pages/Login/Login.tsx';
 import { Article } from '../pages/Article/Article';
 import { Account } from '../pages/Account/Account.tsx';
 import { Video } from '../pages/Video/Video';
+import { articlesMain } from '../helpers/Articles.ts';
+
+interface Params {
+  articleId: number;
+}
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +33,16 @@ export const router = createBrowserRouter([
       {
         path: 'knowledge/:articleId',
         element: <Article />,
+        loader: ({ params }) => {
+          const typedParams = params as unknown as Params;
+          if (!typedParams.articleId) {
+            return null;
+          }
+          return {
+            title: articlesMain[typedParams.articleId].title,
+            text: articlesMain[typedParams.articleId].text,
+          };
+        },
       },
       {
         path: 'team',
