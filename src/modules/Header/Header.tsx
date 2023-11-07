@@ -36,7 +36,7 @@ export const Header = () => {
             </CustomActionIcon>
           </IconContext.Provider>
           <IconContext.Provider value={{ className: classes.icon2 }}>
-            <CustomActionIcon component={Link} to={'account'}>
+            <CustomActionIcon component={Link} to='/account'>
               <MdAccountCircle />
             </CustomActionIcon>
           </IconContext.Provider>
