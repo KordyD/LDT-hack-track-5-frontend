@@ -20,7 +20,7 @@ export const Header = () => {
             Справочник
           </Anchor>
           <Anchor component={CustomNavLink} to='mission'>
-            Мой кабинет
+            Задачи
           </Anchor>
           <Anchor component={CustomNavLink} to='team'>
             Команда

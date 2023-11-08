@@ -3,7 +3,6 @@ import { Root } from '../pages/Root/Root';
 import { Main } from '../pages/Main/Main';
 import { Knowledge } from '../pages/Knowledge/Knowledge';
 import { Team } from '../pages/Team/Team';
-import { Mission } from '../pages/Mission/Mission.tsx';
 import { Shop } from '../pages/Shop/Shop';
 import { Greetings } from '../pages/Greetings/Greetings.tsx';
 import { Register } from '../pages/Register/Register.tsx';
@@ -12,6 +11,9 @@ import { Article } from '../pages/Article/Article';
 import { Account } from '../pages/Account/Account.tsx';
 import { Video } from '../pages/Video/Video';
 import { articlesMain } from '../helpers/Articles.ts';
+import { MissionPage } from '../pages/MissionPage/MissionPage.tsx';
+import { PopupMission } from '../components/Mission/PopupMission/PopupMission.tsx';
+import { TaskContainer } from '../pages/TaskContainer/TaskContainer.tsx';
 import { Audio } from '../pages/Audio/Audio.tsx';
 
 interface Params {
@@ -50,8 +52,16 @@ export const router = createBrowserRouter([
         element: <Team />,
       },
       {
+        path: 'mission/:articleId',
+        element: <PopupMission />,
+      },
+      {
         path: 'mission',
-        element: <Mission />,
+        element: <MissionPage />,
+      },
+      {
+        path: 'tasks',
+        element: <TaskContainer />,
       },
       {
         path: 'shop',

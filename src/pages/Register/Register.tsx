@@ -1,9 +1,14 @@
 import { Button, Flex, Image, Text, TextInput } from '@mantine/core';
-import { useForm, UseFormReturnType } from '@mantine/form';
+import { useForm } from '@mantine/form';
 import Women from '../../assets/images/image-PhotoRoom.png-PhotoRoom - 2023-09-28T181802 1.png';
 import classes from './Register.module.css';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
+interface IRegister {
+  email: string;
+  password: string;
+  againPassword: string;
+}
 export const Register = () => {
   const navigate = useNavigate();
 

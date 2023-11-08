@@ -4,8 +4,8 @@ import editor from '../../assets/icon/edit.svg';
 import gift from '../../assets/icon/gift.svg';
 
 import classes from './Mission.module.css';
-import { MissionAccordion } from '../../modules/MissionAccordion/MissionAccordion';
-import MissionMap from '../../components/MissionMap/MissionMap';
+import { MissionAccordion } from './MissionAccordion/MissionAccordion.tsx';
+import { MissionMap } from './MissionMap/MissionMap.tsx';
 
 export const Mission = () => {
   return (
