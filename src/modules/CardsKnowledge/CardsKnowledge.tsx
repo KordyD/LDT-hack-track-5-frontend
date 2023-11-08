@@ -6,11 +6,15 @@ import { Articles } from '../Articles/Articles';
 import { CardLecture } from '../../components/CardLecture/CardLecture';
 import { articles } from '../../helpers/Favorite';
 import classes from './CardsKnowledge.module.css';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 export const CardsKnowledge = () => {
+  const isAuth = useSelector((state: RootState) => state.isAuth);
+
   return (
     <Box className={classes.wrapper}>
-      <Box className={classes.favorite}>
+      <Box className={classes.favorite} display={isAuth ? 'none' : 'block'}>
         <CardKnowledge
           heading='Избранное'
           icon={<FiStar />}
@@ -20,7 +24,7 @@ export const CardsKnowledge = () => {
       <Box className={classes.articles}>
         <Articles />
       </Box>
-      <Box className={classes.info}>
+      <Box className={`${classes.info} ${isAuth ? classes.auth : ''}`}>
         <CardKnowledge
           heading='О компании'
           icon={<AiOutlineInfoCircle />}
