@@ -5,22 +5,10 @@ export const InputTeam = () => {
   return (
     <>
       <Box className={classes.wrapperInputs}>
-        <TextInput
-          placeholder='Имя'
-          classNames={{ root: classes.inputRoot, input: classes.input }}
-        />
-        <TextInput
-          placeholder='Город'
-          classNames={{ root: classes.inputRoot, input: classes.input }}
-        />
-        <TextInput
-          placeholder='Должность'
-          classNames={{ root: classes.inputRoot, input: classes.input }}
-        />
-        <TextInput
-          placeholder='Отдел'
-          classNames={{ root: classes.inputRoot, input: classes.input }}
-        />
+        <TextInput placeholder='Имя' variant='primary' />
+        <TextInput placeholder='Город' variant='primary' />
+        <TextInput placeholder='Должность' variant='primary' />
+        <TextInput placeholder='Отдел' variant='primary' />
       </Box>
       {/* <Box className={classes.wrapperButtons}>
         <Button className={classes.button}>Найти</Button>

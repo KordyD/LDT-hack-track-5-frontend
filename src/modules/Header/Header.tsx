@@ -1,11 +1,11 @@
 import { Anchor, Box, Container, Image } from '@mantine/core';
-import { CustomNavLink } from '../../components/NavLink/NavLink';
-import { CustomActionIcon } from '../../components/ActionIcon/ActionIcon';
 import { IconContext } from 'react-icons';
 import { BsBell } from 'react-icons/bs';
 import { MdAccountCircle } from 'react-icons/md';
-import classes from './Header.module.css';
 import { Link } from 'react-router-dom';
+import { CustomActionIcon } from '../../components/ActionIcon/ActionIcon';
+import { CustomNavLink } from '../../components/NavLink/NavLink';
+import classes from './Header.module.css';
 
 export const Header = () => {
   return (

@@ -1,9 +1,9 @@
 import { Button, Flex, Image, Modal, TextInput } from '@mantine/core';
-import classes from '../../MissionAccordion/MissionAccordion.module.css';
-import plus from '../../../../assets/icon/add_circle_create_expand_new_plus_icon_123218 1.png';
 import { useDisclosure } from '@mantine/hooks';
 import { DateInput } from '@mantine/dates';
 import { useForm } from '@mantine/form';
+import plus from '../../../../assets/icon/add_circle_create_expand_new_plus_icon_123218 1.png';
+import classes from '../../MissionAccordion/MissionAccordion.module.css';
 
 export const AddNewStage = () => {
   const [opened, { open, close }] = useDisclosure(false);

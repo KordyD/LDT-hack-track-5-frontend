@@ -1,8 +1,8 @@
 import { Accordion, Image } from '@mantine/core';
-import classes from './MissionAccordion.module.css';
 import Arrow from '../../../assets/icon/Arrow.svg';
-import { AccordionItem } from './Accordion/AccordionItem.tsx';
 import { AddNewStage } from '../MissionAdmin/AddNewStage/AddNewStage.tsx';
+import { AccordionItem } from './Accordion/AccordionItem.tsx';
+import classes from './MissionAccordion.module.css';
 
 export const charactersList = [
   {

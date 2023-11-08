@@ -1,6 +1,6 @@
-import classes from '../MissionAccordion.module.css';
 import { Link } from 'react-router-dom';
 import { Button, Flex, Image, Text } from '@mantine/core';
+import classes from '../MissionAccordion.module.css';
 import Check from '../../../../assets/icon/check-circle.svg';
 import Trash from '../../../../assets/images/TrashBin.png';
 

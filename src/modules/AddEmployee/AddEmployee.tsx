@@ -1,8 +1,15 @@
-import { Autocomplete, Box, Button, Modal, TextInput } from '@mantine/core';
-import classes from './AddEmployee.module.css';
+import {
+  Autocomplete,
+  Box,
+  Button,
+  Modal,
+  Stack,
+  TextInput,
+} from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useForm } from '@mantine/form';
 import { useEffect, useState } from 'react';
+import classes from './AddEmployee.module.css';
 // import {
 //   getCities,
 //   getDepartments,
@@ -39,29 +46,43 @@ export const AddEmployee = () => {
       <Button onClick={open}>Добавить сотрудника</Button>
       <Modal opened={opened} onClose={close} title='Добавить сотрудника'>
         <form onSubmit={form.onSubmit((values) => console.log(values))}>
-          <TextInput placeholder='Имя' {...form.getInputProps('name')} />
-          <TextInput placeholder='Почта' {...form.getInputProps('email')} />
-          <Autocomplete
-            placeholder='Выбрать роль'
-            {...form.getInputProps('role')}
-            data={roles}
-          />
-          <Autocomplete
-            placeholder='Отдел'
-            {...form.getInputProps('department')}
-            data={departments}
-          />
-          <Autocomplete
-            placeholder='Должность'
-            {...form.getInputProps('job')}
-            data={jobs}
-          />
-          <Autocomplete
-            placeholder='Город'
-            {...form.getInputProps('city')}
-            data={cities}
-          />
-          <Button type='submit'>Сохранить</Button>
+          <Stack>
+            <TextInput
+              variant='primary'
+              placeholder='Имя'
+              {...form.getInputProps('name')}
+            />
+            <TextInput
+              variant='primary'
+              placeholder='Почта'
+              {...form.getInputProps('email')}
+            />
+            <Autocomplete
+              variant='primary'
+              placeholder='Выбрать роль'
+              {...form.getInputProps('role')}
+              data={roles}
+            />
+            <Autocomplete
+              variant='primary'
+              placeholder='Отдел'
+              {...form.getInputProps('department')}
+              data={departments}
+            />
+            <Autocomplete
+              variant='primary'
+              placeholder='Должность'
+              {...form.getInputProps('job')}
+              data={jobs}
+            />
+            <Autocomplete
+              variant='primary'
+              placeholder='Город'
+              {...form.getInputProps('city')}
+              data={cities}
+            />
+            <Button type='submit'>Сохранить</Button>
+          </Stack>
         </form>
       </Modal>
     </>

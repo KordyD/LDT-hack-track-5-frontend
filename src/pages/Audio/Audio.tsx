@@ -1,5 +1,4 @@
-import { Box, Button, Group, Stack, Text, TextInput } from '@mantine/core';
-import React from 'react';
+import { Button, Group, Stack, Text, TextInput } from '@mantine/core';
 
 export const Audio = () => {
   return (

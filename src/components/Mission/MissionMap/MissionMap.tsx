@@ -1,5 +1,5 @@
 import { Box, Image, Flex } from '@mantine/core';
-import classes from './MissionMap.module.css';
+import { useState } from 'react';
 import part1 from '../../../assets/icon/1part.svg';
 import part2 from '../../../assets/icon/2part.svg';
 import part3 from '../../../assets/icon/Part3.svg';
@@ -7,7 +7,7 @@ import part4 from '../../../assets/icon/Part4.svg';
 import part5 from '../../../assets/icon/Part5.svg';
 import part6 from '../../../assets/icon/Part6.svg';
 import StartPart from '../../../assets/icon/StarPart.svg';
-import { useState } from 'react';
+import classes from './MissionMap.module.css';
 
 export const MissionMap = () => {
   const [isActive, setIsActive] = useState(false);

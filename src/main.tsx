@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
-import { router } from './router/Router.tsx';
 import { MantineProvider } from '@mantine/core';
+import { router } from './router/Router.tsx';
 import { theme } from './theme/Theme.ts';
 import '@mantine/core/styles.layer.css';
 import '@mantine/dates/styles.layer.css';

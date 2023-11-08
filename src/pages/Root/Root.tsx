@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
+import { Box } from '@mantine/core';
 import { Header } from '../../modules/Header/Header';
 import { Footer } from '../../modules/Footer/Footer';
-import { Box } from '@mantine/core';
 import classes from './Root.module.css';
 
 export const Root = () => {

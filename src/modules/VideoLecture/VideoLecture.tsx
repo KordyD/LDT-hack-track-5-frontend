@@ -1,8 +1,8 @@
 import { Grid, TextInput, Group, Button, Flex, Image } from '@mantine/core';
-import classes from './VideoLecture.module.css';
-import { LectureVideo } from '../../components/Lecture/LectureVideo';
 import { useForm } from '@mantine/form';
+import { LectureVideo } from '../../components/Lecture/LectureVideo';
 import Back from '../../assets/icon/BackArrow.svg';
+import classes from './VideoLecture.module.css';
 
 export interface VideoProps {
   id: number;

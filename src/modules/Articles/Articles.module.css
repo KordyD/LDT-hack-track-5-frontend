@@ -1,44 +1,6 @@
-.group {
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  color: var(--mantine-primary-color-filled);
-  &:hover {
-    background-color: var(--mantine-primary-color-light-hover);
-  }
-}
-
-.icon {
-  width: 24px;
-  height: 24px;
-}
-
 .card {
   box-shadow: var(--mantine-shadow-md);
   padding: 25px;
   border: 1px solid var(--mantine-color-default-border);
   border-radius: var(--mantine-radius-xl);
-}
-
-.modalTitle {
-  color: var(--mantine-primary-color-filled);
-}
-
-.modalInputRoot {
-  width: 100%;
-}
-
-.modalInput {
-  border-color: var(--mantine-primary-color-filled);
-  border-radius: var(--mantine-radius-xl);
-}
-
-.modalAreaInput {
-  height: 100px;
-  border-color: var(--mantine-primary-color-filled);
-  border-radius: var(--mantine-radius-lg);
-}
-
-.modalButton {
-  border-radius: var(--mantine-radius-lg);
 }
