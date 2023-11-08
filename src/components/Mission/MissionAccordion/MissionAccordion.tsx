@@ -1,8 +1,8 @@
-import { Accordion, Button, Flex, Image } from '@mantine/core';
+import { Accordion, Image } from '@mantine/core';
 import classes from './MissionAccordion.module.css';
 import Arrow from '../../../assets/icon/Arrow.svg';
-import { AccordionItem } from './AccordionItem.tsx';
-import plus from '../../../assets/icon/add_circle_create_expand_new_plus_icon_123218 1.png';
+import { AccordionItem } from './Accordion/AccordionItem.tsx';
+import { AddNewStage } from '../MissionAdmin/AddNewStage/AddNewStage.tsx';
 
 export const charactersList = [
   {
@@ -18,7 +18,7 @@ export const charactersList = [
         {
           id: 1,
           title:
-            'Задача 1Задача 1Задача 1Задача1Задача1Задача1Задача1Задача1Задача1ЗадачаЗадача1Задача1Задача1Задача1',
+            'Задача 1Задача 1Задача 1Задача1Задача1 Задача1Задача1 Задача1Задача1ЗадачаЗадача1Задача1Задача1Задача1',
           status: 'Принято',
           time: '03.04.2023',
         },
@@ -129,21 +129,7 @@ export const MissionAccordion = () => {
           }}
         >
           {items}
-          <Flex
-            align='center'
-            justify='center'
-            w='100%'
-            h='340px'
-            className={classes.missionAccordion__admin}
-          >
-            <Button
-              justify='space-around'
-              className={classes.buttonAddStage}
-              rightSection={<Image src={plus} w='40px' h='40px' />}
-            >
-              Добавить этап
-            </Button>
-          </Flex>
+          <AddNewStage />
         </Accordion>
       </>
     );

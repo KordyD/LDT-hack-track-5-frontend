@@ -66,6 +66,8 @@
     margin-bottom: 66px;
 }
 
+/*КНОПКА ЗАДАНИЯ*/
+
 .missionAccordion__taskRoot {
     padding: 0;
     background: transparent;
@@ -91,8 +93,25 @@
 }
 
 .missionAccordion__labelButton {
-    max-width: 745px;
+    max-width: 500px;
 }
+
+.missionAccordion__EditingTaskRoot {
+    padding: 0;
+    background: transparent;
+    height: 90px;
+    border-bottom: 1px solid #CFCDCD;
+    cursor: default;
+}
+
+.missionAccordion__EditingTask {
+    color: #252525;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+}
+/*КНОПКА ЗАДАНИЯ*/
 
 .missionAccordion__statusAp {
     color: #535353;
@@ -126,6 +145,14 @@
     line-height: 28px;
 }
 
+.buttonEditorInner {
+    color: #FFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+}
+
 .buttonAddStage {
     width: 332px;
     height: 40px;
@@ -138,3 +165,59 @@
     border: 1px solid #5277F6;
     border-radius: 20px ;
 }
+
+/*ПОПАП ДОБАВЛЕНИЯ ЭТАПА*/
+
+.newstage {
+    padding: 15px;
+}
+
+.newstage__title {
+    color: var(--Primary, #5277F6);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 23px;
+}
+
+.newstage__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.newstage__input {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid #5277F6;
+}
+
+.newstage__button {
+    border-radius: 36px;
+    background: var(--Primary, #5277F6);
+}
+
+/*ПОПАП ДОБАВЛЕНИЯ ЭТАПа*/
+
+
+/*ПОПАП ДОБАВЛЕНИЯ ЗАДАЧИ*/
+.addTask {
+    margin-top: 30px;
+}
+
+.addTaskButton {
+    width: 332px;
+    height: 40px;
+    background: none;
+    border-radius: 20px ;
+}
+
+.addTaskLabel {
+    color: #5277F6;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 23px;
+}
+/*ПОПАП ДОБАВЛЕНИЯ ЗАДАЧИ*/

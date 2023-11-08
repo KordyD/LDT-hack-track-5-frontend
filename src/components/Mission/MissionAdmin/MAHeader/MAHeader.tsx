@@ -8,7 +8,7 @@ export const MaHeader = () => {
       justify='space-between'
       align='center'
       className={classes.misionAdmin}
-      mb='30px'
+      pb='30px'
     >
       <Flex align='center' gap='xs'>
         <Image

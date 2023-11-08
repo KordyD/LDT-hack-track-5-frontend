@@ -1,6 +1,6 @@
 import { Flex, Group, Text } from '@mantine/core';
-import classes from './MissionAccordion.module.css';
-import { AccordionLabelProps } from './MissionAccordion.tsx';
+import classes from '../MissionAccordion.module.css';
+import { AccordionLabelProps } from '../MissionAccordion.tsx';
 
 export const AccordionLabel = ({
   label,

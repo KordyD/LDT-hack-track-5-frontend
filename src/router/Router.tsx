@@ -13,6 +13,7 @@ import { Video } from '../pages/Video/Video';
 import { articlesMain } from '../helpers/Articles.ts';
 import { MissionPage } from '../pages/MissionPage/MissionPage.tsx';
 import { PopupMission } from '../components/Mission/PopupMission/PopupMission.tsx';
+import { TaskContainer } from '../pages/TaskContainer/TaskContainer.tsx';
 
 interface Params {
   articleId: number;
@@ -56,6 +57,10 @@ export const router = createBrowserRouter([
       {
         path: 'mission',
         element: <MissionPage />,
+      },
+      {
+        path: 'tasks',
+        element: <TaskContainer />,
       },
       {
         path: 'shop',

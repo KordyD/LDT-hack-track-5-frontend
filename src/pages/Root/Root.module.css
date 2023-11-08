@@ -5,6 +5,8 @@
 }
 
 .outlet {
+  max-width: 1310px;
+  width: 100%;
   flex-grow: 1;
   padding: 25px;
 }
