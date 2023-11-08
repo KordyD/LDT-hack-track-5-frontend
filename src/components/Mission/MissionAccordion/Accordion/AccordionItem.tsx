@@ -5,6 +5,7 @@ import Lock from '../../../../assets/icon/mbrilock_99595 1.svg';
 import { Accordiontask } from './Accordiontask.tsx';
 import { useState } from 'react';
 import { AddTask } from '../AddTask/AddTask.tsx';
+import { ButtonsEditing } from '../../../ButtonsEditing/ButtonsEditing.tsx';
 
 export const AccordionItem = ({ item, role }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -38,34 +39,11 @@ export const AccordionItem = ({ item, role }) => {
             </Flex>
             {role === 'ADMIN' ? (
               <>
-                {isEditing ? (
-                  <>
-                    <AddTask />
-                    <Button
-                      onClick={() => setIsEditing(false)}
-                      h='90px'
-                      bg='#5277F6'
-                      color='#FFF'
-                      classNames={{
-                        root: classes.buttonTest,
-                        inner: classes.buttonEditorInner,
-                      }}
-                    >
-                      Сохранить
-                    </Button>
-                  </>
-                ) : (
-                  <Button
-                    onClick={() => setIsEditing(true)}
-                    h='90px'
-                    classNames={{
-                      root: classes.buttonTest,
-                      inner: classes.buttonTestInner,
-                    }}
-                  >
-                    Редактировать этап
-                  </Button>
-                )}
+                {isEditing ? <AddTask /> : ''}
+                <ButtonsEditing
+                  isEditing={isEditing}
+                  setIsEditing={setIsEditing}
+                />
               </>
             ) : (
               <Button

@@ -104,9 +104,13 @@
     cursor: default;
 }
 
+.missionAccordion__EditingTaskRoot_delete {
+    opacity: 0.2;
+}
+
 .missionAccordion__EditingTask {
     color: #252525;
-    font-size: 24px;
+    font-size: Large;
     font-style: normal;
     font-weight: 400;
     line-height: 28px;
@@ -192,6 +196,14 @@
     border-radius: 20px;
     border: 1px solid #5277F6;
 }
+
+.newstage__inputXL {
+    height: 120px;
+    border-radius: 20px;
+    border: 1px solid #5277F6;
+}
+
+
 
 .newstage__button {
     border-radius: 36px;
