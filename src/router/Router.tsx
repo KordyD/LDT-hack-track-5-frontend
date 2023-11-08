@@ -14,6 +14,7 @@ import { articlesMain } from '../helpers/Articles.ts';
 import { MissionPage } from '../pages/MissionPage/MissionPage.tsx';
 import { PopupMission } from '../components/Mission/PopupMission/PopupMission.tsx';
 import { TaskContainer } from '../pages/TaskContainer/TaskContainer.tsx';
+import { Audio } from '../pages/Audio/Audio.tsx';
 
 interface Params {
   articleId: number;
@@ -85,6 +86,10 @@ export const router = createBrowserRouter([
       {
         path: 'video',
         element: <Video />,
+      },
+      {
+        path: 'audio',
+        element: <Audio />,
       },
     ],
   },

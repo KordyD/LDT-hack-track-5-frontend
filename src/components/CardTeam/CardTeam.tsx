@@ -1,7 +1,19 @@
-import { ActionIcon, Anchor, Card, Group, Image, Text } from '@mantine/core';
+import {
+  ActionIcon,
+  Anchor,
+  Button,
+  Card,
+  Group,
+  Image,
+  Text,
+} from '@mantine/core';
 import { IconContext } from 'react-icons';
 import { ReactElement } from 'react';
 import classes from './CardTeam.module.css';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { PiNotePencil } from 'react-icons/pi';
+import { BsTrash3 } from 'react-icons/bs';
 
 interface CardTeam {
   image?: string;
@@ -21,6 +33,8 @@ export const CardTeam = ({
   contacts,
   job,
 }: CardTeam) => {
+  const isAuth = useSelector((state: RootState) => state.isAuth);
+
   return (
     <Card className={classes.card}>
       <Card.Section>
@@ -48,6 +62,15 @@ export const CardTeam = ({
           ))}
         </Group>
       </IconContext.Provider>
+      <Group display={isAuth ? 'flex' : 'none'}>
+        <ActionIcon>
+          <PiNotePencil />
+        </ActionIcon>
+        <ActionIcon>
+          <BsTrash3 />
+        </ActionIcon>
+      </Group>
+      <Button>Перейти к заданиям</Button>
     </Card>
   );
 };
