@@ -12,6 +12,10 @@
 .info {
   grid-row: 3 / 5;
   grid-column: 1 / 2;
+
+  &.auth {
+    grid-row: 1 / 5;
+  }
 }
 .articles {
   grid-row: 1 / 4;

@@ -1,4 +1,4 @@
-import { Box, Button, TextInput } from '@mantine/core';
+import { Box, TextInput } from '@mantine/core';
 import classes from './InputTeam.module.css';
 
 export const InputTeam = () => {
@@ -22,12 +22,12 @@ export const InputTeam = () => {
           classNames={{ root: classes.inputRoot, input: classes.input }}
         />
       </Box>
-      <Box className={classes.wrapperButtons}>
+      {/* <Box className={classes.wrapperButtons}>
         <Button className={classes.button}>Найти</Button>
         <Button className={classes.button} variant='light'>
           Очистить
         </Button>
-      </Box>
+      </Box> */}
     </>
   );
 };

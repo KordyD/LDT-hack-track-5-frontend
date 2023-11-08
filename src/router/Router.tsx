@@ -12,6 +12,7 @@ import { Article } from '../pages/Article/Article';
 import { Account } from '../pages/Account/Account.tsx';
 import { Video } from '../pages/Video/Video';
 import { articlesMain } from '../helpers/Articles.ts';
+import { Audio } from '../pages/Audio/Audio.tsx';
 
 interface Params {
   articleId: number;
@@ -75,6 +76,10 @@ export const router = createBrowserRouter([
       {
         path: 'video',
         element: <Video />,
+      },
+      {
+        path: 'audio',
+        element: <Audio />,
       },
     ],
   },
