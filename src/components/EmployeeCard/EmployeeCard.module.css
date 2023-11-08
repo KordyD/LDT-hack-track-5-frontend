@@ -1,32 +1,31 @@
-.card {
-  background-color: var(--mantine-primary-color-filled);
-  border-radius: var(--mantine-radius-xl);
-  padding: 25px;
-}
-
-.group {
-  justify-content: space-between;
-  color: var(--mantine-color-white);
-}
-
-.rootAvatar {
-  width: 70px;
-  height: 70px;
-}
-
-.avatar {
-  color: var(--mantine-primary-color-filled);
-  background-color: var(--mantine-color-white);
-}
-
-.link {
-  color: var(--mantine-color-white);
-}
-
 .name {
-  font-size: 28px;
+  margin-top: 5px;
+  font-size: var(--mantine-font-size-xl);
 }
 
-.grade {
-  font-size: smaller;
+.iconButton {
+  border-radius: var(--mantine-radius-xl);
+}
+
+.icon {
+  width: 28px;
+  height: 20px;
+}
+
+.contacts {
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.contact {
+  color: var(--mantine-color-text);
+  &:hover {
+    color: var(--mantine-primary-color-filled);
+  }
+}
+
+.card {
+  box-shadow: var(--mantine-shadow-xl);
+  border-radius: var(--mantine-radius-lg);
 }

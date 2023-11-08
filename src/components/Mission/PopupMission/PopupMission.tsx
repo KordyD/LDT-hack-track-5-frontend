@@ -1,13 +1,12 @@
-import React from 'react';
-import { Flex, Button, Text, Image, Modal } from '@mantine/core';
-import classes from './PopupMission.module.css';
+import { Button, Flex, Image, Text } from '@mantine/core';
+import { Link, useParams } from 'react-router-dom';
+import Back from '../../../assets/icon/BackArrow.svg';
 import clock from '../../../assets/icon/ClockBlue.svg';
 import coin from '../../../assets/icon/coin.svg';
-import google from '../../../assets/images/google.png';
 import chat from '../../../assets/images/chat.png';
-import Back from '../../../assets/icon/BackArrow.svg';
+import google from '../../../assets/images/google.png';
 import { charactersList } from '../MissionAccordion/MissionAccordion.tsx';
-import { Link, useParams } from 'react-router-dom';
+import classes from './PopupMission.module.css';
 
 interface itemProps {
   itemId: number;

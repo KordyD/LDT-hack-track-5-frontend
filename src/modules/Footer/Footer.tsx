@@ -1,6 +1,6 @@
 import { Anchor, Box, Container, Divider, Text } from '@mantine/core';
-import classes from './Footer.module.css';
 import { CustomNavLink } from '../../components/NavLink/NavLink';
+import classes from './Footer.module.css';
 
 export const Footer = () => {
   return (

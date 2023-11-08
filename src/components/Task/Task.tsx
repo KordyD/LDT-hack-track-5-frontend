@@ -1,6 +1,6 @@
 import { Button, Flex, Image, Text } from '@mantine/core';
-import classes from '../Mission/MissionAccordion/MissionAccordion.module.css';
 import { Link } from 'react-router-dom';
+import classes from '../Mission/MissionAccordion/MissionAccordion.module.css';
 import Trash from '../../assets/images/TrashBin.png';
 
 export const Task = ({ task, isEditing }) => {

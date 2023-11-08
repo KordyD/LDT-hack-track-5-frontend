@@ -9,10 +9,10 @@ import {
   Stack,
   Text,
 } from '@mantine/core';
-import classes from './Tracker.module.css';
 import { IconContext } from 'react-icons';
 import { PiNotePencil, PiPencilSimple } from 'react-icons/pi';
 import { tasks } from '../../helpers/Tasks';
+import classes from './Tracker.module.css';
 export const Tracker = () => {
   return (
     <Card className={classes.card}>

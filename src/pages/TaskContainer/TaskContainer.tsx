@@ -1,9 +1,8 @@
 import { Button, Flex, Image, ScrollArea } from '@mantine/core';
+import { useState } from 'react';
 import sort from '../../assets/icon/sort.svg';
 import filter from '../../assets/icon/filter.svg';
 import { Task } from '../../components/Task/Task.tsx';
-import { AccordionItem } from '../../components/Mission/MissionAccordion/Accordion/AccordionItem.tsx';
-import { useState } from 'react';
 
 const task = [
   {

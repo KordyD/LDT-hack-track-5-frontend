@@ -17,7 +17,7 @@
 }
 
 .text {
-  text-align: end;
+  /* text-align: end; */
   color: var(--mantine-primary-color-filled);
 }
 

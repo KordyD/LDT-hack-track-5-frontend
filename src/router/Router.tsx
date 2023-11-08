@@ -67,18 +67,7 @@ export const router = createBrowserRouter([
         path: 'shop',
         element: <Shop />,
       },
-      {
-        path: 'greeting',
-        element: <Greetings />,
-      },
-      {
-        path: 'register',
-        element: <Register />,
-      },
-      {
-        path: 'login',
-        element: <Login />,
-      },
+
       {
         path: 'account',
         element: <Account />,
@@ -92,5 +81,17 @@ export const router = createBrowserRouter([
         element: <Audio />,
       },
     ],
+  },
+  {
+    path: '/register',
+    element: <Register />,
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: 'greeting',
+    element: <Greetings />,
   },
 ]);
