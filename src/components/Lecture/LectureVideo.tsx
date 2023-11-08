@@ -2,7 +2,11 @@ import { Flex, AspectRatio, Text } from '@mantine/core';
 import classes from '../../pages/VideoLecture/VideoLecture.module.css';
 import { VideoProps } from '../../pages/VideoLecture/VideoLecture';
 
-export const LectureVideo = ({ video }: VideoProps) => {
+interface LectureVideo {
+  video: VideoProps;
+}
+
+export const LectureVideo = ({ video }: LectureVideo) => {
   return (
     <Flex className={classes.lecturevideo}>
       <AspectRatio ratio={16 / 9} h='317px'>
