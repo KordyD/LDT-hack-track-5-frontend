@@ -1,12 +1,10 @@
 .wrapperInputs {
-  display: flex;
   gap: 20px;
   justify-content: space-between;
 }
 
 .wrapperButtons {
   margin-top: 25px;
-  display: flex;
   gap: 25px;
 }
 
@@ -23,4 +21,8 @@
   padding-left: 45px;
   padding-right: 45px;
   border-radius: var(--mantine-radius-xl);
+}
+
+.wrapperInput {
+  flex-grow: 1;
 }
