@@ -36,7 +36,7 @@ export const PopupMission = ({ itemId }: itemProps) => {
           <Flex>
             <Flex className={classes.popupMission__container}>
               <Flex className={classes.popupMission__box}>
-                <BackButton />
+                <BackButton>Назад</BackButton>
                 <Text
                   className={classes.popupMission__title}
                   fz={Heading}

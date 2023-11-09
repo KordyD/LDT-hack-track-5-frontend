@@ -62,24 +62,24 @@ export const VideoLecture = () => {
         <form onSubmit={form.onSubmit((values) => console.log(values))}>
           <TextInput
             w='100%'
-            classNames={{ input: classes.lecturevideo__input }}
+            classNames={{ input: classes.videolecture__input }}
             placeholder='Введите ключевые слова'
             {...form.getInputProps('videoName')}
           />
 
           <Group justify='flex-start' mt='md'>
             <Button
-              className={`${classes.lecturevideo__button} ${classes.lecturevideo__buttonSearch}`}
+              className={`${classes.videolecture__button} ${classes.videolecture__buttonSearch}`}
               type='submit'
             >
               Найти
             </Button>
-            <Button className={classes.lecturevideo__button} type='button'>
+            <Button className={classes.videolecture__button} type='button'>
               Очистить
             </Button>
           </Group>
         </form>
-        <BackButton />
+        <BackButton>Назад</BackButton>
       </Flex>
       <SimpleGrid
         cols={{ lg: 3, md: 2, sm: 2, base: 1 }}

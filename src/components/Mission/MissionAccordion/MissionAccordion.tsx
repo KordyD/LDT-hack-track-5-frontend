@@ -118,10 +118,7 @@ export const MissionAccordion = () => {
           variant='contained'
           chevronPosition='right'
           chevron={
-            <Image
-              src={Arrow}
-              w={{ lg: '30px', md: '30px', sm: '25px', xs: '20px' }}
-            />
+            <Image src={Arrow} w={{ lg: '30px', md: '30px', base: '25px' }} />
           }
           w='100%'
           classNames={{
@@ -130,6 +127,7 @@ export const MissionAccordion = () => {
             label: classes.missionAccordion__label,
             panel: classes.missionAccordion__panel,
             control: classes.missionAccordion__control,
+            chevron: classes.missionAccordion__chevron,
           }}
         >
           {items}
@@ -156,6 +154,7 @@ export const MissionAccordion = () => {
             label: classes.missionAccordion__label,
             panel: classes.missionAccordion__panel,
             control: classes.missionAccordion__control,
+            chevron: classes.missionAccordion__chevron,
           }}
         >
           {items}

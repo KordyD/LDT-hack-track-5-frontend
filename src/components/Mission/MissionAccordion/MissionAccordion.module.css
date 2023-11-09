@@ -28,6 +28,15 @@
     margin: 0 auto 30px;
 }
 
+.missionAccordion__chevron {
+    width: 30px;
+}
+@media screen and (max-width: 580px) {
+    .missionAccordion__chevron {
+        width: 25px;
+    }
+}
+
 
 .missionAccordion__control:hover {
     background: #FFF;
