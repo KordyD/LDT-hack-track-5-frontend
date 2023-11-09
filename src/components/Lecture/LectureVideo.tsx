@@ -1,11 +1,11 @@
 import { Flex, AspectRatio, Text } from '@mantine/core';
 import classes from '../../pages/VideoLecture/VideoLecture.module.css';
-import { VideoProps } from '../../pages/VideoLecture/VideoLecture';
 import {
   TextForInput,
   TextMiddle,
   TextSmall,
 } from '../../theme/AdaptiveConts.ts';
+import { VideoProps } from '../../modules/VideoLecture/VideoLecture';
 
 interface LectureVideo {
   video: VideoProps;

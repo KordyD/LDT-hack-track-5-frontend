@@ -1,11 +1,9 @@
 import { Flex, Button, Text, Image, SimpleGrid } from '@mantine/core';
-import classes from './PopupMission.module.css';
-import coin from '../../../assets/icon/coin.svg';
-import google from '../../../assets/images/google.png';
-import chat from '../../../assets/images/chat.png';
-import { charactersList } from '../MissionAccordion/MissionAccordion.tsx';
 import { useParams } from 'react-router-dom';
 import { useDisclosure } from '@mantine/hooks';
+import coin from '../../../assets/icon/coin.svg';
+import chat from '../../../assets/images/chat.png';
+import { charactersList } from '../MissionAccordion/MissionAccordion.tsx';
 import AddNewTask from '../../Task/AddNewTask.tsx';
 import {
   EditButton,
@@ -15,6 +13,8 @@ import {
   TextMiddle,
 } from '../../../theme/AdaptiveConts.ts';
 import { BackButton } from '../../BackButton/BackButton.tsx';
+import google from '../../../assets/images/google.png';
+import classes from './PopupMission.module.css';
 
 interface itemProps {
   itemId: number;

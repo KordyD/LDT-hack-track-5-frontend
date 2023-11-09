@@ -1,30 +1,18 @@
-import {
-  ActionIcon,
-  Box,
-  Button,
-  Card,
-  Divider,
-  Group,
-  Modal,
-  ScrollArea,
-  Stack,
-  Text,
-  TextInput,
-  Textarea,
-} from '@mantine/core';
-import { AiOutlinePlus, AiOutlinePaperClip } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Button, Card, Group } from '@mantine/core';
+import { AiOutlinePlus } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
-import { CustomActionIcon } from '../../components/ActionIcon/ActionIcon';
-import { articlesMain } from '../../helpers/Articles';
-import classes from './Articles.module.css';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
 import { useDisclosure } from '@mantine/hooks';
-import { PiPencilSimple } from 'react-icons/pi';
+import { articlesMain } from '../../helpers/Articles';
+import { ScrollAreaArticles } from '../../components/ScrollAreaArticles/ScrollAreaArticles';
+import { EditButton } from '../../components/EditButton/EditButton';
+import { AddArticleModal } from '../../components/AddArticleModal/AddArticleModal';
+import classes from './Articles.module.css';
 
-export const Articles = () => {
-  const isAuth = useSelector((state: RootState) => state.isAuth);
+interface Articles {
+  isAuth: boolean;
+}
+
+export const Articles = ({ isAuth }: Articles) => {
   const [opened, { open, close }] = useDisclosure(false);
   return (
     <Card className={classes.card}>
@@ -38,68 +26,10 @@ export const Articles = () => {
             Добавить статью
           </Button>
         </IconContext.Provider>
-
-        <Modal
-          title='Добавить статью'
-          opened={opened}
-          onClose={close}
-          radius={'xl'}
-          classNames={{ title: classes.modalTitle }}
-        >
-          <Stack>
-            <TextInput
-              placeholder='Название'
-              classNames={{
-                root: classes.modalInputRoot,
-                input: classes.modalInput,
-              }}
-            />
-            <Textarea
-              placeholder='Описание'
-              classNames={{
-                root: classes.modalInputRoot,
-                input: classes.modalAreaInput,
-              }}
-            />
-            <Group justify='center'>
-              <Button
-                rightSection={<AiOutlinePaperClip />}
-                className={classes.modalButton}
-              >
-                Прикрепить файл
-              </Button>
-              <Button className={classes.modalButton}>Сохранить</Button>
-            </Group>
-          </Stack>
-        </Modal>
-        <ActionIcon radius='xl' display={isAuth ? 'flex' : 'none'}>
-          <PiPencilSimple />
-        </ActionIcon>
+        <AddArticleModal opened={opened} close={close} />
+        <EditButton display={isAuth ? 'flex' : 'none'} />
       </Group>
-      <ScrollArea.Autosize mah={900}>
-        <Stack gap={0}>
-          {articlesMain.map((item, index) => (
-            <Box
-              td='none'
-              component={Link}
-              to={`/knowledge/${item.id}`}
-              key={item.id}
-            >
-              <Group className={classes.group}>
-                <Text>{item.title}</Text>
-                <IconContext.Provider value={{ className: classes.icon }}>
-                  <CustomActionIcon>
-                    <AiOutlinePlus />
-                  </CustomActionIcon>
-                </IconContext.Provider>
-              </Group>
-              <Divider
-                display={index == articlesMain.length - 1 ? 'none' : 'block'}
-              />
-            </Box>
-          ))}
-        </Stack>
-      </ScrollArea.Autosize>
+      <ScrollAreaArticles articlesMain={articlesMain} mah={900} />
     </Card>
   );
 };

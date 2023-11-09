@@ -1,15 +1,9 @@
 import { Button, Flex, Image, Text, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { useNavigate, Link } from 'react-router-dom';
 import Women from '../../assets/images/image-PhotoRoom.png-PhotoRoom - 2023-09-28T181802 1.png';
+import { HeadingH3, TextMiddle } from '../../theme/AdaptiveConts.ts';
 import classes from './Register.module.css';
-import { Link, useNavigate } from 'react-router-dom';
-import {
-  EditButton,
-  HeadingH3,
-  TextForInput,
-  TextLarge,
-  TextMiddle,
-} from '../../theme/AdaptiveConts.ts';
 
 interface IRegister {
   email: string;

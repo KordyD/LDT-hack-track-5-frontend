@@ -1,8 +1,8 @@
-import { Button, Flex, Image, Modal, Select } from '@mantine/core';
+import { Button, Image, Modal, Select } from '@mantine/core';
+import { useForm } from '@mantine/form';
+import { useDisclosure } from '@mantine/hooks';
 import plus from '../../../../assets/icon/add_circle_create_expand_new_plus_icon_123218 1.png';
 import classes from '../../MissionAccordion/MissionAccordion.module.css';
-import { useDisclosure } from '@mantine/hooks';
-import { useForm } from '@mantine/form';
 import {
   EditButton,
   Image40,

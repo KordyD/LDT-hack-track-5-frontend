@@ -1,5 +1,5 @@
 import { SimpleGrid } from '@mantine/core';
-import { CardTeam } from '../../components/CardTeam/CardTeam';
+import { EmployeeCard } from '../../components/EmployeeCard/EmployeeCard';
 import { team } from '../../helpers/TeamData';
 
 export const CardsTeam = () => {
@@ -10,7 +10,7 @@ export const CardsTeam = () => {
       verticalSpacing='xl'
     >
       {team.map((item) => (
-        <CardTeam
+        <EmployeeCard
           key={item.id}
           name={item.name}
           city={item.city}

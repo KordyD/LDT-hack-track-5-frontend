@@ -1,7 +1,7 @@
 import { Anchor, Box, Button, Card, SimpleGrid } from '@mantine/core';
+import { AiOutlineArrowRight } from 'react-icons/ai';
 import { Achievement } from '../../components/Achievement/Achievement';
 import { achievements } from '../../helpers/Achievements';
-import { AiOutlineArrowRight } from 'react-icons/ai';
 import classes from './CardAchievement.module.css';
 
 export const CardAchievement = () => {

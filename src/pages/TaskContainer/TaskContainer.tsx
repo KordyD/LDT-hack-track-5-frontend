@@ -1,21 +1,11 @@
-import {
-  Button,
-  Flex,
-  Image,
-  ScrollArea,
-  Modal,
-  TextInput,
-} from '@mantine/core';
+import { Button, Flex, Image, ScrollArea } from '@mantine/core';
+import { useState } from 'react';
+import { useDisclosure } from '@mantine/hooks';
 import sort from '../../assets/icon/sort.svg';
 import filter from '../../assets/icon/filter.svg';
 import { Task } from '../../components/Task/Task.tsx';
-import { useState } from 'react';
 import { ButtonsEditing } from '../../components/ButtonsEditing/ButtonsEditing.tsx';
-import classes from '../../components/Mission/MissionAccordion/MissionAccordion.module.css';
 import plus from '../../assets/icon/add_circle_create_expand_new_plus_icon_123218 1.png';
-import { useDisclosure } from '@mantine/hooks';
-import { useForm } from '@mantine/form';
-import { AddTask } from '../../components/Mission/MissionAccordion/AddTask/AddTask.tsx';
 import AddNewTask from '../../components/Task/AddNewTask.tsx';
 import { TextMiddle } from '../../theme/AdaptiveConts.ts';
 

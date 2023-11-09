@@ -1,5 +1,5 @@
 import { Box, Container, Group } from '@mantine/core';
-import { EmployeeCard } from '../../components/EmployeeCard/EmployeeCard';
+import { ProfileCard } from '../../components/ProfileCard/ProfileCard';
 import { employee } from '../../helpers/Employee';
 import { CardAchievement } from '../../modules/CardAchievement/CardAchievement';
 import { Tracker } from '../../modules/Tracker/Tracker';
@@ -10,7 +10,7 @@ export const Account = () => {
   return (
     <>
       <Container size='xl'>
-        <EmployeeCard
+        <ProfileCard
           name={employee.name}
           job={employee.job}
           grade={employee.grade}

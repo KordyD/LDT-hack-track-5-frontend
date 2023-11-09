@@ -1,9 +1,7 @@
 import { Accordion, Button, Flex, Image, Progress, Text } from '@mantine/core';
-import { AccordionLabel } from './AccordionLabel.tsx';
+import { useState } from 'react';
 import classes from '../MissionAccordion.module.css';
 import Lock from '../../../../assets/icon/Lock.png';
-import { Accordiontask } from './Accordiontask.tsx';
-import { useState } from 'react';
 import { AddTask } from '../AddTask/AddTask.tsx';
 import { ButtonsEditing } from '../../../ButtonsEditing/ButtonsEditing.tsx';
 import {
@@ -11,6 +9,9 @@ import {
   TextForInput,
   TextMiddle,
 } from '../../../../theme/AdaptiveConts.ts';
+import { Accordiontask } from './Accordiontask.tsx';
+
+import { AccordionLabel } from './AccordionLabel.tsx';
 
 export const AccordionItem = ({ item, role }) => {
   const [isEditing, setIsEditing] = useState(false);

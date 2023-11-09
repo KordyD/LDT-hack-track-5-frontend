@@ -1,8 +1,8 @@
 import { Button, Flex, Text, TextInput } from '@mantine/core';
-import classes from '../Register/Register.module.css';
 import { useForm } from '@mantine/form';
 import { Link, useNavigate } from 'react-router-dom';
 import { HeadingH3, TextMiddle } from '../../theme/AdaptiveConts.ts';
+import classes from '../Register/Register.module.css';
 
 interface ILogin {
   email: string;

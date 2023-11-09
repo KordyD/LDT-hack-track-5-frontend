@@ -8,8 +8,8 @@ import {
   Stack,
   Text,
 } from '@mantine/core';
-import classes from './ModalHistroy.module.css';
 import { useDisclosure } from '@mantine/hooks';
+import classes from './ModalHistroy.module.css';
 
 interface ModalHistory {
   history: {
@@ -31,13 +31,7 @@ export const ModalHistory = ({ history }: ModalHistory) => {
           История просмотра
         </Button>
       </Box>
-      <Modal
-        radius='xl'
-        size='auto'
-        opened={opened}
-        onClose={close}
-        title='История'
-      >
+      <Modal size='auto' opened={opened} onClose={close} title='История'>
         <Stack>
           {history.map((item) => (
             <Box key={item.id}>

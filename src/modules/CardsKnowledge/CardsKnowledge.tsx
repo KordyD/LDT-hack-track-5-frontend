@@ -1,13 +1,12 @@
 import { Box } from '@mantine/core';
-import { CardKnowledge } from '../../components/CardKnowledge/CardKnowledge';
-import { FiStar } from 'react-icons/fi';
-import { AiOutlineInfoCircle } from 'react-icons/ai';
-import { Articles } from '../Articles/Articles';
-import { CardLecture } from '../../components/CardLecture/CardLecture';
-import { articles } from '../../helpers/Favorite';
-import classes from './CardsKnowledge.module.css';
 import { useSelector } from 'react-redux';
+import { CardLecture } from '../../components/CardLecture/CardLecture';
+import { CompanyInfoCard } from '../../components/CompanyInfoCard/CompanyInfoCard';
+import { FavoritesCard } from '../../components/FavoritesCard/FavoritesCard';
+import { articles } from '../../helpers/Favorite';
 import { RootState } from '../../store';
+import { Articles } from '../Articles/Articles';
+import classes from './CardsKnowledge.module.css';
 
 export const CardsKnowledge = () => {
   const isAuth = useSelector((state: RootState) => state.isAuth);
@@ -15,28 +14,23 @@ export const CardsKnowledge = () => {
   return (
     <Box className={classes.wrapper}>
       <Box className={classes.favorite} display={isAuth ? 'none' : 'block'}>
-        <CardKnowledge
-          heading='Избранное'
-          icon={<FiStar />}
-          articles={articles}
-        />
+        <FavoritesCard heading='Избранное' articles={articles} />
       </Box>
       <Box className={classes.articles}>
-        <Articles />
+        <Articles isAuth={isAuth} />
       </Box>
       <Box className={`${classes.info} ${isAuth ? classes.auth : ''}`}>
-        <CardKnowledge
+        <CompanyInfoCard
           heading='О компании'
-          icon={<AiOutlineInfoCircle />}
           articles={articles}
-          styleDark={true}
+          isAuth={isAuth}
         />
       </Box>
       <Box className={classes.lecture}>
-        <CardLecture />
+        <CardLecture type='video' isAuth={isAuth} />
       </Box>
       <Box className={classes.lecture}>
-        <CardLecture />
+        <CardLecture type='audio' isAuth={isAuth} />
       </Box>
     </Box>
   );

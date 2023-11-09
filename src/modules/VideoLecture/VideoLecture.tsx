@@ -3,14 +3,13 @@ import {
   Group,
   Button,
   Flex,
-  Image,
   SimpleGrid,
   Card,
 } from '@mantine/core';
-import classes from './VideoLecture.module.css';
-import { LectureVideo } from '../../components/Lecture/LectureVideo';
 import { useForm } from '@mantine/form';
+import { LectureVideo } from '../../components/Lecture/LectureVideo';
 import { BackButton } from '../../components/BackButton/BackButton.tsx';
+import classes from './VideoLecture.module.css';
 
 export interface VideoProps {
   id: number;

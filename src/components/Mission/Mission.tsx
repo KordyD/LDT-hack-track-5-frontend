@@ -1,17 +1,18 @@
-import { Flex, Title, Text, Image, Button, Container } from '@mantine/core';
+import { Flex, Title, Text, Image, Container } from '@mantine/core';
 import clock from '../../assets/icon/clock-eight.svg';
 import editor from '../../assets/icon/edit.svg';
 import gift from '../../assets/icon/gift.svg';
 
-import classes from './Mission.module.css';
-import { MissionAccordion } from './MissionAccordion/MissionAccordion.tsx';
-import { MissionMap } from './MissionMap/MissionMap.tsx';
 import {
   Heading,
   HeadingH2,
   Image50,
   TextSmall,
 } from '../../theme/AdaptiveConts.ts';
+import { MissionAccordion } from './MissionAccordion/MissionAccordion.tsx';
+import { MissionMap } from './MissionMap/MissionMap.tsx';
+
+import classes from './Mission.module.css';
 
 export const Mission = () => {
   return (
