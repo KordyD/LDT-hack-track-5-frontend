@@ -4,7 +4,9 @@
 }
 
 .group {
+  display: flex;
   gap: 35px;
+  overflow-x: scroll;
 }
 
 .wrapperButton {

@@ -27,7 +27,10 @@ export const CompanyInfoCard = ({
           </Group>
           <EditButton display={isAuth ? 'flex' : 'none'} />
         </Group>
-        <ScrollAreaCard articles={articles} mah={isAuth ? 1200 : 500} />
+        <ScrollAreaCard
+          articles={articles}
+          mah={isAuth ? { base: 500, md: 1200 } : 500}
+        />
       </Box>
 
       <Box>

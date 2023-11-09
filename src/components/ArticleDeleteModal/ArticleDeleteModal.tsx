@@ -1,19 +1,16 @@
 import { ActionIcon, Box, Button, Modal, Stack, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { BsTrash3 } from 'react-icons/bs';
-import classes from './ArticleEditModal.module.css';
-interface ArticleEditModalProps {
+import classes from './ArticleDeleteModal.module.css';
+interface ArticleDeleteModalProps {
   isAuth: boolean;
 }
 
-export const ArticleEditModal = ({ isAuth }: ArticleEditModalProps) => {
+export const ArticleDeleteModal = ({ isAuth }: ArticleDeleteModalProps) => {
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
     <>
-      <Button display={isAuth ? 'block' : 'none'} variant='white'>
-        Редактировать
-      </Button>
       <Box display={isAuth ? 'block' : 'none'}>
         <ActionIcon variant='unstyled' c='red' onClick={open}>
           <BsTrash3 />

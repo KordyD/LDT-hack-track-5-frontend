@@ -7,9 +7,6 @@ export const Footer = () => {
     <Box component='footer' className={classes.wrapper}>
       <Box component='nav' p={25}>
         <Container size='lg' className={classes.containerLinks}>
-          <Anchor component={CustomNavLink} to='/'>
-            Главная
-          </Anchor>
           <Anchor component={CustomNavLink} to='knowledge'>
             Справочник
           </Anchor>
