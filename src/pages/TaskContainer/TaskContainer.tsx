@@ -17,6 +17,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { useForm } from '@mantine/form';
 import { AddTask } from '../../components/Mission/MissionAccordion/AddTask/AddTask.tsx';
 import AddNewTask from '../../components/Task/AddNewTask.tsx';
+import { TextMiddle } from '../../theme/AdaptiveConts.ts';
 
 const task = [
   {
@@ -49,6 +50,7 @@ export const TaskContainer = () => {
       <Flex w='100%' direction='column' align={'flex-start'}>
         <Flex w='100%' justify='space-between'>
           <Button
+            fz={TextMiddle}
             p='0'
             variant='white'
             color='#5277F6'
@@ -57,6 +59,7 @@ export const TaskContainer = () => {
             Сортировка
           </Button>
           <Button
+            fz={TextMiddle}
             p='0'
             variant='white'
             color='#5277F6'
@@ -67,6 +70,7 @@ export const TaskContainer = () => {
         </Flex>
         {isEditing ? (
           <Button
+            fz={TextMiddle}
             variant='white'
             mt='20px'
             p='0'

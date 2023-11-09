@@ -3,6 +3,12 @@ import plus from '../../../../assets/icon/add_circle_create_expand_new_plus_icon
 import classes from '../../MissionAccordion/MissionAccordion.module.css';
 import { useDisclosure } from '@mantine/hooks';
 import { useForm } from '@mantine/form';
+import {
+  EditButton,
+  Image40,
+  TextForInput,
+  TextMiddle,
+} from '../../../../theme/AdaptiveConts.ts';
 
 export const AddTask = () => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -23,7 +29,7 @@ export const AddTask = () => {
         justify='center'
         bg='transparent'
         w='100%'
-        h='90px'
+        h={EditButton}
         className={classes.addTask}
         onClick={open}
       >
@@ -32,13 +38,15 @@ export const AddTask = () => {
             root: classes.addTaskButton,
             label: classes.addTaskLabel,
           }}
-          rightSection={<Image src={plus} w='40px' h='40px' />}
+          fz={TextMiddle}
+          rightSection={<Image src={plus} w={Image40} h={Image40} />}
         >
           Добавить задание
         </Button>
       </Button>
       <Modal
         radius='32px'
+        fz={TextForInput}
         classNames={{
           title: classes.newstage__title,
           content: classes.newstage,
@@ -65,6 +73,7 @@ export const AddTask = () => {
             withCheckIcon={false}
             w='100%'
             placeholder='Выберете задачу'
+            fz={TextForInput}
             classNames={{ input: classes.newstage__input }}
             data={['', 'React', 'Angular', 'Vue', 'Svelte']}
             {...form.getInputProps('task')}
@@ -72,6 +81,7 @@ export const AddTask = () => {
           <Button
             w='55%'
             type='submit'
+            fz={TextForInput}
             classNames={{ root: classes.newstage__button }}
           >
             Добавить задание

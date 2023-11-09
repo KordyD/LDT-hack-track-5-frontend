@@ -8,6 +8,7 @@ import part5 from '../../../assets/icon/Part5.svg';
 import part6 from '../../../assets/icon/Part6.svg';
 import StartPart from '../../../assets/icon/StarPart.svg';
 import { useState } from 'react';
+import { ImageMap } from '../../../theme/AdaptiveConts.ts';
 
 export const MissionMap = () => {
   const [isActive, setIsActive] = useState(false);
@@ -16,7 +17,12 @@ export const MissionMap = () => {
       className={classes.missionmap}
       gap='20px'
       justify='center'
-      align='flex-start'
+      align={{
+        lg: 'flex-start',
+        md: 'flex-start',
+        sm: 'center',
+        base: 'center',
+      }}
       direction='row'
       wrap='wrap'
       m='30px 20px'

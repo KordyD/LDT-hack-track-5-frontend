@@ -9,6 +9,7 @@ import {
 } from '@mantine/core';
 import classes from '../Mission/MissionAccordion/MissionAccordion.module.css';
 import { useForm } from '@mantine/form';
+import { TextForInput } from '../../theme/AdaptiveConts.ts';
 
 export const AddNewTask = ({ close, opened, name }) => {
   const form = useForm({
@@ -33,6 +34,7 @@ export const AddNewTask = ({ close, opened, name }) => {
   return (
     <Modal
       radius='32px'
+      fz={TextForInput}
       classNames={{
         title: classes.newstage__title,
         content: classes.newstage,
@@ -57,12 +59,14 @@ export const AddNewTask = ({ close, opened, name }) => {
       >
         <Flex gap={'xs'}>
           <TextInput
+            fz={TextForInput}
             w='50%'
             classNames={{ input: classes.newstage__input }}
             placeholder='Название'
             {...form.getInputProps('name')}
           />
           <NumberInput
+            fz={TextForInput}
             w='50%'
             radius='xl'
             classNames={{ input: classes.newstage__input }}
@@ -73,6 +77,7 @@ export const AddNewTask = ({ close, opened, name }) => {
           />
         </Flex>
         <Textarea
+          fz={TextForInput}
           radius='xl'
           w='100%'
           classNames={{
@@ -82,6 +87,7 @@ export const AddNewTask = ({ close, opened, name }) => {
           {...form.getInputProps('description')}
         />
         <NativeSelect
+          fz={TextForInput}
           radius='xl'
           w='100%'
           classNames={{
@@ -92,6 +98,7 @@ export const AddNewTask = ({ close, opened, name }) => {
           {...form.getInputProps('job')}
         />
         <Button
+          fz={TextForInput}
           w='55%'
           type='submit'
           classNames={{ root: classes.newstage__button }}

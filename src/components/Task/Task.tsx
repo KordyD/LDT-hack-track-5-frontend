@@ -3,6 +3,7 @@ import classes from '../Mission/MissionAccordion/MissionAccordion.module.css';
 import { Link } from 'react-router-dom';
 import Trash from '../../assets/images/TrashBin.png';
 import { useState } from 'react';
+import { Image40, TextMiddle } from '../../theme/AdaptiveConts.ts';
 
 export const Task = ({ task, isEditing }) => {
   const [isDeleted, setIsDeleted] = useState(false);
@@ -21,13 +22,13 @@ export const Task = ({ task, isEditing }) => {
             truncate='end'
             maw='60%'
             pl='10px'
-            fz={{ lg: '24px', sm: '24px', xs: '18px' }}
+            fz={TextMiddle}
             className={classes.missionAccordion__EditingTask}
           >
             {task.title}
           </Text>
           <Text
-            fz={{ lg: '24px', sm: '24px', xs: '18px' }}
+            fz={TextMiddle}
             className={classes.missionAccordion__EditingTask}
             component={Link}
             to={`/mission/${task.id}`}
@@ -38,13 +39,7 @@ export const Task = ({ task, isEditing }) => {
             p='0'
             onClick={() => setIsDeleted(true)}
             bg='transparent'
-            rightSection={
-              <Image
-                src={Trash}
-                w={{ md: '40px', xs: '32px' }}
-                h={{ md: '40px', xs: '32px' }}
-              />
-            }
+            rightSection={<Image src={Trash} w={Image40} h={Image40} />}
           ></Button>
         </Flex>
       </>
@@ -62,6 +57,7 @@ export const Task = ({ task, isEditing }) => {
             truncate='end'
             w='60%'
             pl='10px'
+            fz={TextMiddle}
             className={classes.missionAccordion__EditingTask}
           >
             {task.title}

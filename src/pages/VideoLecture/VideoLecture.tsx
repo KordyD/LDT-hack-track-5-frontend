@@ -58,10 +58,11 @@ export const VideoLecture = () => {
     },
   });
   return (
-    <Flex direction='column' align='flex-start' w='1308px' bg='#FFF' mt='30px'>
+    <Flex direction='column' align='flex-start' bg='#FFF' mt='30px'>
       <Flex w='100%' justify='space-between' align='flex-end'>
         <form onSubmit={form.onSubmit((values) => console.log(values))}>
           <TextInput
+            w='100%'
             classNames={{ input: classes.lecturevideo__input }}
             placeholder='Введите ключевые слова'
             {...form.getInputProps('videoName')}
@@ -82,7 +83,7 @@ export const VideoLecture = () => {
         <BackButton />
       </Flex>
       <SimpleGrid
-        cols={3}
+        cols={{ lg: 3, md: 2, sm: 2, base: 1 }}
         justify='flex-start'
         align='flex-start'
         gutter='30px'

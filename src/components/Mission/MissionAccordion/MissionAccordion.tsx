@@ -117,7 +117,12 @@ export const MissionAccordion = () => {
         <Accordion
           variant='contained'
           chevronPosition='right'
-          chevron={<Image src={Arrow} w='30px' />}
+          chevron={
+            <Image
+              src={Arrow}
+              w={{ lg: '30px', md: '30px', sm: '25px', xs: '20px' }}
+            />
+          }
           w='100%'
           classNames={{
             root: classes.missionAccordion,
@@ -125,7 +130,6 @@ export const MissionAccordion = () => {
             label: classes.missionAccordion__label,
             panel: classes.missionAccordion__panel,
             control: classes.missionAccordion__control,
-            chevron: classes.missionAccordion__chevron,
           }}
         >
           {items}
@@ -133,15 +137,18 @@ export const MissionAccordion = () => {
         </Accordion>
       </>
     );
-  }
-
-  if (role === 'USER') {
+  } else if (role === 'USER') {
     return (
       <>
         <Accordion
           variant='contained'
           chevronPosition='right'
-          chevron={<Image src={Arrow} w='30px' />}
+          chevron={
+            <Image
+              src={Arrow}
+              w={{ lg: '30px', md: '30px', sm: '25px', xs: '20px' }}
+            />
+          }
           w='100%'
           classNames={{
             root: classes.missionAccordion,
@@ -149,7 +156,6 @@ export const MissionAccordion = () => {
             label: classes.missionAccordion__label,
             panel: classes.missionAccordion__panel,
             control: classes.missionAccordion__control,
-            chevron: classes.missionAccordion__chevron,
           }}
         >
           {items}

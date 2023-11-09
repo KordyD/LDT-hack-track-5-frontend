@@ -4,6 +4,11 @@ import plus from '../../../../assets/icon/add_circle_create_expand_new_plus_icon
 import { useDisclosure } from '@mantine/hooks';
 import { DateInput } from '@mantine/dates';
 import { useForm } from '@mantine/form';
+import {
+  Image40,
+  TextForInput,
+  TextMiddle,
+} from '../../../../theme/AdaptiveConts.ts';
 
 export const AddNewStage = () => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -33,20 +38,23 @@ export const AddNewStage = () => {
         align='center'
         justify='center'
         w='100%'
-        h='200px'
+        mih='200px'
         className={classes.missionAccordion__admin}
       >
         <Button
           onClick={open}
           justify='space-around'
+          fz={TextMiddle}
+          w='50%'
           className={classes.buttonAddStage}
-          rightSection={<Image src={plus} w='40px' h='40px' />}
+          rightSection={<Image src={plus} w={Image40} h={Image40} />}
         >
           Добавить этап
         </Button>
       </Flex>
       <Modal
         radius='32px'
+        fz={TextForInput}
         classNames={{
           title: classes.newstage__title,
           content: classes.newstage,
@@ -71,6 +79,7 @@ export const AddNewStage = () => {
         >
           <DateInput
             w='100%'
+            fz={TextForInput}
             classNames={{ input: classes.newstage__input }}
             placeholder='Сроки выполнения до:'
             valueFormat='Сроки выполнения до: DD.MM.YYYY'
@@ -78,6 +87,7 @@ export const AddNewStage = () => {
           />
           <TextInput
             w='100%'
+            fz={TextForInput}
             classNames={{ input: classes.newstage__input }}
             placeholder='Название'
             {...form.getInputProps('name')}
@@ -85,6 +95,7 @@ export const AddNewStage = () => {
           <Button
             w='55%'
             type='submit'
+            fz={TextForInput}
             classNames={{ root: classes.newstage__button }}
           >
             Создать этап

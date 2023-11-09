@@ -3,11 +3,18 @@ import classes from './PopupMission.module.css';
 import coin from '../../../assets/icon/coin.svg';
 import google from '../../../assets/images/google.png';
 import chat from '../../../assets/images/chat.png';
-import Back from '../../../assets/icon/BackArrow.svg';
 import { charactersList } from '../MissionAccordion/MissionAccordion.tsx';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDisclosure } from '@mantine/hooks';
 import AddNewTask from '../../Task/AddNewTask.tsx';
+import {
+  EditButton,
+  Heading,
+  HeadingH2,
+  Image40,
+  TextMiddle,
+} from '../../../theme/AdaptiveConts.ts';
+import { BackButton } from '../../BackButton/BackButton.tsx';
 
 interface itemProps {
   itemId: number;
@@ -29,29 +36,28 @@ export const PopupMission = ({ itemId }: itemProps) => {
           <Flex>
             <Flex className={classes.popupMission__container}>
               <Flex className={classes.popupMission__box}>
-                <Button
-                  leftSection={<Image src={Back} w='20px' h='20px' mr='20px' />}
-                  className={classes.popupMission__button}
-                  component={Link}
-                  to='/mission'
+                <BackButton />
+                <Text
+                  className={classes.popupMission__title}
+                  fz={Heading}
+                  truncate='end'
                 >
-                  Назад
-                </Button>
-                <Text className={classes.popupMission__title} truncate='end'>
                   {selectedTask?.title}
                 </Text>
-                <Flex className={classes.popupMission__bag}>
-                  <Image src={coin} w='40px' h='40px' />
-                  <Text className={classes.popupMission__coin}>10 монет</Text>
+                <Flex className={classes.popupMission__bag} fz={HeadingH2}>
+                  <Image src={coin} w={Image40} h={Image40} />
+                  <Text className={classes.popupMission__coin} fz={TextMiddle}>
+                    10 монет
+                  </Text>
                 </Flex>
               </Flex>
               <Flex className={classes.popupMission__containerText}>
-                <Text className={classes.popupMission__text}>
+                <Text className={classes.popupMission__text} fz={TextMiddle}>
                   На твоей почте ты сможешь найти наш Google Chat, где тебя
                   пригласят в наши основные чаты
                 </Text>
               </Flex>
-              <SimpleGrid cols={2} mb='40px'>
+              <SimpleGrid cols={{ lg: 2, sm: 2, base: 1 }} mb='40px'>
                 <Image src={google} radius='30px' />
                 <Image src={chat} radius='30px' />
               </SimpleGrid>
@@ -67,7 +73,7 @@ export const PopupMission = ({ itemId }: itemProps) => {
             p='0'
             color='#5277F6'
             onClick={open}
-            h='90px'
+            h={EditButton}
           >
             Редактировать
           </Button>

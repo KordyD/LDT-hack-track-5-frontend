@@ -1,6 +1,7 @@
 import { AddTask } from '../Mission/MissionAccordion/AddTask/AddTask.tsx';
 import { Button } from '@mantine/core';
 import classes from '../Mission/MissionAccordion/MissionAccordion.module.css';
+import { EditButton, TextMiddle } from '../../theme/AdaptiveConts.ts';
 
 export const ButtonsEditing = ({ isEditing, setIsEditing }) => {
   return (
@@ -8,9 +9,10 @@ export const ButtonsEditing = ({ isEditing, setIsEditing }) => {
       {isEditing ? (
         <Button
           onClick={() => setIsEditing(false)}
-          h='90px'
+          h={EditButton}
           bg='#5277F6'
           color='#FFF'
+          fz={TextMiddle}
           classNames={{
             root: classes.buttonTest,
             inner: classes.buttonEditorInner,
@@ -21,7 +23,8 @@ export const ButtonsEditing = ({ isEditing, setIsEditing }) => {
       ) : (
         <Button
           onClick={() => setIsEditing(true)}
-          h='90px'
+          h={EditButton}
+          fz={TextMiddle}
           classNames={{
             root: classes.buttonTest,
             inner: classes.buttonTestInner,
