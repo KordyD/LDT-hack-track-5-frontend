@@ -1,6 +1,7 @@
 import { Button, Flex, Text, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { HeadingH3, TextMiddle } from '../../theme/AdaptiveConts.ts';
 import classes from '../Register/Register.module.css';
 
 interface ILogin {
@@ -18,7 +19,11 @@ export const Login = () => {
     },
   });
   return (
-    <Flex className={classes.register} mt='210px'>
+    <Flex
+      className={classes.register}
+      h='100vh'
+      maw={{ lg: '550px', md: '450px', xs: '400px', base: '350px' }}
+    >
       <form
         className={classes.register__form}
         onSubmit={form.onSubmit((values) => {
@@ -26,7 +31,9 @@ export const Login = () => {
           navigate('/', { replace: true });
         })}
       >
-        <Text className={classes.register__title}>Войти</Text>
+        <Text className={classes.register__title} fz={HeadingH3}>
+          Войти
+        </Text>
         <TextInput
           variant='filled'
           classNames={{
@@ -47,6 +54,14 @@ export const Login = () => {
         />
         <Button type='submit' className={classes.register__button}>
           Войти
+        </Button>
+        <Button
+          fz={TextMiddle}
+          variant={'white'}
+          component={Link}
+          to='/register'
+        >
+          Зарегистрироваться
         </Button>
       </form>
     </Flex>

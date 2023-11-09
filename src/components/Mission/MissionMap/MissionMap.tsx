@@ -16,7 +16,12 @@ export const MissionMap = () => {
       className={classes.missionmap}
       gap='20px'
       justify='center'
-      align='flex-start'
+      align={{
+        lg: 'flex-start',
+        md: 'flex-start',
+        sm: 'center',
+        base: 'center',
+      }}
       direction='row'
       wrap='wrap'
       m='30px 20px'

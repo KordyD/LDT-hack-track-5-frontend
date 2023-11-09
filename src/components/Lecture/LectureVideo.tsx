@@ -1,6 +1,11 @@
 import { Flex, AspectRatio, Text } from '@mantine/core';
-import classes from '../../pages/VideoLecture/VideoLecture.module.css';
+import {
+  TextForInput,
+  TextMiddle,
+  TextSmall,
+} from '../../theme/AdaptiveConts.ts';
 import { VideoProps } from '../../modules/VideoLecture/VideoLecture';
+import classes from './LectureVideo.module.css';
 
 interface LectureVideo {
   video: VideoProps;
@@ -9,7 +14,7 @@ interface LectureVideo {
 export const LectureVideo = ({ video }: LectureVideo) => {
   return (
     <Flex className={classes.lecturevideo}>
-      <AspectRatio ratio={16 / 9} h='317px'>
+      <AspectRatio ratio={16 / 9}>
         <iframe
           className={classes.lecturevideo__video}
           src={video.src}
@@ -21,14 +26,22 @@ export const LectureVideo = ({ video }: LectureVideo) => {
       </AspectRatio>
       <Flex direction='column' m='30px auto 40px 22px'>
         <Flex align='center' gap='13px' mb='8px'>
-          <Text truncate='end' className={classes.lecturevideo__title}>
+          <Text
+            truncate='end'
+            className={classes.lecturevideo__title}
+            fz={TextMiddle}
+          >
             {video.title}
           </Text>
-          <Text truncate='end' className={classes.lecturevideo__description}>
+          <Text
+            truncate='end'
+            className={classes.lecturevideo__description}
+            fz={TextSmall}
+          >
             {video.description}
           </Text>
         </Flex>
-        <Text className={classes.lecturevideo__department}>
+        <Text className={classes.lecturevideo__department} fz={TextForInput}>
           {video.department}
         </Text>
       </Flex>

@@ -1,7 +1,8 @@
 import { Button, Flex, Image, Text, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Women from '../../assets/images/image-PhotoRoom.png-PhotoRoom - 2023-09-28T181802 1.png';
+import { HeadingH3, TextMiddle } from '../../theme/AdaptiveConts.ts';
 import classes from './Register.module.css';
 
 interface IRegister {
@@ -36,7 +37,11 @@ export const Register = () => {
   });
 
   return (
-    <Flex className={classes.register} mt='210px'>
+    <Flex
+      className={classes.register}
+      h='100vh'
+      maw={{ lg: '550px', md: '450px', xs: '400px', base: '350px' }}
+    >
       <form
         className={classes.register__form}
         onSubmit={form.onSubmit((values: IRegister) => {
@@ -44,7 +49,9 @@ export const Register = () => {
           navigate('/login', { replace: true });
         })}
       >
-        <Text className={classes.register__title}>Регистрация</Text>
+        <Text className={classes.register__title} fz={HeadingH3}>
+          Регистрация
+        </Text>
         <TextInput
           variant='filled'
           classNames={{
@@ -65,6 +72,7 @@ export const Register = () => {
         />
         <TextInput
           variant='filled'
+          w='100%'
           classNames={{
             root: classes.register__inputRoot,
             input: classes.register__input,
@@ -72,11 +80,21 @@ export const Register = () => {
           placeholder='Повторите пароль'
           {...form.getInputProps('againPassword')}
         />
-        <Button type='submit' className={classes.register__button}>
+        <Button
+          type='submit'
+          className={classes.register__button}
+          fz={TextMiddle}
+        >
           Далее
         </Button>
+        <Button fz={TextMiddle} variant={'white'} component={Link} to='/login'>
+          Есть аккаунт? Войти
+        </Button>
       </form>
-      <Image src={Women} w='740px' h='663px' mt='87px' />
+      <Image
+        src={Women}
+        w={{ lg: '740px', md: '640px', sm: '500px', base: '380px' }}
+      />
     </Flex>
   );
 };
