@@ -1,8 +1,16 @@
-import { Grid, TextInput, Group, Button, Flex, Image } from '@mantine/core';
+import {
+  TextInput,
+  Group,
+  Button,
+  Flex,
+  Image,
+  SimpleGrid,
+  Card,
+} from '@mantine/core';
 import classes from './VideoLecture.module.css';
 import { LectureVideo } from '../../components/Lecture/LectureVideo';
 import { useForm } from '@mantine/form';
-import Back from '../../assets/icon/BackArrow.svg';
+import { BackButton } from '../../components/BackButton/BackButton.tsx';
 
 export interface VideoProps {
   id: number;
@@ -71,26 +79,21 @@ export const VideoLecture = () => {
             </Button>
           </Group>
         </form>
-        <Button
-          className={classes.lecturevideo__button}
-          bg='transparent'
-          leftSection={<Image src={Back} w='15px' h='15px' />}
-        >
-          Назад
-        </Button>
+        <BackButton />
       </Flex>
-      <Grid
+      <SimpleGrid
+        cols={3}
         justify='flex-start'
         align='flex-start'
         gutter='30px'
         m='70px 0 140px'
       >
         {video.map((item) => (
-          <Grid.Col span={4} key={item.id}>
+          <Card key={item.id}>
             <LectureVideo video={item} />
-          </Grid.Col>
+          </Card>
         ))}
-      </Grid>
+      </SimpleGrid>
     </Flex>
   );
 };

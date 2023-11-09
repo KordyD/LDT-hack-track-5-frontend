@@ -21,12 +21,13 @@ export const Task = ({ task, isEditing }) => {
             truncate='end'
             maw='60%'
             pl='10px'
-            fz='LargeText'
+            fz={{ lg: '24px', sm: '24px', xs: '18px' }}
             className={classes.missionAccordion__EditingTask}
           >
             {task.title}
           </Text>
           <Text
+            fz={{ lg: '24px', sm: '24px', xs: '18px' }}
             className={classes.missionAccordion__EditingTask}
             component={Link}
             to={`/mission/${task.id}`}
@@ -34,11 +35,16 @@ export const Task = ({ task, isEditing }) => {
             Изменить
           </Text>
           <Button
-            w='10%'
             p='0'
             onClick={() => setIsDeleted(true)}
             bg='transparent'
-            rightSection={<Image src={Trash} w='40px' h='40px' />}
+            rightSection={
+              <Image
+                src={Trash}
+                w={{ md: '40px', xs: '32px' }}
+                h={{ md: '40px', xs: '32px' }}
+              />
+            }
           ></Button>
         </Flex>
       </>

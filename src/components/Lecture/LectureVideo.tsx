@@ -9,7 +9,7 @@ interface LectureVideo {
 export const LectureVideo = ({ video }: LectureVideo) => {
   return (
     <Flex className={classes.lecturevideo}>
-      <AspectRatio ratio={16 / 9} h='317px'>
+      <AspectRatio ratio={16 / 9}>
         <iframe
           className={classes.lecturevideo__video}
           src={video.src}
