@@ -1,10 +1,10 @@
 import { Box, Container } from '@mantine/core';
+import { useSelector } from 'react-redux';
+import { ModalHistory } from '../../components/ModalHistory/ModalHistory';
+import { history } from '../../helpers/History';
+import { CardQuestion } from '../../modules/CardQuestion/CardQuestion.tsx';
 import { CardsKnowledge } from '../../modules/CardsKnowledge/CardsKnowledge';
 import { InputKnowledge } from '../../modules/InputKnowledge/InputKnowledge';
-import { history } from '../../helpers/History';
-import { ModalHistory } from '../../components/ModalHistory/ModalHistory';
-import { CardQuestion } from '../../modules/CardQuestion/CardQuestion.tsx';
-import { useSelector } from 'react-redux';
 import { RootState } from '../../store/index.ts';
 
 export const Knowledge = () => {
