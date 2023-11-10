@@ -1,4 +1,10 @@
-import { Button, Container, Text, TextInput } from '@mantine/core';
+import {
+  Button,
+  Container,
+  PasswordInput,
+  Text,
+  TextInput,
+} from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { AxiosError } from 'axios';
 import { useDispatch } from 'react-redux';
@@ -55,7 +61,7 @@ export const Login = () => {
           placeholder='Email'
           {...form.getInputProps('email')}
         />
-        <TextInput
+        <PasswordInput
           variant='filled'
           classNames={{
             root: classes.register__inputRoot,

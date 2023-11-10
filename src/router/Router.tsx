@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Root } from '../pages/Root/Root';
 import { Knowledge } from '../pages/Knowledge/Knowledge';
 import { Team } from '../pages/Team/Team';
@@ -17,15 +18,15 @@ import { TaskContainer } from '../pages/TaskContainer/TaskContainer.tsx';
 import { Audio } from '../pages/Audio/Audio.tsx';
 import { RegisterAdmin } from '../pages/RegisterAdmin/RegisterAdmin.tsx';
 import { Questions } from '../pages/AllArticles/Questions.tsx';
-import { PagesNotFound } from '../pages/PagesNotFound/PagesNotFound.tsx';
 import { Favourites } from '../pages/Favourites/Favourites.tsx';
+import { RootState } from '../store';
 
 interface Params {
   articleId: number;
 }
 
 const checkAuth = () => {
-  const jwt = localStorage.getItem('jwt');
+  const jwt = localStorage.getItem('token');
   if (jwt) {
     return true;
   }
@@ -45,7 +46,6 @@ function routes() {
 function privateRoutes() {
   return {
     element: <Root />,
-    errorElement: <PagesNotFound />,
     children: [
       {
         path: '/',
@@ -125,6 +125,7 @@ function privateRoutes() {
     ],
   };
 }
+
 export const router = createBrowserRouter([
   checkAuth() ? privateRoutes() : {},
   ...routes(),

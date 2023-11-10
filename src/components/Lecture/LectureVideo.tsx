@@ -1,28 +1,24 @@
 import { Flex, AspectRatio, Text, Image, Button } from '@mantine/core';
-import {
-  Image40,
-  TextForInput,
-  TextMiddle,
-  TextSmall,
-} from '../../theme/AdaptiveConts.ts';
-import { VideoProps } from '../../modules/VideoLecture/VideoLecture';
+import { useSelector } from 'react-redux';
+import { Image40, TextForInput, TextSmall } from '../../theme/AdaptiveConts.ts';
 import Trash from '../../assets/images/TrashBin.png';
+import { RootState } from '../../store';
+import { media } from '../../API/knowledge-base/interfaces.ts';
 import classes from './LectureVideo.module.css';
 
 interface LectureVideo {
-  video: VideoProps;
+  video: media;
 }
 
-const role = 'ADMIN';
-
 export const LectureVideo = ({ video }: LectureVideo) => {
+  const role = useSelector((state: RootState) => state.roles);
   return (
     <Flex className={classes.lecturevideo}>
       <AspectRatio ratio={16 / 9}>
         <iframe
           className={classes.lecturevideo__video}
-          src={video.src}
-          title={video.title}
+          src={video.url}
+          title={video.name}
           style={{ border: 0 }}
           allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
           allowFullScreen
@@ -41,7 +37,7 @@ export const LectureVideo = ({ video }: LectureVideo) => {
               className={classes.lecturevideo__title}
               fz={TextForInput}
             >
-              {video.title}
+              {video.name}
             </Text>
             <Text
               truncate='end'
@@ -52,10 +48,10 @@ export const LectureVideo = ({ video }: LectureVideo) => {
             </Text>
           </Flex>
           <Text className={classes.lecturevideo__department} fz={TextForInput}>
-            {video.department}
+            {video.postName}
           </Text>
         </Flex>
-        {role === 'ADMIN' ? (
+        {role[0] === 'ROLE_HR' || role[0] === 'ROLE_ADMIN' ? (
           <Button
             variant='white'
             rightSection={<Image src={Trash} w={Image40} h={Image40} />}

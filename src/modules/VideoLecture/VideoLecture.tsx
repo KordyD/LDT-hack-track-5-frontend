@@ -11,21 +11,16 @@ import { useForm } from '@mantine/form';
 import { AiOutlinePaperClip } from 'react-icons/ai';
 import { Modal, Select } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { Simulate } from 'react-dom/test-utils';
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { LectureVideo } from '../../components/Lecture/LectureVideo';
 import { BackButton } from '../../components/BackButton/BackButton.tsx';
 import { TextForInput } from '../../theme/AdaptiveConts.ts';
-import { addVideos } from '../../API/admin';
+import { addOneVideo } from '../../API/admin';
+import { RootState } from '../../store';
+import { addMedia } from '../../API/admin/interfaces.ts';
+import { getAllVideo } from '../../API/knowledge-base';
 import classes from './VideoLecture.module.css';
-import error = Simulate.error;
-
-export interface VideoProps {
-  id: number;
-  src: string;
-  title: string;
-  description: string;
-  department: string;
-}
 
 // const transformHTTP = (src) => {
 //   const newHTTP = src.split('live').join('embed');
@@ -36,48 +31,27 @@ export interface VideoProps {
 //   transformHTTP('https://www.youtube.com/live/jfKfPfyJRdk?si=kJdDHKPBBEgw8fTm')
 // );
 
-const video = [
-  {
-    id: 1,
-    src: 'https://www.youtube.com/embed/mwKJfNYwvm8?si=1jbHTgIA6CGLLeSm',
-    title: 'beast1',
-    description: 'Описание видео',
-    department: 'IT отдел',
-  },
-  {
-    id: 2,
-    src: 'https://www.youtube.com/embed/mwKJfNYwvm8?si=1jbHTgIA6CGLLeSm',
-    title: 'beast2',
-    description: 'Описание видео',
-    department: 'IT отдел',
-  },
-  {
-    id: 3,
-    src: 'https://www.youtube.com/embed/mwKJfNYwvm8?si=1jbHTgIA6CGLLeSm',
-    title: 'beast3',
-    description: 'Описание видео',
-    department: 'IT отдел',
-  },
-  {
-    id: 4,
-    src: 'https://www.youtube.com/embed/XzADltUNTEc?si=_8cZz3vhdOeX5-B8',
-    title: 'beast3beast3beast3beast3',
-    description: 'Описание видео',
-    department: 'IT отдел',
-  },
-];
-const role = 'ADMIN';
-
 export const VideoLecture = () => {
+  const [videos, setVideos] = useState([]);
+  const role = useSelector((state: RootState) => state.roles);
+  const post = useSelector((state: RootState) => state.postName);
+
   const [opened, { open, close }] = useDisclosure(false);
-  const formVideo = useForm({
+  const form = useForm({
     initialValues: {
-      date: '',
+      videoName: '',
+    },
+  });
+
+  const formVideo = useForm<addMedia>({
+    initialValues: {
+      description: '',
       name: '',
+      url: '',
+      postName: '',
     },
 
     validate: {
-      date: (value) => (/.+/.test(value) ? null : 'Нужно выбрать дату'),
       name: (value) =>
         /.+/.test(value)
           ? null
@@ -85,21 +59,21 @@ export const VideoLecture = () => {
     },
   });
 
-  const closePopup = () => {
-    close();
-    form.reset();
+  useEffect(() => {
+    Promise.all([getAllVideo()])
+      .then(([res]) => {
+        setVideos(res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const handleSubmit = (data: addMedia) => {
+    addOneVideo(data);
   };
 
-  const form = useForm({
-    initialValues: {
-      videoName: '',
-    },
-  });
-
-  const handleSubmit = (data) => {
-    addVideos(data)
-      .then()
-      .catch((err) => console.log(err));
+  const closePopup = () => {
+    close();
+    formVideo.reset();
   };
 
   return (
@@ -108,7 +82,6 @@ export const VideoLecture = () => {
         <Flex w='100%' justify='space-between' align='flex-end'>
           <form
             onSubmit={form.onSubmit((values) => {
-              handleSubmit(values);
               closePopup();
             })}
           >
@@ -133,7 +106,7 @@ export const VideoLecture = () => {
           </form>
           <BackButton>Назад</BackButton>
         </Flex>
-        {role === 'ADMIN' ? (
+        {role[0] === 'ROLE_HR' || role[0] === 'ROLE_ADMIN' ? (
           <Flex w='100%' mt='20px'>
             <Button
               variant='white'
@@ -154,9 +127,9 @@ export const VideoLecture = () => {
           gutter='30px'
           m='10px 0 140px'
         >
-          {video.map((item) => (
-            <Card key={item.id}>
-              <LectureVideo video={item} />
+          {videos.map((video) => (
+            <Card key={video?.id}>
+              <LectureVideo video={video} />
             </Card>
           ))}
         </SimpleGrid>
@@ -178,7 +151,7 @@ export const VideoLecture = () => {
         <form
           className={classes.videolecture__form}
           onSubmit={formVideo.onSubmit((values) => {
-            console.log(values);
+            handleSubmit(values);
             closePopup();
           })}
         >
@@ -209,11 +182,11 @@ export const VideoLecture = () => {
             placeholder='Должность'
             fz={TextForInput}
             classNames={{ input: classes.videolecture__input }}
-            data={['', 'React', 'Angular', 'Vue', 'Svelte']}
+            data={post}
             {...formVideo.getInputProps('postName')}
           />
           <Button w='55%' type='submit' fz={TextForInput}>
-            Создать этап
+            Добавить видео
           </Button>
         </form>
       </Modal>

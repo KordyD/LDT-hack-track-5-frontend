@@ -12,12 +12,13 @@ export const Audio = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const formAudio = useForm({
     initialValues: {
-      date: '',
+      description: '',
       name: '',
+      url: '',
+      postName: '',
     },
 
     validate: {
-      date: (value) => (/.+/.test(value) ? null : 'Нужно выбрать дату'),
       name: (value) =>
         /.+/.test(value)
           ? null
@@ -27,7 +28,7 @@ export const Audio = () => {
 
   const closePopup = () => {
     close();
-    form.reset();
+    formAudio.reset();
   };
   return (
     <>
