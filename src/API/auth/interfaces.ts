@@ -24,8 +24,8 @@ export interface jwt {
 }
 
 export interface registerCompanyData {
-  company: company;
-  registrationAdmin: registerData;
+  companyDTO: company;
+  registrationAdminDTO: registerData;
 }
 
 export interface registerCompanyResponse {

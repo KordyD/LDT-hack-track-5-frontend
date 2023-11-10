@@ -27,6 +27,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
+    errorElement: <PagesNotFound />,
     children: [
       {
         path: 'knowledge',
@@ -94,7 +95,7 @@ export const router = createBrowserRouter([
     element: <Register />,
   },
   {
-    path: '/companyregister',
+    path: '/company-register',
     element: <RegisterAdmin />,
   },
   {
@@ -104,9 +105,5 @@ export const router = createBrowserRouter([
   {
     path: 'greeting',
     element: <Greetings />,
-  },
-  {
-    path: '*',
-    element: <PagesNotFound />,
   },
 ]);

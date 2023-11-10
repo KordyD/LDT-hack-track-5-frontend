@@ -1,14 +1,34 @@
 import { Button, Container, Text, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { AxiosError } from 'axios';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { login } from '../../API/auth/index.ts';
+import { loginData } from '../../API/auth/interfaces.ts';
+import { setRoles } from '../../store/userSlice.ts';
 import { HeadingH3, TextMiddle } from '../../theme/AdaptiveConts.ts';
 import classes from '../Register/Register.module.css';
-import { ILogin } from '../../API/InterfaceRaznex/InterfaceRaznex.ts';
 
 export const Login = () => {
   const navigate = useNavigate();
 
-  const form = useForm<ILogin>({
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (values: loginData) => {
+    try {
+      const data = await login(values);
+      console.log(data);
+      localStorage.setItem('token', data.token);
+      dispatch(setRoles(data.roleName));
+      form.reset();
+      navigate('/', { replace: true });
+    } catch (error) {
+      const err = error as AxiosError;
+      console.log(err.response?.data);
+    }
+  };
+
+  const form = useForm<loginData>({
     initialValues: {
       email: '',
       password: '',
@@ -22,11 +42,7 @@ export const Login = () => {
     >
       <form
         className={classes.register__form}
-        onSubmit={form.onSubmit((values) => {
-          form.reset();
-          console.log(values);
-          navigate('/', { replace: true });
-        })}
+        onSubmit={form.onSubmit(handleSubmit)}
       >
         <Text className={classes.register__title} fz={HeadingH3}>
           Войти
@@ -37,7 +53,7 @@ export const Login = () => {
             root: classes.register__inputRoot,
             input: classes.register__input,
           }}
-          placeholder='Логин'
+          placeholder='Email'
           {...form.getInputProps('email')}
         />
         <TextInput

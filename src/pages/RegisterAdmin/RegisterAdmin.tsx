@@ -1,5 +1,3 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useForm } from '@mantine/form';
 import {
   Button,
   Container,
@@ -8,14 +6,34 @@ import {
   Text,
   TextInput,
 } from '@mantine/core';
-import classes from '../Register/Register.module.css';
+import { useForm } from '@mantine/form';
+import { AxiosError } from 'axios';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { registerCompany } from '../../API/auth/index.ts';
+import { registerCompanyData } from '../../API/auth/interfaces.ts';
+import { setRoles } from '../../store/userSlice.ts';
 import { HeadingH3, TextLarge, TextMiddle } from '../../theme/AdaptiveConts.ts';
-import { IRegisterAdmin } from '../../API/InterfaceRaznex/InterfaceRaznex.ts';
+import classes from '../Register/Register.module.css';
 
 export const RegisterAdmin = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const form = useForm<IRegisterAdmin>({
+  const handleSubmit = async (values: registerCompanyData) => {
+    try {
+      const data = await registerCompany(values);
+      localStorage.setItem('token', data.jwt.token);
+      dispatch(setRoles(data.jwt.roleName));
+      form.reset();
+      navigate('/', { replace: true });
+    } catch (error) {
+      const err = error as AxiosError;
+      console.log(err.response?.data);
+    }
+  };
+
+  const form = useForm<registerCompanyData>({
     initialValues: {
       companyDTO: {
         name: '',
@@ -71,11 +89,7 @@ export const RegisterAdmin = () => {
     <Container className={classes.register} h='100%' m={{ base: '30px auto' }}>
       <form
         className={classes.register__form}
-        onSubmit={form.onSubmit((values) => {
-          console.log(values);
-          form.reset();
-          navigate('/login', { replace: true });
-        })}
+        onSubmit={form.onSubmit(handleSubmit)}
       >
         <Text className={classes.register__title} fz={HeadingH3}>
           Регистрация компании

@@ -1,15 +1,46 @@
-import { Button, Container, Flex, Image, Text, TextInput } from '@mantine/core';
+import { Button, Container, Text, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { useNavigate, Link } from 'react-router-dom';
-import Women from '../../assets/images/image-PhotoRoom.png-PhotoRoom - 2023-09-28T181802 1.png';
+import { AxiosError } from 'axios';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { register } from '../../API/auth/index.ts';
+import { registerData } from '../../API/auth/interfaces.ts';
+import { setRoles } from '../../store/userSlice.ts';
 import { HeadingH3, TextMiddle } from '../../theme/AdaptiveConts.ts';
-import { IRegister } from '../../API/InterfaceRaznex/InterfaceRaznex.ts';
 import classes from './Register.module.css';
+
+interface registerForm {
+  name: string;
+  email: string;
+  password: string;
+  againPassword: string;
+}
 
 export const Register = () => {
   const navigate = useNavigate();
 
-  const form = useForm<IRegister>({
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (values: registerForm) => {
+    try {
+      const registerData: registerData = {
+        name: values.name,
+        email: values.email,
+        password: values.password,
+      };
+      const data = await register(registerData);
+      console.log(data);
+      localStorage.setItem('token', data.token);
+      dispatch(setRoles(data.roleName));
+      form.reset();
+      navigate('/', { replace: true });
+    } catch (error) {
+      const err = error as AxiosError;
+      console.log(err.response?.data);
+    }
+  };
+
+  const form = useForm<registerForm>({
     initialValues: {
       name: '',
       email: '',
@@ -43,11 +74,7 @@ export const Register = () => {
     >
       <form
         className={classes.register__form}
-        onSubmit={form.onSubmit((values: IRegister) => {
-          console.log(values);
-          form.reset();
-          navigate('/login', { replace: true });
-        })}
+        onSubmit={form.onSubmit(handleSubmit)}
       >
         <Text className={classes.register__title} fz={HeadingH3}>
           Регистрация
@@ -67,7 +94,7 @@ export const Register = () => {
             root: classes.register__inputRoot,
             input: classes.register__input,
           }}
-          placeholder='Логин'
+          placeholder='Email'
           {...form.getInputProps('email')}
         />
         <TextInput
