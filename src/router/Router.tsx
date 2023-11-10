@@ -14,6 +14,7 @@ import { MissionPage } from '../pages/MissionPage/MissionPage.tsx';
 import { PopupMission } from '../components/Mission/PopupMission/PopupMission.tsx';
 import { TaskContainer } from '../pages/TaskContainer/TaskContainer.tsx';
 import { Audio } from '../pages/Audio/Audio.tsx';
+import { RegisterAdmin } from '../pages/RegisterAdmin/RegisterAdmin.tsx';
 
 interface Params {
   articleId: number;
@@ -80,6 +81,10 @@ export const router = createBrowserRouter([
   {
     path: '/register',
     element: <Register />,
+  },
+  {
+    path: '/companyregister',
+    element: <RegisterAdmin />,
   },
   {
     path: '/login',
