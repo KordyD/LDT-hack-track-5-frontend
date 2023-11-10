@@ -1,69 +1,33 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { URL } from '..';
-
-interface registerData {
-  name: 'string';
-  email: 'string';
-  password: 'string';
-}
-
-interface registerResponse {
-  token: 'string';
-}
-
-interface registerCompanyData {
-  companyDTO: {
-    name: 'string';
-    description: 'string';
-    email: 'string';
-    phone: 'string';
-    website: 'string';
-  };
-  registrationAdminDTO: {
-    name: 'string';
-    email: 'string';
-    password: 'string';
-  };
-}
-
-interface registerCompanyResponse {
-  companyDTO: {
-    name: 'string';
-    description: 'string';
-    email: 'string';
-    phone: 'string';
-    website: 'string';
-  };
-  jwtResponseDTO: {
-    token: 'string';
-  };
-}
-
-interface loginData {
-  email: 'string';
-  password: 'string';
-}
+import {
+  loginData,
+  jwt,
+  registerCompanyData,
+  registerCompanyResponse,
+  registerData,
+} from './interfaces';
 
 export const register = async (data: registerData) => {
-  const response: registerResponse = await axios.post(
+  const response: AxiosResponse<jwt> = await axios.post(
     URL + '/login/registration',
     data
   );
-  return response;
+  return response.data;
 };
 
 export const registerCompany = async (data: registerCompanyData) => {
-  const response: registerCompanyResponse = await axios.post(
+  const response: AxiosResponse<registerCompanyResponse> = await axios.post(
     URL + '/login/company',
     data
   );
-  return response;
+  return response.data;
 };
 
 export const login = async (data: loginData) => {
-  const response: registerResponse = await axios.post(
+  const response: AxiosResponse<jwt> = await axios.post(
     URL + '/login/authentication',
     data
   );
-  return response;
+  return response.data;
 };

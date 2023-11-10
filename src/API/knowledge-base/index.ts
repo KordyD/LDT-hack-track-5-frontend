@@ -1,115 +1,141 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { URL } from '..';
-
-// Чет не то
-interface getAllQuestionsResponse {
-  articleListResponseDTO: {
-    id: 0;
-    name: 'string';
-  }[];
-}
-interface getAllFavoritesResponse {
-  articleListResponseDTO: {
-    id: 0;
-    name: 'string';
-  }[];
-}
-interface getAllArticles {
-  articleListResponseDTO: {
-    id: 0;
-    name: 'string';
-  }[];
-}
+import { headers } from '../';
+import { Article, ArticlesName, Question, media } from './interfaces';
 
 export const addToFavorites = async (articleID: number) => {
-  const response = await axios.post(
-    URL + `/knowledge-base/favorites/articles/${articleID}`
+  const response: boolean = await axios.post(
+    URL + `/knowledge-base/favorites/articles/${articleID}`,
+    { headers: { ...headers } }
   );
   return response;
 };
 
 export const deleteFromFavorites = async (articleID: number) => {
   const response = await axios.delete(
-    URL + `/knowledge-base/favorites/articles/${articleID}`
+    URL + `/knowledge-base/favorites/articles/${articleID}`,
+    { headers: { ...headers } }
   );
-  return response;
+  return response.data;
 };
 
-// нет ответа
 export const getAllVideo = async () => {
-  const response = await axios.get(URL + `/knowledge-base/videos`);
-  return response;
+  const response: AxiosResponse<media[]> = await axios.get(
+    URL + `/knowledge-base/videos`,
+    { headers: { ...headers } }
+  );
+  return response.data;
 };
-// нет ответа
+
 export const getVideo = async (videoId: number) => {
-  const response = await axios.get(URL + `/knowledge-base/videos/${videoId}`);
-  return response;
+  const response: AxiosResponse<media> = await axios.get(
+    URL + `/knowledge-base/videos/${videoId}`,
+    { headers: { ...headers } }
+  );
+  return response.data;
 };
-// нет ответа
+
+export const getAllAudio = async () => {
+  const response: AxiosResponse<media[]> = await axios.get(
+    URL + `/knowledge-base/audios`,
+    { headers: { ...headers } }
+  );
+  return response.data;
+};
+
 export const getAudio = async (audioId: number) => {
-  const response = await axios.get(URL + `/knowledge-base/videos/${audioId}`);
-  return response;
+  const response: AxiosResponse<media> = await axios.get(
+    URL + `/knowledge-base/audios/${audioId}`,
+    { headers: { ...headers } }
+  );
+  return response.data;
 };
-// нет ответа
+
 export const getVideoByPost = async (postName: string) => {
-  const response = await axios.get(URL + `/knowledge-base/videos/posts`);
-  return response;
+  const response: AxiosResponse<media[]> = await axios.get(
+    URL + `/knowledge-base/videos/posts?postName=${postName}`,
+    { headers: { ...headers } }
+  );
+  return response.data;
 };
-// нет ответа
+
 export const getVideoByDepartment = async (departmentName: string) => {
-  const response = await axios.get(URL + `/knowledge-base/videos/departments`);
-  return response;
+  const response: AxiosResponse<media[]> = await axios.get(
+    URL + `/knowledge-base/videos/departments?departmentName=${departmentName}`,
+    { headers: { ...headers } }
+  );
+  return response.data;
+};
+
+export const getAudioByPost = async (postName: string) => {
+  const response: AxiosResponse<media[]> = await axios.get(
+    URL + `/knowledge-base/audios/posts?postName=${postName}`,
+    { headers: { ...headers } }
+  );
+  return response.data;
+};
+
+export const getAudioByDepartment = async (departmentName: string) => {
+  const response: AxiosResponse<media[]> = await axios.get(
+    URL + `/knowledge-base/audios/departments?departmentName=${departmentName}`,
+    { headers: { ...headers } }
+  );
+  return response.data;
 };
 
 export const getAllQuestions = async () => {
-  const response: getAllQuestionsResponse = await axios.get(
-    URL + `/knowledge-base/questions`
+  const response: AxiosResponse<ArticlesName[]> = await axios.get(
+    URL + `/knowledge-base/questions`,
+    { headers: { ...headers } }
   );
-  return response;
+  return response.data;
 };
 
-// нет ответа
 export const getQuestion = async (questionId: number) => {
-  const response = await axios.get(
-    URL + `/knowledge-base/questions/${questionId}`
+  const response: AxiosResponse<Question> = await axios.get(
+    URL + `/knowledge-base/questions/${questionId}`,
+    { headers: { ...headers } }
   );
-  return response;
+  return response.data;
 };
 
-// Нет ли ошибки в url?
 export const getAllFavorites = async () => {
-  const response: getAllFavoritesResponse = await axios.get(
-    URL + `/knowledge-base/favourites/articles`
+  const response: AxiosResponse<ArticlesName[]> = await axios.get(
+    URL + `/knowledge-base/favorites/articles`,
+    { headers: { ...headers } }
   );
-  return response;
+  return response.data;
 };
 
 export const getAllArticles = async () => {
-  const response: getAllFavoritesResponse = await axios.get(
-    URL + `/knowledge-base/articles`
+  const response: AxiosResponse<ArticlesName[]> = await axios.get(
+    URL + `/knowledge-base/articles`,
+    { headers: { ...headers } }
   );
-  return response;
+  return response.data;
 };
 
-// Нет ответа
 export const getArticle = async (articleId: number) => {
-  const response = await axios.get(
-    URL + `/knowledge-base/articles/${articleId}`
+  const response: AxiosResponse<Article> = await axios.get(
+    URL + `/knowledge-base/articles/${articleId}`,
+    { headers: { ...headers } }
   );
-  return response;
+  return response.data;
 };
 
-// Другой интерфейс подставил
 export const getArticlesByPost = async (postName: string) => {
-  const response: getAllArticles = await axios.get(
-    URL + `/knowledge-base/articles/posts`
+  const response: AxiosResponse<ArticlesName[]> = await axios.get(
+    URL + `/knowledge-base/articles/posts?postName=${postName}`,
+    { headers: { ...headers } }
   );
-  return response;
+  return response.data;
 };
-// Другой интерфейс подставил
+
 export const getArticlesByDepartments = async (departmentName: string) => {
-  const response: getAllArticles = await axios.get(
-    URL + `/knowledge-base/articles/departments`
+  const response: AxiosResponse<ArticlesName[]> = await axios.get(
+    URL +
+      `/knowledge-base/articles/departments?departmentName=${departmentName}`,
+    { headers: { ...headers } }
   );
-  return response;
+  return response.data;
 };

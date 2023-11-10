@@ -1,17 +1,15 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { URL } from '..';
-
-interface setAnswerToTaskData {
-  answerUrl: 'string';
-}
-
+import { headers } from '../';
+import { answerData, taskToIntern } from './interfaces';
 export const setAnswerToTask = async (
   taskStageId: number,
-  data: setAnswerToTaskData
+  data: answerData
 ) => {
-  const response: boolean = await axios.post(
+  const response: AxiosResponse<taskToIntern> = await axios.post(
     URL + `/intern/tasks/${taskStageId}/answer`,
-    data
+    data,
+    { headers: { ...headers } }
   );
-  return response;
+  return response.data;
 };
