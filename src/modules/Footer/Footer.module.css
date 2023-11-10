@@ -11,3 +11,10 @@
 .proscom {
   color: var(--mantine-color-gray-filled);
 }
+
+@media (max-width: 510px) {
+  .containerLinks {
+    flex-direction: column;
+    align-items: center;
+  }
+}

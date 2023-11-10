@@ -29,7 +29,10 @@ export const Articles = ({ isAuth }: Articles) => {
         <AddArticleModal opened={opened} close={close} />
         <EditButton display={isAuth ? 'flex' : 'none'} />
       </Group>
-      <ScrollAreaArticles articlesMain={articlesMain} mah={900} />
+      <ScrollAreaArticles
+        articlesMain={articlesMain}
+        mah={{ base: 500, md: 900 }}
+      />
     </Card>
   );
 };

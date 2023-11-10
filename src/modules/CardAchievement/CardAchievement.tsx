@@ -1,5 +1,4 @@
-import { Anchor, Box, Button, Card, SimpleGrid } from '@mantine/core';
-import { AiOutlineArrowRight } from 'react-icons/ai';
+import { Box, Card } from '@mantine/core';
 import { Achievement } from '../../components/Achievement/Achievement';
 import { achievements } from '../../helpers/Achievements';
 import classes from './CardAchievement.module.css';
@@ -7,7 +6,7 @@ import classes from './CardAchievement.module.css';
 export const CardAchievement = () => {
   return (
     <Card className={classes.card}>
-      <SimpleGrid cols={5} className={classes.group}>
+      <Box className={classes.group}>
         {achievements.map((item) => (
           <Achievement
             key={item.id}
@@ -17,17 +16,8 @@ export const CardAchievement = () => {
             completed={item.completed}
           />
         ))}
-      </SimpleGrid>
-      <Box className={classes.wrapperButton}>
-        <Button
-          component={Anchor}
-          className={classes.button}
-          variant='transparent'
-          leftSection={<AiOutlineArrowRight />}
-        >
-          Смотреть всё
-        </Button>
       </Box>
+      <Box className={classes.wrapperButton}></Box>
     </Card>
   );
 };

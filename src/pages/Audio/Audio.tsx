@@ -1,14 +1,24 @@
-import { Button, Group, Stack, Text, TextInput } from '@mantine/core';
+import { Button, Group, Stack, TextInput } from '@mantine/core';
+import { AiOutlinePaperClip } from 'react-icons/ai';
+import { BackButton } from '../../components/BackButton/BackButton';
+import { AudioItem } from '../../components/AudioItem/AudioItem';
 
 export const Audio = () => {
   return (
     <>
-      <TextInput />
-      <Button>Добавить аудио</Button>
+      <TextInput variant='primary' placeholder='Найти аудио' />
+      <Group justify='space-between'>
+        <Button rightSection={<AiOutlinePaperClip />} variant='white' my={15}>
+          Добавить аудио
+        </Button>
+        <BackButton>Назад</BackButton>
+      </Group>
       <Stack>
-        <Group justify='space-between'>
-          <Text>История в цифрах</Text>
-        </Group>
+        <AudioItem />
+        <AudioItem />
+        <AudioItem />
+        <AudioItem />
+        <AudioItem />
       </Stack>
     </>
   );

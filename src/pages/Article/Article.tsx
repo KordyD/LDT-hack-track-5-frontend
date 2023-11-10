@@ -3,7 +3,7 @@ import { BiSolidBookmark } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { useLoaderData } from 'react-router-dom';
 import { BackButton } from '../../components/BackButton/BackButton';
-import { ArticleEditModal } from '../../modules/ArticleEditModal/ArticleEditModal';
+import { ArticleModal } from '../../modules/ArticleModal/ArticleModal';
 import { RootState } from '../../store';
 import classes from './Article.module.css';
 
@@ -21,7 +21,7 @@ export const Article = () => {
       <Box pos='relative'>
         <BackButton variant='transparent'>Назад</BackButton>
         <Box className={classes.box}>
-          <ArticleEditModal isAuth={isAuth} />
+          <ArticleModal isAuth={isAuth} />
           <ActionIcon display={isAuth ? 'none' : 'block'} variant='transparent'>
             <BiSolidBookmark style={{ width: 40, height: 40 }} />
           </ActionIcon>

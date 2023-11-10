@@ -6,7 +6,7 @@ export const Events = () => {
   return (
     <Group mt={50} justify='space-between'>
       <Calendar
-        size='xl'
+        size={'md'}
         renderDay={(date) => {
           const day = date.getDate();
 
@@ -31,7 +31,7 @@ export const Events = () => {
             <List.Item key={item.id}>
               <Group>
                 <Text>{item.title}</Text>
-                <Text>{item.date.toISOString()}</Text>
+                <Text>{item.date.toISOString().slice(0, 10)}</Text>
               </Group>
             </List.Item>
           ))}

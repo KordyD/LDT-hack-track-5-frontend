@@ -2,8 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 25px;
-  padding-bottom: 25px;
 }
 
 .containerLinks {
@@ -28,4 +26,23 @@
 .icon2 {
   width: 48px;
   height: 48px;
+}
+
+.burgerContainer {
+  background-color: var(--mantine-color-gray-light);
+  border-radius: var(--mantine-radius-lg);
+}
+
+.burgerContainerLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.burgerContainerButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }

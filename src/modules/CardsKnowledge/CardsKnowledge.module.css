@@ -25,3 +25,10 @@
 .lecture {
   grid-row: 4 / 5;
 }
+
+@media (max-width: 991px) {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}
