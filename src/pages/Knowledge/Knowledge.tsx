@@ -3,6 +3,7 @@ import { CardsKnowledge } from '../../modules/CardsKnowledge/CardsKnowledge';
 import { InputKnowledge } from '../../modules/InputKnowledge/InputKnowledge';
 import { history } from '../../helpers/History';
 import { ModalHistory } from '../../components/ModalHistory/ModalHistory';
+import { CardQuestion } from '../../modules/CardQuestion/CardQuestion.tsx';
 
 export const Knowledge = () => {
   return (
@@ -13,6 +14,7 @@ export const Knowledge = () => {
         </Box>
         <ModalHistory history={history} />
         <CardsKnowledge />
+        <CardQuestion />
       </Container>
     </>
   );

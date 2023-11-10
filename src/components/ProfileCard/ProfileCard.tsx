@@ -1,4 +1,5 @@
 import { Anchor, Avatar, Box, Card, Group, Image, Text } from '@mantine/core';
+import { useLocation } from 'react-router-dom';
 import classes from './ProfileCard.module.css';
 
 interface ProfileCardProps {
@@ -18,6 +19,8 @@ export const ProfileCard = ({
   completedChallenges,
   image = null,
 }: ProfileCardProps) => {
+  const location = useLocation();
+
   return (
     <Card className={classes.card}>
       <Group className={classes.group}>
@@ -30,7 +33,11 @@ export const ProfileCard = ({
             }}
           />
           <Box>
-            <Anchor className={classes.link}>Редактировать</Anchor>
+            {location.pathname === '/account' ? (
+              <Anchor className={classes.link}>Редактировать</Anchor>
+            ) : (
+              ''
+            )}
             <Text className={classes.name}>{name}</Text>
             <Group gap={5}>
               <Text className={classes.grade}>{grade}</Text>

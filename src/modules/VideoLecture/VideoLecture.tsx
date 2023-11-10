@@ -57,7 +57,7 @@ export const VideoLecture = () => {
     },
   });
   return (
-    <Flex direction='column' align='flex-start' bg='#FFF' mt='30px'>
+    <Flex direction='column' align='center' bg='#FFF' mt='30px'>
       <Flex w='100%' justify='space-between' align='flex-end'>
         <form onSubmit={form.onSubmit((values) => console.log(values))}>
           <TextInput

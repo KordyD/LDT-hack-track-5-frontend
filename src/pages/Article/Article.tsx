@@ -1,4 +1,4 @@
-import { ActionIcon, Box, Text, Title } from '@mantine/core';
+import { ActionIcon, Box, Container, Text, Title } from '@mantine/core';
 import { BiSolidBookmark } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { useLoaderData } from 'react-router-dom';
@@ -18,17 +18,22 @@ export const Article = () => {
 
   return (
     <>
-      <Box pos='relative'>
-        <BackButton variant='transparent'>Назад</BackButton>
-        <Box className={classes.box}>
-          <ArticleModal isAuth={isAuth} />
-          <ActionIcon display={isAuth ? 'none' : 'block'} variant='transparent'>
-            <BiSolidBookmark style={{ width: 40, height: 40 }} />
-          </ActionIcon>
+      <Container size='xl'>
+        <Box pos='relative'>
+          <BackButton variant='transparent'>Назад</BackButton>
+          <Box className={classes.box}>
+            <ArticleModal isAuth={isAuth} />
+            <ActionIcon
+              display={isAuth ? 'none' : 'block'}
+              variant='transparent'
+            >
+              <BiSolidBookmark style={{ width: 40, height: 40 }} />
+            </ActionIcon>
+          </Box>
+          <Title>{title}</Title>
+          <Text>{text}</Text>
         </Box>
-        <Title>{title}</Title>
-        <Text>{text}</Text>
-      </Box>
+      </Container>
     </>
   );
 };

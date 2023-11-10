@@ -15,6 +15,9 @@ import { PopupMission } from '../components/Mission/PopupMission/PopupMission.ts
 import { TaskContainer } from '../pages/TaskContainer/TaskContainer.tsx';
 import { Audio } from '../pages/Audio/Audio.tsx';
 import { RegisterAdmin } from '../pages/RegisterAdmin/RegisterAdmin.tsx';
+import { Questions } from '../pages/AllArticles/Questions.tsx';
+import { PagesNotFound } from '../pages/PagesNotFound/PagesNotFound.tsx';
+import { Favourites } from '../pages/Favourites/Favourites.tsx';
 
 interface Params {
   articleId: number;
@@ -76,6 +79,14 @@ export const router = createBrowserRouter([
         path: 'audio',
         element: <Audio />,
       },
+      {
+        path: 'questions',
+        element: <Questions />,
+      },
+      {
+        path: 'favourites',
+        element: <Favourites />,
+      },
     ],
   },
   {
@@ -93,5 +104,9 @@ export const router = createBrowserRouter([
   {
     path: 'greeting',
     element: <Greetings />,
+  },
+  {
+    path: '*',
+    element: <PagesNotFound />,
   },
 ]);
