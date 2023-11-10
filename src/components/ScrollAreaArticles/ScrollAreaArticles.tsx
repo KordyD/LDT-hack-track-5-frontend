@@ -8,14 +8,14 @@ import {
   Text,
 } from '@mantine/core';
 import { IconContext } from 'react-icons';
-import { Link } from 'react-router-dom';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
+import { ArticlesName } from '../../API/knowledge-base/interfaces';
 import { CustomActionIcon } from '../ActionIcon/ActionIcon';
 import classes from './ScrollAreaArticles.module.css';
 
 interface ScrollAreaArticlesProps extends ScrollAreaProps {
-  // TODO add types
-  articlesMain: object[];
+  articlesMain: ArticlesName[];
 }
 
 export const ScrollAreaArticles = ({
@@ -29,11 +29,11 @@ export const ScrollAreaArticles = ({
           <Box
             td='none'
             component={Link}
-            to={`/knowledge/${item.id}`}
+            to={`/knowledge/article/${item.id}`}
             key={item.id}
           >
             <Group className={classes.group}>
-              <Text>{item.title}</Text>
+              <Text>{item.name}</Text>
               <IconContext.Provider value={{ className: classes.icon }}>
                 <CustomActionIcon>
                   <AiOutlinePlus />

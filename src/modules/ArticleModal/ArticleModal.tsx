@@ -1,14 +1,11 @@
-import { ArticleEditModal } from '../../components/ArticleEditModal/ArticleEditModal';
 import { ArticleDeleteModal } from '../../components/ArticleDeleteModal/ArticleDeleteModal';
-interface ArticleModalProps {
-  isAuth: boolean;
-}
+import { ArticleEditModal } from '../../components/ArticleEditModal/ArticleEditModal';
 
-export const ArticleModal = ({ isAuth }: ArticleModalProps) => {
+export const ArticleModal = () => {
   return (
     <>
-      <ArticleEditModal isAuth={isAuth} />
-      <ArticleDeleteModal isAuth={isAuth} />
+      <ArticleEditModal />
+      <ArticleDeleteModal />
     </>
   );
 };

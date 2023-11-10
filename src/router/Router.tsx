@@ -10,26 +10,32 @@ import { Login } from '../pages/Login/Login.tsx';
 import { Article } from '../pages/Article/Article';
 import { Account } from '../pages/Account/Account.tsx';
 import { Video } from '../pages/Video/Video';
-import { articlesMain } from '../helpers/Articles.ts';
 import { MissionPage } from '../pages/MissionPage/MissionPage.tsx';
 import { PopupMission } from '../components/Mission/PopupMission/PopupMission.tsx';
 import { TaskContainer } from '../pages/TaskContainer/TaskContainer.tsx';
 import { Audio } from '../pages/Audio/Audio.tsx';
 import { RegisterAdmin } from '../pages/RegisterAdmin/RegisterAdmin.tsx';
-import { Questions } from '../pages/AllArticles/Questions.tsx';
+import { Questions } from '../pages/Questions/Questions.tsx';
 import { PagesNotFound } from '../pages/PagesNotFound/PagesNotFound.tsx';
 import { Favourites } from '../pages/Favourites/Favourites.tsx';
+import { getArticle, getQuestion } from '../API/knowledge-base/index.ts';
+import { getPersonalData } from '../API/personal-account/index.ts';
 
-interface Params {
+interface ParamsA {
   articleId: number;
 }
+interface ParamsQ {
+  questionId: number;
+}
 
-const checkAuth = () => {
-  const jwt = localStorage.getItem('jwt');
-  if (jwt) {
-    return true;
-  }
-  return false;
+const checkAuth = async () => {
+  return getPersonalData()
+    .then(() => {
+      return true;
+    })
+    .catch(() => {
+      return false;
+    });
 };
 
 function routes() {
@@ -52,19 +58,36 @@ function privateRoutes() {
         element: <Knowledge />,
       },
       {
-        path: 'knowledge/:articleId',
+        path: 'knowledge/article/:articleId',
         element: <Article />,
-        loader: ({ params }) => {
-          const typedParams = params as unknown as Params;
+        loader: async ({ params }) => {
+          const typedParams = params as unknown as ParamsA;
           if (!typedParams.articleId) {
             return null;
           }
+          const article = await getArticle(typedParams.articleId);
           return {
-            title: articlesMain[typedParams.articleId].title,
-            text: articlesMain[typedParams.articleId].text,
+            theme: article.theme,
+            information: article.information,
           };
         },
       },
+      {
+        path: 'knowledge/question/:questionId',
+        element: <Article />,
+        loader: async ({ params }) => {
+          const typedParams = params as unknown as ParamsQ;
+          if (!typedParams.questionId) {
+            return null;
+          }
+          const question = await getQuestion(typedParams.questionId);
+          return {
+            theme: question.theme,
+            information: question.answer,
+          };
+        },
+      },
+
       {
         path: 'team',
         element: <Team />,
@@ -126,6 +149,6 @@ function privateRoutes() {
   };
 }
 export const router = createBrowserRouter([
-  checkAuth() ? privateRoutes() : {},
+  (await checkAuth()) ? privateRoutes() : {},
   ...routes(),
 ]);

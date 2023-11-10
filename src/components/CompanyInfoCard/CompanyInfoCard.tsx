@@ -42,6 +42,7 @@ export const CompanyInfoCard = () => {
         </Group>
         <ScrollAreaCard
           articles={articles}
+          question={true}
           mah={isAdmin ? { base: 500, md: 1200 } : 500}
         />
       </Box>

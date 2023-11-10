@@ -1,37 +1,18 @@
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Image,
-  Text,
-  Title,
-} from '@mantine/core';
+import { Box, Button, Container, Flex, Image } from '@mantine/core';
+import { useEffect, useState } from 'react';
+import { getAllQuestions } from '../../API/knowledge-base/index.ts';
+import { ArticlesName } from '../../API/knowledge-base/interfaces.ts';
+import filter from '../../assets/icon/filter.svg';
+import sort from '../../assets/icon/sort.svg';
 import { BackButton } from '../../components/BackButton/BackButton.tsx';
 import { TextMiddle } from '../../theme/AdaptiveConts.ts';
-import sort from '../../assets/icon/sort.svg';
-import filter from '../../assets/icon/filter.svg';
 import { ArticleList } from './ArticleList/ArticleList.tsx';
 
-const list = [
-  {
-    id: 1,
-    name: 'list1',
-    description: 'Kompaniya',
-  },
-  {
-    id: 2,
-    name: 'list2',
-    description: 'Kompaniya',
-  },
-  {
-    id: 3,
-    name: 'list3',
-    description: 'Kompaniya',
-  },
-];
-
 export const Questions = () => {
+  useEffect(() => {
+    getAllQuestions().then((values) => setQuestions(values));
+  }, []);
+  const [questions, setQuestions] = useState<ArticlesName[]>([]);
   return (
     <Container size='xl'>
       <Box pos='relative'>
@@ -59,8 +40,8 @@ export const Questions = () => {
           </Button>
         </Flex>
         <Flex align='center' gap='15px' direction='column' mt='20px'>
-          {list.map((item) => (
-            <ArticleList item={item} key={item.id} />
+          {questions.map((item) => (
+            <ArticleList article={item} key={item.id} question={true} />
           ))}
         </Flex>
       </Box>

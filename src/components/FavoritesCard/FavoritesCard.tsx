@@ -34,7 +34,7 @@ export const FavoritesCard = () => {
             <Title order={2}>Избранное</Title>
           </Group>
         </Group>
-        <ScrollAreaCard articles={articles} mah={500} />
+        <ScrollAreaCard articles={articles} mah={500} question={false} />
       </Box>
 
       <Box>

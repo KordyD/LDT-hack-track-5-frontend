@@ -2,19 +2,16 @@ import { ActionIcon, Box, Container, Text, Title } from '@mantine/core';
 import { BiSolidBookmark } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { useLoaderData } from 'react-router-dom';
+import { Article as IArticle } from '../../API/knowledge-base/interfaces';
 import { BackButton } from '../../components/BackButton/BackButton';
 import { ArticleModal } from '../../modules/ArticleModal/ArticleModal';
 import { RootState } from '../../store';
 import classes from './Article.module.css';
 
-interface loaderData {
-  title: string;
-  text: string;
-}
-
 export const Article = () => {
-  const { title, text } = useLoaderData() as loaderData;
-  const isAuth = useSelector((state: RootState) => state.isAuth);
+  const { theme, information } = useLoaderData() as IArticle;
+  const roles = useSelector((state: RootState) => state.roles);
+  const isAdmin = roles.includes('ROLE_ADMIN');
 
   return (
     <>
@@ -22,16 +19,16 @@ export const Article = () => {
         <Box pos='relative'>
           <BackButton variant='transparent'>Назад</BackButton>
           <Box className={classes.box}>
-            <ArticleModal isAuth={isAuth} />
+            <ArticleModal />
             <ActionIcon
-              display={isAuth ? 'none' : 'block'}
+              display={isAdmin ? 'none' : 'block'}
               variant='transparent'
             >
               <BiSolidBookmark style={{ width: 40, height: 40 }} />
             </ActionIcon>
           </Box>
-          <Title>{title}</Title>
-          <Text>{text}</Text>
+          <Title>{theme}</Title>
+          <Text>{information}</Text>
         </Box>
       </Container>
     </>

@@ -1,17 +1,18 @@
 import { ActionIcon, Box, Button, Modal, Stack, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { BsTrash3 } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import classes from './ArticleDeleteModal.module.css';
-interface ArticleDeleteModalProps {
-  isAuth: boolean;
-}
 
-export const ArticleDeleteModal = ({ isAuth }: ArticleDeleteModalProps) => {
+export const ArticleDeleteModal = () => {
   const [opened, { open, close }] = useDisclosure(false);
+  const roles = useSelector((state: RootState) => state.roles);
+  const isAdmin = roles.includes('ROLE_ADMIN');
 
   return (
     <>
-      <Box display={isAuth ? 'block' : 'none'}>
+      <Box display={isAdmin ? 'block' : 'none'}>
         <ActionIcon variant='unstyled' c='red' onClick={open}>
           <BsTrash3 />
         </ActionIcon>

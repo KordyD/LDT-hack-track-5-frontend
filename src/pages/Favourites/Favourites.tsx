@@ -1,28 +1,19 @@
 import { Box, Button, Container, Flex, Image } from '@mantine/core';
+import { useEffect, useState } from 'react';
+import { getAllArticles } from '../../API/knowledge-base/index.ts';
+import { ArticlesName } from '../../API/knowledge-base/interfaces.ts';
+import filter from '../../assets/icon/filter.svg';
+import sort from '../../assets/icon/sort.svg';
 import { BackButton } from '../../components/BackButton/BackButton.tsx';
 import { TextMiddle } from '../../theme/AdaptiveConts.ts';
-import sort from '../../assets/icon/sort.svg';
-import filter from '../../assets/icon/filter.svg';
-import { ArticleList } from '../AllArticles/ArticleList/ArticleList.tsx';
+import { ArticleList } from '../Questions/ArticleList/ArticleList.tsx';
 
-const list = [
-  {
-    id: 1,
-    name: 'list1Izbrannoe',
-    description: 'Kompaniya',
-  },
-  {
-    id: 2,
-    name: 'list2Izbrannoe',
-    description: 'Kompaniya',
-  },
-  {
-    id: 3,
-    name: 'list3Izbrannoe',
-    description: 'Kompaniya',
-  },
-];
 export const Favourites = () => {
+  useEffect(() => {
+    getAllArticles().then((values) => setArticles(values));
+  }, []);
+  const [articles, setArticles] = useState<ArticlesName[]>([]);
+
   return (
     <Container size='xl'>
       <Box pos='relative'>
@@ -50,8 +41,8 @@ export const Favourites = () => {
           </Button>
         </Flex>
         <Flex align='center' gap='15px' direction='column' mt='20px'>
-          {list.map((item) => (
-            <ArticleList item={item} key={item.id} />
+          {articles.map((item) => (
+            <ArticleList article={item} key={item.id} />
           ))}
         </Flex>
       </Box>
