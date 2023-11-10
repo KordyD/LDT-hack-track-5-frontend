@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { Root } from '../pages/Root/Root';
 import { Knowledge } from '../pages/Knowledge/Knowledge';
 import { Team } from '../pages/Team/Team';
@@ -19,7 +18,7 @@ import { Audio } from '../pages/Audio/Audio.tsx';
 import { RegisterAdmin } from '../pages/RegisterAdmin/RegisterAdmin.tsx';
 import { Questions } from '../pages/AllArticles/Questions.tsx';
 import { Favourites } from '../pages/Favourites/Favourites.tsx';
-import { RootState } from '../store';
+import { PagesNotFound } from '../pages/PagesNotFound/PagesNotFound.tsx';
 
 interface Params {
   articleId: number;
@@ -46,6 +45,7 @@ function routes() {
 function privateRoutes() {
   return {
     element: <Root />,
+    errorElement: <PagesNotFound />,
     children: [
       {
         path: '/',
