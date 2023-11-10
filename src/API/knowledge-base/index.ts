@@ -101,7 +101,7 @@ export const getQuestion = async (questionId: number) => {
 
 export const getAllFavorites = async () => {
   const response: AxiosResponse<ArticlesName[]> = await axios.get(
-    URL + `/knowledge-base/favorites/articles`,
+    URL + `/knowledge-base/favourites/articles`,
     { headers: { ...headers } }
   );
   return response.data;

@@ -1,4 +1,5 @@
 import { post } from '../admin/interfaces';
+import { role } from '../auth/interfaces';
 
 export interface PersonalData {
   employeeId: number;
@@ -10,6 +11,7 @@ export interface PersonalData {
   socialNetwork: string;
   city: string;
   account: number;
+  roles: role[];
 }
 
 export interface updatePersonal {

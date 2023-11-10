@@ -3,34 +3,30 @@ import { useSelector } from 'react-redux';
 import { CardLecture } from '../../components/CardLecture/CardLecture';
 import { CompanyInfoCard } from '../../components/CompanyInfoCard/CompanyInfoCard';
 import { FavoritesCard } from '../../components/FavoritesCard/FavoritesCard';
-import { articles } from '../../helpers/Favorite';
 import { RootState } from '../../store';
 import { Articles } from '../Articles/Articles';
 import classes from './CardsKnowledge.module.css';
 
 export const CardsKnowledge = () => {
-  const isAuth = useSelector((state: RootState) => state.isAuth);
+  const roles = useSelector((state: RootState) => state.roles);
+  const isAdmin = roles.includes('ROLE_ADMIN');
 
   return (
     <Box className={classes.wrapper}>
-      <Box className={classes.favorite} display={isAuth ? 'none' : 'block'}>
-        <FavoritesCard heading='Избранное' articles={articles} />
+      <Box className={classes.favorite} display={isAdmin ? 'none' : 'block'}>
+        <FavoritesCard />
       </Box>
       <Box className={classes.articles}>
-        <Articles isAuth={isAuth} />
+        <Articles />
       </Box>
-      <Box className={`${classes.info} ${isAuth ? classes.auth : ''}`}>
-        <CompanyInfoCard
-          heading='О компании'
-          articles={articles}
-          isAuth={isAuth}
-        />
+      <Box className={`${classes.info} ${isAdmin ? classes.auth : ''}`}>
+        <CompanyInfoCard />
       </Box>
       <Box className={classes.lecture}>
-        <CardLecture type='video' isAuth={isAuth} />
+        <CardLecture type='video' />
       </Box>
       <Box className={classes.lecture}>
-        <CardLecture type='audio' isAuth={isAuth} />
+        <CardLecture type='audio' />
       </Box>
     </Box>
   );

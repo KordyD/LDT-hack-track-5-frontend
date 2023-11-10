@@ -17,7 +17,6 @@ export const Login = () => {
   const handleSubmit = async (values: loginData) => {
     try {
       const data = await login(values);
-      console.log(data);
       localStorage.setItem('token', data.token);
       dispatch(setRoles(data.roleName));
       form.reset();
