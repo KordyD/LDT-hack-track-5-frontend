@@ -1,22 +1,26 @@
 import { Button, Card, Group } from '@mantine/core';
-import { AiOutlinePlus } from 'react-icons/ai';
-import { IconContext } from 'react-icons';
 import { useDisclosure } from '@mantine/hooks';
-import { articlesMain } from '../../helpers/Articles';
-import { ScrollAreaArticles } from '../../components/ScrollAreaArticles/ScrollAreaArticles';
-import { EditButton } from '../../components/EditButton/EditButton';
+import { IconContext } from 'react-icons';
+import { AiOutlinePlus } from 'react-icons/ai';
+import { useSelector } from 'react-redux';
 import { AddArticleModal } from '../../components/AddArticleModal/AddArticleModal';
+import { ScrollAreaArticles } from '../../components/ScrollAreaArticles/ScrollAreaArticles';
+import { articlesMain } from '../../helpers/Articles';
+import { RootState } from '../../store';
 import classes from './Articles.module.css';
 
-interface Articles {
-  isAuth: boolean;
-}
+export const Articles = () => {
+  const roles = useSelector((state: RootState) => state.roles);
+  const isAdmin = roles.includes('ROLE_ADMIN');
 
-export const Articles = ({ isAuth }: Articles) => {
   const [opened, { open, close }] = useDisclosure(false);
   return (
     <Card className={classes.card}>
-      <Group mb={20} justify='space-between' display={isAuth ? 'flex' : 'none'}>
+      <Group
+        mb={20}
+        justify='space-between'
+        display={isAdmin ? 'flex' : 'none'}
+      >
         <IconContext.Provider value={{ className: classes.icon }}>
           <Button
             variant='white'
@@ -27,7 +31,6 @@ export const Articles = ({ isAuth }: Articles) => {
           </Button>
         </IconContext.Provider>
         <AddArticleModal opened={opened} close={close} />
-        <EditButton display={isAuth ? 'flex' : 'none'} />
       </Group>
       <ScrollAreaArticles
         articlesMain={articlesMain}

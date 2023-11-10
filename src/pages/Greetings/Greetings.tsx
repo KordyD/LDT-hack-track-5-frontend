@@ -36,7 +36,7 @@ export const Greetings = () => {
           h={{ lg: '75px', md: '65px', sm: '55px', base: '45px' }}
           className={classes.greetings__button}
           component={NavLink}
-          to='/companyregister'
+          to='/company-register'
         >
           Зарегестрировать компанию
         </Button>

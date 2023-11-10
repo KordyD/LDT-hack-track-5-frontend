@@ -8,7 +8,7 @@ export const getPersonalData = async () => {
     URL + '/personal-account',
     { headers: { ...headers } }
   );
-  return response;
+  return response.data;
 };
 
 export const updatePersonalData = async (data: updatePersonal) => {

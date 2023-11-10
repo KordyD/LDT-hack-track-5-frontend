@@ -14,6 +14,9 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setRoles: (state, action: PayloadAction<role[]>) => {
+      if (!action.payload) {
+        return;
+      }
       const roles = action.payload.map((item) => item.name);
       state.roles = roles;
     },
