@@ -1,6 +1,7 @@
 import { Box, Button, Card, Group, Title } from '@mantine/core';
 import { IconContext } from 'react-icons';
 import { FiStar } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import { ScrollAreaCard } from '../ScrollAreaCard/ScrollAreaCard';
 import classes from './FavoritesCard.module.css';
 interface FavoritesCardProps {
@@ -30,7 +31,8 @@ export const FavoritesCard = ({ heading, articles }: FavoritesCardProps) => {
           mt='lg'
           radius='xl'
           variant='light'
-          // TODO Add link to button
+          component={Link}
+          to={'/favourites'}
         >
           Все статьи
         </Button>

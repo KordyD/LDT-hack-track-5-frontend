@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { Root } from '../pages/Root/Root';
 import { Knowledge } from '../pages/Knowledge/Knowledge';
 import { Team } from '../pages/Team/Team';
@@ -23,14 +24,31 @@ interface Params {
   articleId: number;
 }
 
-export const router = createBrowserRouter([
-  {
-    path: '/',
+const checkAuth = () => {
+  const jwt = localStorage.getItem('jwt');
+  if (jwt) {
+    return true;
+  }
+  return false;
+};
+
+function routes() {
+  return [
+    { path: '/greeting', element: <Greetings /> },
+    { path: '/login', element: <Login /> },
+    { path: '/register', element: <Register /> },
+    { path: '/company-register', element: <RegisterAdmin /> },
+    { path: '*', element: <Navigate to='/greeting' replace /> },
+  ];
+}
+
+function privateRoutes() {
+  return {
     element: <Root />,
     errorElement: <PagesNotFound />,
     children: [
       {
-        path: 'knowledge',
+        path: '/',
         element: <Knowledge />,
       },
       {
@@ -88,22 +106,26 @@ export const router = createBrowserRouter([
         path: 'favourites',
         element: <Favourites />,
       },
+      {
+        path: '/login',
+        element: <Navigate to='/' replace />,
+      },
+      {
+        path: '/register',
+        element: <Navigate to='/' replace />,
+      },
+      {
+        path: '/greeting',
+        element: <Navigate to='/' replace />,
+      },
+      {
+        path: '/company-register',
+        element: <Navigate to='/' replace />,
+      },
     ],
-  },
-  {
-    path: '/register',
-    element: <Register />,
-  },
-  {
-    path: '/company-register',
-    element: <RegisterAdmin />,
-  },
-  {
-    path: '/login',
-    element: <Login />,
-  },
-  {
-    path: 'greeting',
-    element: <Greetings />,
-  },
+  };
+}
+export const router = createBrowserRouter([
+  checkAuth() ? privateRoutes() : {},
+  ...routes(),
 ]);
