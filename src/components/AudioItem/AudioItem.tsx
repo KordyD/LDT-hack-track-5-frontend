@@ -1,4 +1,4 @@
-import { ActionIcon, Button, Group, Text } from '@mantine/core';
+import { ActionIcon, Button, Container, Group, Text } from '@mantine/core';
 import { BsTrash3 } from 'react-icons/bs';
 import { VscTriangleRight } from 'react-icons/vsc';
 export const AudioItem = () => {

@@ -45,7 +45,7 @@ export const AddNewStage = () => {
           onClick={open}
           justify='space-around'
           fz={TextMiddle}
-          w='50%'
+          maw='400px'
           className={classes.buttonAddStage}
           rightSection={<Image src={plus} w={Image40} h={Image40} />}
         >

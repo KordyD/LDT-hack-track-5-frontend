@@ -21,3 +21,22 @@
     background: #5277F6;
     color:  #EEFF87;
 }
+
+.videolecture__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.videolecture__input {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid #5277F6;
+}
+
+.videolecture__inputXL {
+    height: 120px;
+    border-radius: 20px;
+    border: 1px solid #5277F6;
+}
