@@ -26,7 +26,7 @@ export const RegisterAdmin = () => {
       localStorage.setItem('token', data.jwt.token);
       dispatch(setRoles(data.jwt.roleName));
       form.reset();
-      navigate('/', { replace: true });
+      navigate(0);
     } catch (error) {
       const err = error as AxiosError;
       console.log(err.response?.data);

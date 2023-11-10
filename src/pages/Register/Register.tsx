@@ -39,7 +39,7 @@ export const Register = () => {
       localStorage.setItem('token', data.token);
       dispatch(setRoles(data.roleName));
       form.reset();
-      navigate('/', { replace: true });
+      navigate(0);
     } catch (error) {
       const err = error as AxiosError;
       console.log(err.response?.data);

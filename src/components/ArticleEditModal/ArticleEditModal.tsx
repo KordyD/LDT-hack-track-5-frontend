@@ -1,17 +1,18 @@
 import { Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import { AddArticleModal } from '../AddArticleModal/AddArticleModal';
-interface ArticleEditModalProps {
-  isAuth: boolean;
-}
 
-export const ArticleEditModal = ({ isAuth }: ArticleEditModalProps) => {
+export const ArticleEditModal = () => {
   const [opened, { open, close }] = useDisclosure(false);
+  const roles = useSelector((state: RootState) => state.roles);
+  const isAdmin = roles.includes('ROLE_ADMIN');
 
   return (
     <>
       <Button
-        display={isAuth ? 'block' : 'none'}
+        display={isAdmin ? 'block' : 'none'}
         variant='white'
         onClick={open}
       >
