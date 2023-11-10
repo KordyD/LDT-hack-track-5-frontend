@@ -17,7 +17,7 @@ import { TaskContainer } from '../pages/TaskContainer/TaskContainer.tsx';
 import { Audio } from '../pages/Audio/Audio.tsx';
 import { RegisterAdmin } from '../pages/RegisterAdmin/RegisterAdmin.tsx';
 import { Questions } from '../pages/Questions/Questions.tsx';
-import { PagesNotFound } from '../pages/PagesNotFound/PagesNotFound.tsx';
+import { PagesNotFound } from '../pages/PageNotFound/PageNotFound.tsx';
 import { Favourites } from '../pages/Favourites/Favourites.tsx';
 import { getArticle, getQuestion } from '../API/knowledge-base/index.ts';
 import { getPersonalData } from '../API/personal-account/index.ts';
@@ -52,6 +52,7 @@ function routes() {
 function privateRoutes() {
   return {
     element: <Root />,
+    errorElement: <PagesNotFound />,
     children: [
       {
         path: '/',
