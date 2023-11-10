@@ -1,26 +1,25 @@
-import { Button, Flex, Image, Text, TextInput } from '@mantine/core';
+import { Button, Container, Flex, Image, Text, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useNavigate, Link } from 'react-router-dom';
 import Women from '../../assets/images/image-PhotoRoom.png-PhotoRoom - 2023-09-28T181802 1.png';
 import { HeadingH3, TextMiddle } from '../../theme/AdaptiveConts.ts';
+import { IRegister } from '../../API/InterfaceRaznex/InterfaceRaznex.ts';
 import classes from './Register.module.css';
 
-interface IRegister {
-  email: string;
-  password: string;
-  againPassword: string;
-}
 export const Register = () => {
   const navigate = useNavigate();
 
   const form = useForm<IRegister>({
     initialValues: {
+      name: '',
       email: '',
       password: '',
       againPassword: '',
     },
 
     validate: {
+      name: (value) =>
+        /.+/.test(value) ? null : 'Имя должно состоять хотя бы из 1 символа',
       email: (value) =>
         /^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/i.test(value)
           ? null
@@ -37,7 +36,7 @@ export const Register = () => {
   });
 
   return (
-    <Flex
+    <Container
       className={classes.register}
       h='100vh'
       maw={{ lg: '550px', md: '450px', xs: '400px', base: '350px' }}
@@ -46,12 +45,22 @@ export const Register = () => {
         className={classes.register__form}
         onSubmit={form.onSubmit((values: IRegister) => {
           console.log(values);
+          form.reset();
           navigate('/login', { replace: true });
         })}
       >
         <Text className={classes.register__title} fz={HeadingH3}>
           Регистрация
         </Text>
+        <TextInput
+          variant='filled'
+          classNames={{
+            root: classes.register__inputRoot,
+            input: classes.register__input,
+          }}
+          placeholder='Ваше имя'
+          {...form.getInputProps('name')}
+        />
         <TextInput
           variant='filled'
           classNames={{
@@ -91,10 +100,6 @@ export const Register = () => {
           Есть аккаунт? Войти
         </Button>
       </form>
-      <Image
-        src={Women}
-        w={{ lg: '740px', md: '640px', sm: '500px', base: '380px' }}
-      />
-    </Flex>
+    </Container>
   );
 };

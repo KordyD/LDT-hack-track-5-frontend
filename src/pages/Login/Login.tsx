@@ -1,13 +1,9 @@
-import { Button, Flex, Text, TextInput } from '@mantine/core';
+import { Button, Container, Text, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { Link, useNavigate } from 'react-router-dom';
 import { HeadingH3, TextMiddle } from '../../theme/AdaptiveConts.ts';
 import classes from '../Register/Register.module.css';
-
-interface ILogin {
-  email: string;
-  password: string;
-}
+import { ILogin } from '../../API/InterfaceRaznex/InterfaceRaznex.ts';
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -19,7 +15,7 @@ export const Login = () => {
     },
   });
   return (
-    <Flex
+    <Container
       className={classes.register}
       h='100vh'
       maw={{ lg: '550px', md: '450px', xs: '400px', base: '350px' }}
@@ -27,6 +23,7 @@ export const Login = () => {
       <form
         className={classes.register__form}
         onSubmit={form.onSubmit((values) => {
+          form.reset();
           console.log(values);
           navigate('/', { replace: true });
         })}
@@ -64,6 +61,6 @@ export const Login = () => {
           Зарегистрироваться
         </Button>
       </form>
-    </Flex>
+    </Container>
   );
 };

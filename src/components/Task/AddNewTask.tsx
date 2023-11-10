@@ -4,20 +4,24 @@ import {
   Modal,
   NativeSelect,
   NumberInput,
+  TagsInput,
   Textarea,
   TextInput,
 } from '@mantine/core';
-import classes from '../Mission/MissionAccordion/MissionAccordion.module.css';
 import { useForm } from '@mantine/form';
+import { useState } from 'react';
+import classes from '../Mission/MissionAccordion/MissionAccordion.module.css';
 import { TextForInput } from '../../theme/AdaptiveConts.ts';
 
 export const AddNewTask = ({ close, opened, name }) => {
+  const [imagesValue, setImagesValue] = useState([]);
   const form = useForm({
     initialValues: {
       name: '',
       description: '',
       sum: '',
       job: '',
+      images: imagesValue,
     },
 
     validate: {
@@ -29,6 +33,7 @@ export const AddNewTask = ({ close, opened, name }) => {
   });
   const closePopup = () => {
     close();
+    setImagesValue([]);
     form.reset();
   };
   return (
@@ -96,6 +101,10 @@ export const AddNewTask = ({ close, opened, name }) => {
           placeholder='Должность'
           data={['React', 'Angular', 'Vue']}
           {...form.getInputProps('job')}
+        />
+        <TagsInput
+          placeholder='Введите ссылку на файл'
+          onChange={setImagesValue}
         />
         <Button
           fz={TextForInput}

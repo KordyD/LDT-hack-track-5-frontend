@@ -1,6 +1,7 @@
 import { Box, Button, Card, Group, Title } from '@mantine/core';
 import { IconContext } from 'react-icons';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 import { EditButton } from '../EditButton/EditButton';
 import { ScrollAreaCard } from '../ScrollAreaCard/ScrollAreaCard';
 import classes from './CompanyInfoCard.module.css';
@@ -34,7 +35,14 @@ export const CompanyInfoCard = ({
       </Box>
 
       <Box>
-        <Button fullWidth mt='lg' radius='xl' variant='filled'>
+        <Button
+          fullWidth
+          mt='lg'
+          radius='xl'
+          variant='filled'
+          component={Link}
+          to={'/articles'}
+        >
           Все статьи
         </Button>
       </Box>
