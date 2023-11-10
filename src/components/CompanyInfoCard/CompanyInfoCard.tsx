@@ -53,7 +53,7 @@ export const CompanyInfoCard = () => {
           radius='xl'
           variant='filled'
           component={Link}
-          to={'/articles'}
+          to={'/questions'}
         >
           Все статьи
         </Button>

@@ -39,7 +39,7 @@ export const LectureVideo = ({ video }: LectureVideo) => {
             <Text
               truncate='end'
               className={classes.lecturevideo__title}
-              fz={TextMiddle}
+              fz={TextForInput}
             >
               {video.title}
             </Text>
