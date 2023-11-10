@@ -11,12 +11,12 @@ import {
   tasksToAdd,
 } from './interfaces';
 
-export const getAllTasks = async () => {
-  const response: AxiosResponse<task[]> = await axios.get(URL + `/hr/tasks`, {
-    headers: { ...headers },
-  });
-  return response.data;
-};
+// export const getAllTasks = async () => {
+//   const response: AxiosResponse<task[]> = await axios.get(URL + `/hr/tasks`, {
+//     headers: { ...headers },
+//   });
+//   return response.data;
+// };
 export const addListOfTasks = async (data: tasksToAdd[]) => {
   const response: AxiosResponse<task[]> = await axios.post(
     URL + `/hr/tasks`,

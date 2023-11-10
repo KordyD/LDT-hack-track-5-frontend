@@ -1,4 +1,12 @@
-import { Anchor, Box, Burger, Container, Flex, Image } from '@mantine/core';
+import {
+  Anchor,
+  Box,
+  Burger,
+  Button,
+  Container,
+  Flex,
+  Image,
+} from '@mantine/core';
 import { IconContext } from 'react-icons';
 import { BsBell } from 'react-icons/bs';
 import { MdAccountCircle } from 'react-icons/md';
@@ -80,6 +88,7 @@ export const Header = () => {
           </IconContext.Provider>
         </Box>
       </Box>
+      <Button onClick={() => localStorage.clear()}>Клиар</Button>
     </Container>
   );
 };

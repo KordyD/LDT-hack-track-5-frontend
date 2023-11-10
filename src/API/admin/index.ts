@@ -21,7 +21,7 @@ import {
 
 export const addVideos = async (data: addMedia[]) => {
   const response: AxiosResponse<mediaFull[]> = await axios.post(
-    URL + `/admin/company/videos`,
+    URL + `/admin/knowledge-base/videos`,
     data,
     { headers: { ...headers } }
   );
@@ -30,7 +30,7 @@ export const addVideos = async (data: addMedia[]) => {
 
 export const addOneVideo = async (data: addMedia) => {
   const response: AxiosResponse<mediaFull[]> = await axios.post(
-    URL + `/admin/company/video`,
+    URL + `/admin/knowledge-base/video`,
     data,
     { headers: { ...headers } }
   );
@@ -39,7 +39,7 @@ export const addOneVideo = async (data: addMedia) => {
 
 export const addAudios = async (data: addMedia[]) => {
   const response: AxiosResponse<mediaFull[]> = await axios.post(
-    URL + `/admin/company/audios`,
+    URL + `/admin/knowledge-base/audios`,
     data,
     { headers: { ...headers } }
   );
@@ -48,7 +48,7 @@ export const addAudios = async (data: addMedia[]) => {
 
 export const addOneAudio = async (data: addMedia) => {
   const response: AxiosResponse<mediaFull[]> = await axios.post(
-    URL + `/admin/company/audio`,
+    URL + `/admin/knowledge-base/audio`,
     data,
     { headers: { ...headers } }
   );
@@ -56,7 +56,7 @@ export const addOneAudio = async (data: addMedia) => {
 };
 export const addQuestions = async (data: questionData[]) => {
   const response: AxiosResponse<question[]> = await axios.post(
-    URL + `/admin/company/questions`,
+    URL + `/admin/knowledge-base/questions`,
     data,
     { headers: { ...headers } }
   );
@@ -65,7 +65,7 @@ export const addQuestions = async (data: questionData[]) => {
 
 export const addArticle = async (data: articleData) => {
   const response: AxiosResponse<Article[]> = await axios.post(
-    URL + `/admin/company/article`,
+    URL + `/admin/knowledge-base/article`,
     data,
     { headers: { ...headers } }
   );
@@ -74,7 +74,7 @@ export const addArticle = async (data: articleData) => {
 
 export const addArticles = async (data: articleData[]) => {
   const response: AxiosResponse<Article[]> = await axios.post(
-    URL + `/admin/company/articles`,
+    URL + `/admin/knowledge-base/articles`,
     data,
     { headers: { ...headers } }
   );
@@ -120,6 +120,14 @@ export const addListOfDepartments = async (data: departmentData[]) => {
 export const getCompany = async () => {
   const response: AxiosResponse<company> = await axios.get(
     URL + `/admin/company/`,
+    { headers: { ...headers } }
+  );
+  return response.data;
+};
+
+export const getAllTasks = async () => {
+  const response: AxiosResponse<company> = await axios.get(
+    URL + `/admin/tasks`,
     { headers: { ...headers } }
   );
   return response.data;

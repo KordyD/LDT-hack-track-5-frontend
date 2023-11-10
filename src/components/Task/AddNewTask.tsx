@@ -118,5 +118,3 @@ export const AddNewTask = ({ close, opened, name }) => {
     </Modal>
   );
 };
-
-export default AddNewTask;

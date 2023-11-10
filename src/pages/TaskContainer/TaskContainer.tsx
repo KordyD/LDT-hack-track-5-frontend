@@ -1,39 +1,30 @@
 import { Button, Flex, Image, ScrollArea } from '@mantine/core';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
+import { useSelector } from 'react-redux';
 import sort from '../../assets/icon/sort.svg';
 import filter from '../../assets/icon/filter.svg';
 import { Task } from '../../components/Task/Task.tsx';
 import { ButtonsEditing } from '../../components/ButtonsEditing/ButtonsEditing.tsx';
 import plus from '../../assets/icon/add_circle_create_expand_new_plus_icon_123218 1.png';
-import AddNewTask from '../../components/Task/AddNewTask.tsx';
+import { AddNewTask } from '../../components/Task/AddNewTask.tsx';
 import { TextMiddle } from '../../theme/AdaptiveConts.ts';
+import { task } from '../../API/hr/interfaces.ts';
+import { getAllTasks } from '../../API/admin';
+import { RootState } from '../../store';
 
-const task = [
-  {
-    id: 1,
-    title: 'Задача 1',
-    status: 'Принято',
-    time: '03.04.2023',
-  },
-  {
-    id: 2,
-    title: 'Задача 2',
-    status: 'На проверке',
-    time: '03.04.2023',
-  },
-];
 export const TaskContainer = () => {
+  const [tasks, setTask] = useState([]);
   const [opened, { open, close }] = useDisclosure(false);
   const [isEditing, setIsEditing] = useState(false);
-
-  const toggleEditing = () => {
-    if (isEditing) {
-      setIsEditing(false);
-    } else {
-      setIsEditing(true);
-    }
-  };
+  const post = useSelector((state: RootState) => state.postName);
+  useEffect(() => {
+    Promise.all([getAllTasks()])
+      .then(([res]) => {
+        setTask(res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <>
@@ -74,8 +65,8 @@ export const TaskContainer = () => {
           ''
         )}
         <ScrollArea.Autosize mah={300} w='100%' mx='auto'>
-          {task.map((item) => (
-            <Task task={item} key={item.id} isEditing={isEditing} />
+          {tasks.map((task: task) => (
+            <Task task={task} key={task.taskId} isEditing={isEditing} />
           ))}
         </ScrollArea.Autosize>
         <ButtonsEditing isEditing={isEditing} setIsEditing={setIsEditing} />

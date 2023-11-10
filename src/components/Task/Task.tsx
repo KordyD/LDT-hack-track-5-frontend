@@ -1,11 +1,17 @@
 import { Button, Flex, Image, Text } from '@mantine/core';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import classes from '../Mission/MissionAccordion/MissionAccordion.module.css';
 import Trash from '../../assets/images/TrashBin.png';
-import { useState } from 'react';
 import { Image40, TextMiddle } from '../../theme/AdaptiveConts.ts';
+import { task } from '../../API/hr/interfaces.ts';
 
-export const Task = ({ task, isEditing }) => {
+interface ITask {
+  task: task;
+  isEditing: boolean;
+}
+
+export const Task = ({ task, isEditing }: ITask) => {
   const [isDeleted, setIsDeleted] = useState(false);
   if (isEditing) {
     return (
@@ -13,7 +19,6 @@ export const Task = ({ task, isEditing }) => {
         <Flex
           justify={'space-between'}
           align={'center'}
-          key={task.id}
           className={`${classes.missionAccordion__EditingTaskRoot} ${
             isDeleted ? classes.missionAccordion__EditingTaskRoot_delete : ''
           }`}
@@ -25,13 +30,13 @@ export const Task = ({ task, isEditing }) => {
             fz={TextMiddle}
             className={classes.missionAccordion__EditingTask}
           >
-            {task.title}
+            {task.name}
           </Text>
           <Text
             fz={TextMiddle}
             className={classes.missionAccordion__EditingTask}
             component={Link}
-            to={`/mission/${task.id}`}
+            to={`/mission/${task.taskId}`}
           >
             Изменить
           </Text>
@@ -50,7 +55,6 @@ export const Task = ({ task, isEditing }) => {
         <Flex
           justify={'space-between'}
           align={'center'}
-          key={task.id}
           className={classes.missionAccordion__EditingTaskRoot}
         >
           <Text
@@ -60,7 +64,7 @@ export const Task = ({ task, isEditing }) => {
             fz={TextMiddle}
             className={classes.missionAccordion__EditingTask}
           >
-            {task.title}
+            {task.name}
           </Text>
         </Flex>
       </>

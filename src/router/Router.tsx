@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Root } from '../pages/Root/Root';
 import { Knowledge } from '../pages/Knowledge/Knowledge';
 import { Team } from '../pages/Team/Team';
@@ -51,7 +52,6 @@ function routes() {
 function privateRoutes() {
   return {
     element: <Root />,
-    errorElement: <PagesNotFound />,
     children: [
       {
         path: '/',
@@ -148,6 +148,7 @@ function privateRoutes() {
     ],
   };
 }
+
 export const router = createBrowserRouter([
   (await checkAuth()) ? privateRoutes() : {},
   ...routes(),

@@ -4,7 +4,7 @@ import { useDisclosure } from '@mantine/hooks';
 import coin from '../../../assets/icon/coin.svg';
 import chat from '../../../assets/images/chat.png';
 import { charactersList } from '../MissionAccordion/MissionAccordion.tsx';
-import AddNewTask from '../../Task/AddNewTask.tsx';
+import { AddNewTask } from '../../Task/AddNewTask.tsx';
 import {
   EditButton,
   Heading,
@@ -42,7 +42,7 @@ export const PopupMission = ({ itemId }: itemProps) => {
                   fz={Heading}
                   truncate='end'
                 >
-                  {selectedTask?.title}
+                  {selectedTask?.name}
                 </Text>
                 <Flex className={classes.popupMission__bag} fz={HeadingH2}>
                   <Image src={coin} w={Image40} h={Image40} />
