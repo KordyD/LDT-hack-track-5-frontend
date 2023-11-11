@@ -7,87 +7,6 @@ import { RootState } from '../../../store';
 import { AccordionItem } from './Accordion/AccordionItem.tsx';
 import classes from './MissionAccordion.module.css';
 
-// export const charactersList = [
-//   {
-//     id: 1,
-//     week: '1',
-//     task: '9',
-//     test: '1',
-//     label: 'Знакомство',
-//     status: 'open',
-//     content: {
-//       value: 100,
-//       task: [
-//         {
-//           id: 1,
-//           title:
-//             'Задача 1Задача 1Задача 1Задача1Задача1 Задача1Задача1 Задача1Задача1ЗадачаЗадача1Задача1Задача1Задача1',
-//           status: 'Принято',
-//           time: '03.04.2023',
-//         },
-//         {
-//           id: 2,
-//           title: 'Задача 2',
-//           status: 'Принято',
-//           time: '03.04.2023',
-//         },
-//       ],
-//     },
-//   },
-//
-//   {
-//     id: 2,
-//     week: '2',
-//     task: '9',
-//     test: '1',
-//     label: 'Погружение',
-//     status: 'open',
-//     content: {
-//       value: 50,
-//       task: [
-//         {
-//           id: 1,
-//           title: 'Задача 1',
-//           status: 'Принято',
-//           time: '03.04.2023',
-//         },
-//         {
-//           id: 2,
-//           title: 'Задача 2',
-//           status: 'Принято',
-//           time: '03.04.2023',
-//         },
-//       ],
-//     },
-//   },
-//
-//   {
-//     id: 3,
-//     week: '3',
-//     task: '9',
-//     test: '1',
-//     label: 'Закрыто',
-//     status: 'close',
-//     content: {
-//       value: 0,
-//       task: [
-//         {
-//           id: 1,
-//           title: 'Задача 1',
-//           status: 'Принято',
-//           time: '03.04.2023',
-//         },
-//         {
-//           id: 2,
-//           title: 'Задача 2',
-//           status: 'На проверке',
-//           time: '03.04.2023',
-//         },
-//       ],
-//     },
-//   },
-// ];
-
 export interface AccordionLabelProps {
   stages: allTaskAndStage[];
   idIntern: number;
@@ -128,7 +47,8 @@ export const MissionAccordion = ({ stages, idIntern }: AccordionLabelProps) => {
         </Accordion>
       </>
     );
-  } else if (role === 'ROLE_INTERN') {
+  }
+  if (role === 'ROLE_INTERN') {
     return (
       <>
         <Accordion
