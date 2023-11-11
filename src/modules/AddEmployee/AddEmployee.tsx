@@ -1,51 +1,67 @@
-import {
-  Autocomplete,
-  Box,
-  Button,
-  Modal,
-  Stack,
-  TextInput,
-} from '@mantine/core';
+import { Autocomplete, Button, Modal, Stack, TextInput } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useForm } from '@mantine/form';
 import { useEffect, useState } from 'react';
-import classes from './AddEmployee.module.css';
-// import {
-//   getCities,
-//   getDepartments,
-//   getJobs,
-//   getRoles,
-// } from '../../API/Employees';
+import { useSelector } from 'react-redux';
+import { AxiosError } from 'axios';
+import { RootState } from '../../store';
+import { getCompanyDep, getCompanyRoles } from '../../API/company';
+import { getTeam } from '../../API/team';
+import { addEmployee } from '../../API/hr';
+import { employeeData } from '../../API/admin/interfaces.ts';
 
 export const AddEmployee = () => {
   const [roles, setRoles] = useState([]);
-  const [departments, setDepartments] = useState([]);
-  const [jobs, setJobs] = useState([]);
-  const [cities, setCities] = useState([]);
+  const [team, setTeam] = useState([]);
+  const roleArr = roles.map((item) => item.name);
+  const emailCurator = team
+    .filter(
+      (obj) =>
+        obj.roles && obj.roles.some((role) => role.name === 'ROLE_CURATOR')
+    )
+    .map((obj) => obj.email);
 
-  // useEffect(() => {
-  //   getRoles().then((roles) => setRoles(roles));
-  //   getDepartments().then((departments) => setDepartments(departments));
-  //   getJobs().then((jobs) => setJobs(jobs));
-  //   getCities().then((cities) => setCities(cities));
-  // }, []);
+  const postNames = useSelector((state: RootState) => state.postName);
+  useEffect(() => {
+    getCompanyRoles().then((roles) => setRoles(roles));
+    getTeam().then((team) => setTeam(team));
+  }, []);
 
   const [opened, { open, close }] = useDisclosure(false);
   const form = useForm({
     initialValues: {
       name: '',
       email: '',
-      role: '',
-      department: '',
-      job: '',
-      city: '',
+      roleName: '',
+      postName: '',
+      curatorEmail: '',
     },
   });
+
+  const closePopup = () => {
+    close();
+    form.reset();
+  };
+
+  const handleSumbit = async (data: employeeData) => {
+    try {
+      addEmployee(data);
+      closePopup();
+    } catch (error) {
+      const err = error as AxiosError;
+      console.log(err.response?.data);
+    }
+  };
+
   return (
     <>
       <Button onClick={open}>Добавить сотрудника</Button>
-      <Modal opened={opened} onClose={close} title='Добавить сотрудника'>
-        <form onSubmit={form.onSubmit((values) => console.log(values))}>
+      <Modal opened={opened} onClose={closePopup} title='Добавить сотрудника'>
+        <form
+          onSubmit={form.onSubmit((values) => {
+            handleSumbit(values);
+          })}
+        >
           <Stack>
             <TextInput
               variant='primary'
@@ -60,26 +76,20 @@ export const AddEmployee = () => {
             <Autocomplete
               variant='primary'
               placeholder='Выбрать роль'
-              {...form.getInputProps('role')}
-              data={roles}
-            />
-            <Autocomplete
-              variant='primary'
-              placeholder='Отдел'
-              {...form.getInputProps('department')}
-              data={departments}
+              {...form.getInputProps('roleName')}
+              data={roleArr}
             />
             <Autocomplete
               variant='primary'
               placeholder='Должность'
-              {...form.getInputProps('job')}
-              data={jobs}
+              {...form.getInputProps('postName')}
+              data={postNames}
             />
             <Autocomplete
               variant='primary'
-              placeholder='Город'
-              {...form.getInputProps('city')}
-              data={cities}
+              placeholder='Куратор'
+              {...form.getInputProps('curatorEmail')}
+              data={emailCurator}
             />
             <Button type='submit'>Сохранить</Button>
           </Stack>

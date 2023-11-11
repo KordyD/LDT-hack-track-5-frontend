@@ -6,10 +6,11 @@ export interface EmployeeData {
   imagePath: string;
   email: string;
   post: post;
+  roles: role[];
   name: string;
   phone: string;
-  socialNetwork: string;
   city: string;
+  socialNetwork: string;
   account: number;
   roles: role[];
   countCompletedTask: number;

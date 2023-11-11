@@ -10,18 +10,28 @@ import {
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import classes from '../Mission/MissionAccordion/MissionAccordion.module.css';
 import { TextForInput } from '../../theme/AdaptiveConts.ts';
+import { RootState } from '../../store';
 
-export const AddNewTask = ({ close, opened, name }) => {
+interface INewTask {
+  opened: boolean;
+  name: string;
+  close: () => void;
+}
+
+export const AddNewTask = ({ close, opened, name }: INewTask) => {
+  const post = useSelector((state: RootState) => state.postName);
   const [imagesValue, setImagesValue] = useState([]);
   const form = useForm({
     initialValues: {
       name: '',
       description: '',
-      sum: '',
-      job: '',
-      images: imagesValue,
+      levelDifficulty: '',
+      postName: '',
+      imagePath: imagesValue,
+      rate: '',
     },
 
     validate: {
@@ -31,6 +41,10 @@ export const AddNewTask = ({ close, opened, name }) => {
           : 'Название должно состоять хотя бы из 1 символа',
     },
   });
+
+  const addNewTaskFunc = () => {};
+
+  const updateTaskFunc = () => {};
   const closePopup = () => {
     close();
     setImagesValue([]);
@@ -78,7 +92,7 @@ export const AddNewTask = ({ close, opened, name }) => {
             placeholder='Сумма'
             prefix='Сумма: '
             min={1}
-            {...form.getInputProps('sum')}
+            {...form.getInputProps('rate')}
           />
         </Flex>
         <Textarea
@@ -91,28 +105,40 @@ export const AddNewTask = ({ close, opened, name }) => {
           placeholder='Описание'
           {...form.getInputProps('description')}
         />
-        <NativeSelect
-          fz={TextForInput}
-          radius='xl'
-          w='100%'
-          classNames={{
-            input: classes.newstage__input,
-          }}
-          placeholder='Должность'
-          data={['React', 'Angular', 'Vue']}
-          {...form.getInputProps('job')}
-        />
+        <Flex gap='15px'>
+          <NativeSelect
+            fz={TextForInput}
+            radius='xl'
+            w='50%'
+            classNames={{
+              input: classes.newstage__input,
+            }}
+            placeholder='Должность'
+            data={post}
+            {...form.getInputProps('postName')}
+          />
+          <NumberInput
+            fz={TextForInput}
+            w='50%'
+            radius='xl'
+            classNames={{ input: classes.newstage__input }}
+            placeholder='Сложность'
+            min={1}
+            {...form.getInputProps('levelDifficulty')}
+          />
+        </Flex>
         <TagsInput
           placeholder='Введите ссылку на файл'
           onChange={setImagesValue}
         />
+
         <Button
           fz={TextForInput}
           w='55%'
           type='submit'
           classNames={{ root: classes.newstage__button }}
         >
-          Создать этап
+          {name}
         </Button>
       </form>
     </Modal>
