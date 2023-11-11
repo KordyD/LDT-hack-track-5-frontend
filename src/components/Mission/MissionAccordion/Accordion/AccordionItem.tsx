@@ -9,27 +9,36 @@ import {
   TextForInput,
   TextMiddle,
 } from '../../../../theme/AdaptiveConts.ts';
+import { allTaskAndStage, taskStage } from '../../../../API/hr/interfaces.ts';
 import { Accordiontask } from './Accordiontask.tsx';
 
 import { AccordionLabel } from './AccordionLabel.tsx';
 
-export const AccordionItem = ({ item, role }) => {
+interface IAccordionItem {
+  stage: allTaskAndStage;
+  role: string;
+}
+export const AccordionItem = ({ stage, role }: IAccordionItem) => {
   const [isEditing, setIsEditing] = useState(false);
 
+  if (stage.created === null) {
+    return <></>;
+  }
+
   return (
-    <Accordion.Item value={item.week}>
+    <Accordion.Item value={stage.name}>
       <Accordion.Control>
-        <AccordionLabel {...item} />
+        <AccordionLabel stage={stage} />
       </Accordion.Control>
       <Accordion.Panel>
-        {item.status === 'open' ? (
+        {stage.status === 'OPENED' ? (
           <Flex direction='column'>
             <Progress
               color='#EEFF87'
               radius='xs'
               size='sm'
               mb='16px'
-              value={item.content.value}
+              value={100}
             />
             <Text
               className={classes.missionAccordion__progress}
@@ -40,16 +49,22 @@ export const AccordionItem = ({ item, role }) => {
                 base: '20px 0 15px',
               }}
             >
-              Прогресс {item.content.value} %
+              Прогресс {100} %
             </Text>
             <Flex direction='column' gap='30px'>
-              {item.content.task.map((task) => (
-                <Accordiontask
-                  task={task}
-                  key={task.id}
-                  isEditing={isEditing}
-                />
-              ))}
+              {stage.taskStage !== [] ? (
+                <>
+                  {stage.taskStage.map((task) => (
+                    <Accordiontask
+                      task={task}
+                      key={task.task.taskId}
+                      isEditing={isEditing}
+                    />
+                  ))}
+                </>
+              ) : (
+                ''
+              )}
             </Flex>
             {role === 'ADMIN' ? (
               <>

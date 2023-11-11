@@ -6,18 +6,18 @@ import {
   Heading,
   TextForInput,
 } from '../../../../theme/AdaptiveConts.ts';
+import { allTaskAndStage } from '../../../../API/hr/interfaces.ts';
 
-export const AccordionLabel = ({
-  label,
-  week,
-  task,
-  test,
-}: AccordionLabelProps) => {
+interface IAccordionLabel {
+  stage: allTaskAndStage;
+}
+
+export const AccordionLabel = ({ stage }: IAccordionLabel) => {
   return (
     <Group>
       <Flex direction='column' align='center'>
         <Text className={classes.missionAccordion__title} fz={Heading}>
-          {label}
+          {stage.name}
         </Text>
         <Flex gap='20px' direction={Direction}>
           <Text
@@ -26,7 +26,7 @@ export const AccordionLabel = ({
             color='#FFF'
             className={classes.missionAccordion__text}
           >
-            {week} неделя
+            {stage.levelDifficulty} неделя
           </Text>
           <Text
             fz={TextForInput}
@@ -34,7 +34,7 @@ export const AccordionLabel = ({
             color='#5277F6'
             className={classes.missionAccordion__text}
           >
-            {task} заданий
+            {stage.taskStage.length} заданий
           </Text>
           <Text
             fz={TextForInput}
@@ -42,7 +42,7 @@ export const AccordionLabel = ({
             color='#5277F6'
             className={classes.missionAccordion__text}
           >
-            {test} тест
+            {stage.testUrl.length} тест
           </Text>
         </Flex>
       </Flex>

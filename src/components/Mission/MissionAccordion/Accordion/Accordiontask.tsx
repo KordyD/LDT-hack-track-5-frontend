@@ -12,14 +12,18 @@ import {
   TextMiddle,
   TextSmall,
 } from '../../../../theme/AdaptiveConts.ts';
+import { taskStage } from '../../../../API/hr/interfaces.ts';
 
-export const Accordiontask = ({ task, isEditing }) => {
+interface IAccordionTask {
+  task: taskStage;
+  isEditing: boolean;
+}
+export const Accordiontask = ({ task, isEditing }: IAccordionTask) => {
   if (isEditing) {
     return (
       <Flex
         justify={'space-between'}
         align={'center'}
-        key={task.id}
         h={EditButton}
         className={classes.missionAccordion__EditingTaskRoot}
       >
@@ -30,13 +34,13 @@ export const Accordiontask = ({ task, isEditing }) => {
           fz={TextMiddle}
           className={classes.missionAccordion__EditingTask}
         >
-          {task.title}
+          {task.task.name}
         </Text>
         <Text
           fz={TextForInput}
           className={classes.missionAccordion__EditingTask}
           component={Link}
-          to={`/tasks/${task.id}`}
+          to={`/tasks/${task.task.taskId}`}
         >
           Изменить
         </Text>
@@ -53,7 +57,6 @@ export const Accordiontask = ({ task, isEditing }) => {
   if (!isEditing) {
     return (
       <Button
-        key={task.id}
         fz={TextMiddle}
         classNames={{
           root: classes.missionAccordion__taskRoot,
@@ -61,7 +64,7 @@ export const Accordiontask = ({ task, isEditing }) => {
           label: classes.missionAccordion__labelButton,
         }}
         component={Link}
-        to={`/taska/${task.id}`}
+        to={`/tasks/${task.task.taskId}`}
         rightSection={
           <Flex align='center' gap='10px'>
             <Text
@@ -72,7 +75,8 @@ export const Accordiontask = ({ task, isEditing }) => {
                   : classes.missionAccordion__statusDn
               }  `}
             >
-              {task.status} {task.time}
+              {task.status}
+              {/*{task.time}*/}
             </Text>
             {task.status === 'Принято' ? (
               <Image src={Check} w={Image40} h={Image50} />
@@ -89,7 +93,7 @@ export const Accordiontask = ({ task, isEditing }) => {
           maw={{ lg: '400px', sm: '300px', base: '250px' }}
           className={classes.missionAccordion__EditingTask}
         >
-          {task.title}
+          {task.task.name}
         </Text>
       </Button>
     );
