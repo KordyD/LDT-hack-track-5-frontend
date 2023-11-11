@@ -1,4 +1,4 @@
-import { Button, Flex, Image, ScrollArea } from '@mantine/core';
+import { Button, em, Flex, Image, ScrollArea } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import { useSelector } from 'react-redux';
@@ -10,14 +10,14 @@ import plus from '../../assets/icon/add_circle_create_expand_new_plus_icon_12321
 import { AddNewTask } from '../../components/Task/AddNewTask.tsx';
 import { TextMiddle } from '../../theme/AdaptiveConts.ts';
 import { task } from '../../API/hr/interfaces.ts';
-import { getAllTasks } from '../../API/admin';
+import { getAllTasks } from '../../API/curator';
 import { RootState } from '../../store';
 
 export const TaskContainer = () => {
-  const [tasks, setTask] = useState([]);
   const [opened, { open, close }] = useDisclosure(false);
   const [isEditing, setIsEditing] = useState(false);
-  const post = useSelector((state: RootState) => state.postName);
+  const [tasks, setTask] = useState([]);
+
   useEffect(() => {
     Promise.all([getAllTasks()])
       .then(([res]) => {
@@ -71,7 +71,12 @@ export const TaskContainer = () => {
         </ScrollArea>
         <ButtonsEditing isEditing={isEditing} setIsEditing={setIsEditing} />
       </Flex>
-      <AddNewTask opened={opened} name={'Создать задание'} close={close} />
+      <AddNewTask
+        task={tasks}
+        opened={opened}
+        name={'Создать задание'}
+        close={close}
+      />
     </>
   );
 };

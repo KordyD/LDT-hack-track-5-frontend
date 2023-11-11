@@ -13,9 +13,7 @@ export const Team = () => {
         <Box mb={25}>
           <InputTeam />
         </Box>
-        <Box
-          display={role === 'ROLE_ADMIN' || 'ROLE_ROLE_HR' ? 'block' : 'none'}
-        >
+        <Box display={role[0] === 'ROLE_ADMIN' || 'ROLE_HR' ? 'block' : 'none'}>
           <AddEmployee />
         </Box>
         <Box mt={25}>

@@ -86,8 +86,8 @@ export const CardQuestion = () => {
           <Textarea
             w='100%'
             fz={TextForInput}
-            classNames={{ input: classes.cardQuestion__input }}
             radius='lg'
+            classNames={{ input: classes.cardQuestion__input }}
             placeholder='Ваш вопрос'
             {...form.getInputProps('question')}
           />

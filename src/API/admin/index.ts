@@ -169,11 +169,3 @@ export const getCompany = async () => {
   );
   return response.data;
 };
-
-export const getAllTasks = async () => {
-  const response: AxiosResponse<company> = await axios.get(
-    URL + `/admin/tasks`,
-    { headers: { ...headers } }
-  );
-  return response.data;
-};

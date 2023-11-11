@@ -1,12 +1,14 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { role } from '../API/auth/interfaces';
 import { post } from '../API/admin/interfaces.ts';
+import { employee } from '../API/hr/interfaces.ts';
 
 interface InitialState {
   roles: string[];
   postName: string[];
   error: string;
   loading: boolean;
+  employeeId: number;
 }
 
 const initialState: InitialState = {
@@ -14,6 +16,7 @@ const initialState: InitialState = {
   postName: [],
   error: '',
   loading: false,
+  employeeId: 0,
 };
 
 export const userSlice = createSlice({
@@ -26,6 +29,12 @@ export const userSlice = createSlice({
       }
       const roles = action.payload.map((item) => item.name);
       state.roles = roles;
+    },
+    setEmployeeId: (state, action: PayloadAction<number>) => {
+      if (!action.payload) {
+        return;
+      }
+      state.employeeId = action.payload;
     },
     setPostName: (state, action: PayloadAction<post[]>) => {
       if (!action.payload) {
@@ -46,5 +55,5 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setRoles, setPostName, setError, setLoading } =
+export const { setRoles, setPostName, setError, setLoading, setEmployeeId } =
   userSlice.actions;

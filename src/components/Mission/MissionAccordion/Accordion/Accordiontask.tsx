@@ -34,13 +34,13 @@ export const Accordiontask = ({ task, isEditing }: IAccordionTask) => {
           fz={TextMiddle}
           className={classes.missionAccordion__EditingTask}
         >
-          {task.task.name}
+          {task.name}
         </Text>
         <Text
           fz={TextForInput}
           className={classes.missionAccordion__EditingTask}
           component={Link}
-          to={`/tasks/${task.task.taskId}`}
+          to={`/tasks/${task.taskId}`}
         >
           Изменить
         </Text>
@@ -64,7 +64,7 @@ export const Accordiontask = ({ task, isEditing }: IAccordionTask) => {
           label: classes.missionAccordion__labelButton,
         }}
         component={Link}
-        to={`/tasks/${task.task.taskId}`}
+        to={`/tasks/${task.taskId}`}
         rightSection={
           <Flex align='center' gap='10px'>
             <Text
@@ -87,13 +87,13 @@ export const Accordiontask = ({ task, isEditing }: IAccordionTask) => {
         }
       >
         <Text
-          truncate='end'
+          // truncate='end'
           pl='10px'
           fz={TextLarge}
-          maw={{ lg: '400px', sm: '300px', base: '250px' }}
+          // maw={{ lg: '600px', sm: '500px', base: '350px' }}
           className={classes.missionAccordion__EditingTask}
         >
-          {task.task.name}
+          {task.name}
         </Text>
       </Button>
     );

@@ -9,9 +9,9 @@ import { allTaskAndStage } from '../../../../API/hr/interfaces.ts';
 export const MaBody = () => {
   const [stage, setStage] = useState<allTaskAndStage[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const id = useParams();
+  const idIntern = Number(useParams().articleId);
   useEffect(() => {
-    Promise.all([getInternTasks(id.articleId)])
+    Promise.all([getInternTasks(idIntern)])
       .then(([res]) => {
         setStage(res);
       })
@@ -25,7 +25,7 @@ export const MaBody = () => {
       ) : (
         <Flex direction='column' align='center'>
           <MissionMap stage={stage} />
-          <MissionAccordion stages={stage} />
+          <MissionAccordion stages={stage} idIntern={idIntern} />
         </Flex>
       )}
     </>

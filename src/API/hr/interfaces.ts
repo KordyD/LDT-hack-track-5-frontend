@@ -11,7 +11,6 @@ export interface task {
   name: string;
   description: string;
   levelDifficulty: number;
-  deadline: string;
   rate: number;
 }
 
@@ -22,7 +21,6 @@ export interface tasksToAdd {
   description: string;
   levelDifficulty: number;
   rate: number;
-  deadline: string;
 }
 
 export interface addStage {
@@ -33,6 +31,7 @@ export interface addStage {
 }
 
 export interface stage {
+  created: string;
   stageId: number;
   companyId: number;
   employeeId: number;
@@ -74,17 +73,8 @@ export interface employee {
 }
 
 export interface allTaskAndStage {
-  created: string;
-  stageId: number;
-  companyId: number;
-  employeeId: number;
-  taskStage: taskStage[];
-  name: string;
-  levelDifficulty: number;
-  testUrl: string;
-  status: string;
-  deadline: string;
-  timeFinish: string;
+  stage: stage;
+  tasks: task[];
 }
 
 export interface taskStage {
