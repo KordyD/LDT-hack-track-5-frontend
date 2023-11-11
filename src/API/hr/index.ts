@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { URL } from '..';
 import { taskToIntern } from '../intern/interfaces';
 import { headers } from '../';
+import { employeeData } from '../admin/interfaces.ts';
 import {
   addStage,
   createInternData,
@@ -54,6 +55,15 @@ export const createIntern = async (data: createInternData) => {
 export const getAllTasksByIntern = async (internId: number) => {
   const response: AxiosResponse<taskToIntern[]> = await axios.get(
     URL + `/hr/tasks/${internId}`,
+    { headers: { ...headers } }
+  );
+  return response.data;
+};
+
+export const addEmployee = async (data: employeeData) => {
+  const response: AxiosResponse<task[]> = await axios.post(
+    URL + `/hr/employee`,
+    data,
     { headers: { ...headers } }
   );
   return response.data;

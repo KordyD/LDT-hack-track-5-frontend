@@ -17,7 +17,6 @@ export const MissionAdmin = () => {
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   }, [id.articleId]);
-  console.log(intern);
 
   return (
     <>

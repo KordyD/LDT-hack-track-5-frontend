@@ -64,11 +64,11 @@ export const TaskContainer = () => {
         ) : (
           ''
         )}
-        <Flex direction='column' w='100%'>
+        <ScrollArea direction='column' mah='600px' w='100%'>
           {tasks.map((task: task) => (
             <Task task={task} key={task.taskId} isEditing={isEditing} />
           ))}
-        </Flex>
+        </ScrollArea>
         <ButtonsEditing isEditing={isEditing} setIsEditing={setIsEditing} />
       </Flex>
       <AddNewTask opened={opened} name={'Создать задание'} close={close} />

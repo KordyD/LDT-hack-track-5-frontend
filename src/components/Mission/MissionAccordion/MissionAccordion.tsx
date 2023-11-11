@@ -86,16 +86,6 @@ export const charactersList = [
   },
 ];
 
-interface taskProps {
-  id: number;
-  title: string;
-}
-
-interface ContentProps {
-  value: number;
-  task: taskProps[];
-}
-
 export interface AccordionLabelProps {
   stage: allTaskAndStage[];
 }

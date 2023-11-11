@@ -34,7 +34,9 @@ export const ProfileCard = ({ intern }: ProfileCardProps) => {
               <Group gap={5}>
                 <Text className={classes.grade}>{intern.roles[0].name}</Text>
                 <Anchor className={classes.link}>
-                  {[intern.post.department.name]}
+                  {intern.post.department.name
+                    ? ''
+                    : intern.post.department.name}
                 </Anchor>
               </Group>
             </Box>

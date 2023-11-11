@@ -6,14 +6,16 @@ import { AddEmployee } from '../../modules/AddEmployee/AddEmployee';
 import { RootState } from '../../store';
 
 export const Team = () => {
-  const isAuth = useSelector((state: RootState) => state.isAuth);
+  const role = useSelector((state: RootState) => state.roles);
   return (
     <>
       <Container size='xl'>
         <Box mb={25}>
           <InputTeam />
         </Box>
-        <Box display={isAuth ? 'block' : 'none'}>
+        <Box
+          display={role === 'ROLE_ADMIN' || 'ROLE_ROLE_HR' ? 'block' : 'none'}
+        >
           <AddEmployee />
         </Box>
         <Box mt={25}>
