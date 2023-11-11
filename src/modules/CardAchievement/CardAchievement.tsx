@@ -1,6 +1,6 @@
 import { Box, Card } from '@mantine/core';
 import { Achievement } from '../../components/Achievement/Achievement';
-import { achievements } from '../../helpers/Achievements';
+import { achievements } from '../../mock/Achievements';
 import classes from './CardAchievement.module.css';
 
 export const CardAchievement = () => {

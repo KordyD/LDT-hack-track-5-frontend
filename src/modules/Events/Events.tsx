@@ -1,6 +1,6 @@
 import { Box, Group, Indicator, List, Text } from '@mantine/core';
 import { Calendar } from '@mantine/dates';
-import { events } from '../../helpers/Events';
+import { events } from '../../mock/Events';
 
 export const Events = () => {
   return (

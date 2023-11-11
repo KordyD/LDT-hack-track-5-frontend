@@ -120,6 +120,7 @@ export const Diagram = () => {
       </Group>
       <Select
         display={isSuper ? 'block' : 'none'}
+        allowDeselect={false}
         defaultValue={departments[0]}
         data={departments}
         onChange={(value) => {

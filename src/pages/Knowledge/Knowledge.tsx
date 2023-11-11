@@ -1,7 +1,7 @@
 import { Box, Container } from '@mantine/core';
 import { useSelector } from 'react-redux';
 import { ModalHistory } from '../../components/ModalHistory/ModalHistory';
-import { history } from '../../helpers/History';
+import { history } from '../../mock/History.ts';
 import { CardQuestion } from '../../modules/CardQuestion/CardQuestion.tsx';
 import { CardsKnowledge } from '../../modules/CardsKnowledge/CardsKnowledge';
 import { InputKnowledge } from '../../modules/InputKnowledge/InputKnowledge';

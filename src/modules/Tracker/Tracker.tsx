@@ -11,7 +11,7 @@ import {
 } from '@mantine/core';
 import { IconContext } from 'react-icons';
 import { PiNotePencil, PiPencilSimple } from 'react-icons/pi';
-import { tasks } from '../../helpers/Tasks';
+import { tasks } from '../../mock/Tasks';
 import classes from './Tracker.module.css';
 export const Tracker = () => {
   return (
