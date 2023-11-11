@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { buyProduct } from '../../API/market';
 import { setError } from '../../store/userSlice';
+import Coin from '../../assets/icon/coin.svg';
 import classes from './CardProduct.module.css';
 
 interface CardProduct {
@@ -30,11 +31,7 @@ export const CardProduct = ({ price, image, id }: CardProduct) => {
         <Box className={classes.wrapper}>
           <Flex gap={5} justify={'flex-end'}>
             <Text className={classes.text}>{price}</Text>
-            <Image
-              src='/src/assets/icon/coin.svg'
-              style={{ width: 24, height: 24 }}
-              fallbackSrc='/src/assets/images/placeholder.jpg'
-            />
+            <Image src={Coin} style={{ width: 24, height: 24 }} />
           </Flex>
           <Box className={classes.imageWrapper}>
             <Box className={classes.image}>

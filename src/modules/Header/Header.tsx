@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 import { useDisclosure } from '@mantine/hooks';
 import { CustomActionIcon } from '../../components/ActionIcon/ActionIcon';
 import { CustomNavLink } from '../../components/NavLink/NavLink';
+import Logo from '../../assets/icon/proscom-logo.svg';
 import classes from './Header.module.css';
 
 export const Header = () => {
@@ -22,7 +23,7 @@ export const Header = () => {
     <Container size='xl' py={25}>
       <Flex hiddenFrom='sm' justify='space-between' align='center'>
         <Burger opened={opened} onClick={toggle} />
-        <Image w={80} h={12} src='/src/assets/icon/proscom-logo.svg' />
+        <Image w={80} h={12} src={Logo} />
       </Flex>
 
       <Box
@@ -60,7 +61,7 @@ export const Header = () => {
       </Box>
 
       <Box className={classes.container} component='header' visibleFrom='sm'>
-        <Image w={80} h={12} src='/src/assets/icon/proscom-logo.svg' />
+        <Image w={80} h={12} src={Logo} />
         <Box component='nav' className={classes.containerLinks}>
           <Anchor component={CustomNavLink} to='/'>
             Справочник

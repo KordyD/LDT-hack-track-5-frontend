@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { EmployeeData } from '../../API/personal-account/interfaces';
 import classes from './ProfileCard.module.css';
 import { EditProfileModal } from '../EditProfileModal/EditProfileModal';
+import Coin from '../../assets/icon/coin.svg';
 
 interface ProfileCardProps {
   intern: EmployeeData;
@@ -68,10 +69,7 @@ export const ProfileCard = ({ intern }: ProfileCardProps) => {
           <Box>
             <Group gap={5}>
               <Text>{intern.account} монет</Text>{' '}
-              <Image
-                src='/src/assets/icon/coin.svg'
-                style={{ width: 24, height: 24 }}
-              />
+              <Image src={Coin} style={{ width: 24, height: 24 }} />
             </Group>
             <Text>{intern.countCompletedTask} пройденных вызовов</Text>
           </Box>

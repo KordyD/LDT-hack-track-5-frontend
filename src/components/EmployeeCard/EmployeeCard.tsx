@@ -17,6 +17,7 @@ import { HiOutlineMail } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { employeeTeam } from '../../API/team/interfaces.ts';
 import { RootState } from '../../store';
+import PlaceHolder from '../../assets/images/placeholder.jpg';
 import classes from './EmployeeCard.module.css';
 
 interface EmployeeCardProps {
@@ -29,10 +30,7 @@ export const EmployeeCard = ({ team }: EmployeeCardProps) => {
   return (
     <Card className={classes.card}>
       <Card.Section>
-        <Image
-          src={team.imagePath}
-          fallbackSrc='/src/assets/images/placeholder.jpg'
-        />
+        <Image src={team.imagePath} fallbackSrc={PlaceHolder} />
       </Card.Section>
       <Text className={classes.name}>{team.name}</Text>
       <Text>{team.city}</Text>
