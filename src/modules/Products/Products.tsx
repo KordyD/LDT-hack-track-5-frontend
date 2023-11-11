@@ -1,9 +1,15 @@
 import { SimpleGrid, Title } from '@mantine/core';
-import { products } from '../../helpers/Products';
+import { useEffect, useState } from 'react';
+import { product } from '../../API/admin/interfaces';
+import { getAllProducts } from '../../API/market';
 import { CardProduct } from '../../components/CardProduct/CardProduct';
 import classes from './Products.module.css';
 
 export const Products = () => {
+  useEffect(() => {
+    getAllProducts().then((values) => setProducts(values));
+  }, []);
+  const [products, setProducts] = useState<product[]>([]);
   return (
     <>
       <Title className={classes.title}>Магазин</Title>
@@ -13,7 +19,12 @@ export const Products = () => {
         verticalSpacing='xl'
       >
         {products.map((item) => (
-          <CardProduct key={item.id} image={item.image} price={item.price} />
+          <CardProduct
+            id={item.productId}
+            key={item.productId}
+            image={item.imagePath}
+            price={item.cost}
+          />
         ))}
       </SimpleGrid>
     </>

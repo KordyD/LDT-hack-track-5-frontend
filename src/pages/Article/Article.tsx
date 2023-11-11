@@ -1,6 +1,6 @@
 import { ActionIcon, Box, Container, Image, Text, Title } from '@mantine/core';
 import { AxiosError } from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { BiSolidBookmark } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { useLoaderData } from 'react-router-dom';
@@ -21,9 +21,11 @@ import classes from './Article.module.css';
 export const Article = () => {
   useEffect(() => {
     getAllFavorites()
-      .then((values) => setFavorites(values))
+      .then((values) => {
+        favoritesRef.current = values;
+      })
       .then(() => {
-        if (favorites.map((item) => item.id).includes(articleId)) {
+        if (favoritesRef.current.map((item) => item.id).includes(articleId)) {
           setIsFav(true);
         }
       });
@@ -32,10 +34,10 @@ export const Article = () => {
   const handleClick = async (articleId: number) => {
     try {
       if (isFav) {
-        const data = await deleteFromFavorites(articleId);
+        await deleteFromFavorites(articleId);
         setIsFav(false);
       } else {
-        const data = await addToFavorites(articleId);
+        await addToFavorites(articleId);
         setIsFav(true);
       }
     } catch (error) {
@@ -44,7 +46,7 @@ export const Article = () => {
     }
   };
 
-  const [favorites, setFavorites] = useState<ArticlesName[]>([]);
+  const favoritesRef = useRef<ArticlesName[]>([]);
   const [isFav, setIsFav] = useState(false);
   const { theme, information, imagePath, articleId } =
     useLoaderData() as IArticle;

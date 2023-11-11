@@ -51,7 +51,7 @@ export interface post {
   name: string;
 }
 
-export interface employeeData {
+export interface AddEmployeeData {
   name: string;
   email: string;
   postName: string;
