@@ -1,76 +1,98 @@
 import {
   ActionIcon,
   Anchor,
+  Box,
   Button,
   Card,
+  Flex,
   Group,
   Image,
   Text,
 } from '@mantine/core';
 import { IconContext } from 'react-icons';
-import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { PiNotePencil } from 'react-icons/pi';
 import { BsTrash3 } from 'react-icons/bs';
+import { AiOutlinePhone } from 'react-icons/ai';
+import { HiOutlineMail } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
+import { employeeTeam } from '../../API/team/interfaces.ts';
 import { RootState } from '../../store';
 import classes from './EmployeeCard.module.css';
 
 interface EmployeeCardProps {
-  image?: string;
-  name: string;
-  city: string;
-  job: string;
-  contacts: {
-    icon: ReactElement;
-    link: string;
-  }[];
+  team: employeeTeam;
 }
 
-export const EmployeeCard = ({
-  image = '',
-  name,
-  city,
-  contacts,
-  job,
-}: EmployeeCardProps) => {
-  const isAuth = useSelector((state: RootState) => state.isAuth);
-
+export const EmployeeCard = ({ team }: EmployeeCardProps) => {
+  // const role = useSelector((state: RootState) => state.roles);
+  const role = useSelector((state: RootState) => state.roles);
   return (
     <Card className={classes.card}>
       <Card.Section>
-        <Image src={image} fallbackSrc='/src/assets/images/placeholder.jpg' />
+        <Image src={'image'} fallbackSrc='/src/assets/images/placeholder.jpg' />
       </Card.Section>
-      <Text className={classes.name}>{name}</Text>
-      <Text>{city}</Text>
-      <Anchor>{job}</Anchor>
-      <IconContext.Provider value={{ className: classes.icon }}>
-        <Group className={classes.contacts}>
-          {contacts.map((item, index) => (
-            <Group key={index} gap={10}>
-              <ActionIcon
-                className={classes.iconButton}
-                variant='light'
-                component='a'
-                href={item.link}
-              >
-                {item.icon}
-              </ActionIcon>
-              <Anchor className={classes.contact} href={item.link}>
-                {item.link}
-              </Anchor>
+      <Text className={classes.name}>{team.name}</Text>
+      <Text>{team.city}</Text>
+      <Anchor>{team.postName}</Anchor>
+      <Flex justify='space-between'>
+        <IconContext.Provider value={{ className: classes.icon }}>
+          <Group className={classes.contacts}>
+            <Group gap={10}>
+              <Flex align='center'>
+                <HiOutlineMail
+                  className={classes.iconButton}
+                  variant='light'
+                  component='a'
+                />
+                <Anchor className={classes.contact} href={team.email}>
+                  {team.email}
+                </Anchor>
+              </Flex>
+              <Flex align='center'>
+                {team.phone !== null ? (
+                  <>
+                    <AiOutlinePhone
+                      className={classes.iconButton}
+                      variant='light'
+                      component='a'
+                    />
+                    <Anchor className={classes.contact} href={team?.phone}>
+                      {team.phone}
+                    </Anchor>
+                  </>
+                ) : (
+                  ''
+                )}
+              </Flex>
             </Group>
-          ))}
+          </Group>
+        </IconContext.Provider>
+        <Group
+          display={role === 'ROLE_ADMIN' ? 'flex' : 'none'}
+          direction='row'
+          wrap='nowrap'
+          my={15}
+        >
+          <ActionIcon variant='unstyled' c='black'>
+            <PiNotePencil />
+          </ActionIcon>
+          <ActionIcon variant='unstyled' c='red'>
+            <BsTrash3 />
+          </ActionIcon>
         </Group>
-      </IconContext.Provider>
-      <Group display={isAuth ? 'flex' : 'none'} my={15}>
-        <ActionIcon variant='unstyled' c='black'>
-          <PiNotePencil />
-        </ActionIcon>
-        <ActionIcon variant='unstyled' c='red'>
-          <BsTrash3 />
-        </ActionIcon>
-      </Group>
-      <Button variant='white'>Перейти к заданиям</Button>
+      </Flex>
+      {team.roles[0].name === 'ROLE_INTERN' ? (
+        <Button
+          variant='white'
+          component={Link}
+          to={`/mission/${team.employeeId}`}
+        >
+          Перейти к заданиям
+        </Button>
+      ) : (
+        ''
+      )}
     </Card>
   );
 };

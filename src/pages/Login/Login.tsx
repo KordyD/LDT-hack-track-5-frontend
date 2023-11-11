@@ -66,6 +66,7 @@ export const Login = () => {
           classNames={{
             root: classes.register__inputRoot,
             input: classes.register__input,
+            innerInput: classes.register__input,
           }}
           placeholder='Пароль'
           {...form.getInputProps('password')}

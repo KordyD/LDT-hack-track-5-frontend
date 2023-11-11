@@ -1,6 +1,6 @@
 import { Container } from '@mantine/core';
 import { Mission } from '../../components/Mission/Mission.tsx';
-import { MissionAdmin } from '../../components/Mission/MissionAdmin/MissionAdmin.tsx';
+import { TaskContainer } from '../TaskContainer/TaskContainer.tsx';
 
 export const MissionPage = () => {
   const role = 'ADMIN';
@@ -8,7 +8,7 @@ export const MissionPage = () => {
   if (role === 'ADMIN') {
     return (
       <Container size='xl'>
-        <MissionAdmin />
+        <TaskContainer />
       </Container>
     );
   }

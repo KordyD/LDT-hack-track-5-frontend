@@ -32,20 +32,26 @@ export const Task = ({ task, isEditing }: ITask) => {
           >
             {task.name}
           </Text>
-          <Text
-            fz={TextMiddle}
-            className={classes.missionAccordion__EditingTask}
-            component={Link}
-            to={`/mission/${task.taskId}`}
+          <Flex
+            gap={{ sm: '40px', xs: '15px', base: '15px' }}
+            direction={{ xs: 'row', base: 'column' }}
+            align={'center'}
           >
-            Изменить
-          </Text>
-          <Button
-            p='0'
-            onClick={() => setIsDeleted(true)}
-            bg='transparent'
-            rightSection={<Image src={Trash} w={Image40} h={Image40} />}
-          ></Button>
+            <Text
+              fz={TextMiddle}
+              className={classes.missionAccordion__EditingTask}
+              component={Link}
+              to={`/tasks/${task.taskId}`}
+            >
+              Изменить
+            </Text>
+            <Button
+              p='0'
+              onClick={() => setIsDeleted(true)}
+              bg='transparent'
+              rightSection={<Image src={Trash} w={Image40} h={Image40} />}
+            ></Button>
+          </Flex>
         </Flex>
       </>
     );

@@ -36,7 +36,7 @@ export const Accordiontask = ({ task, isEditing }) => {
           fz={TextForInput}
           className={classes.missionAccordion__EditingTask}
           component={Link}
-          to={`/mission/${task.id}`}
+          to={`/tasks/${task.id}`}
         >
           Изменить
         </Text>
@@ -61,7 +61,7 @@ export const Accordiontask = ({ task, isEditing }) => {
           label: classes.missionAccordion__labelButton,
         }}
         component={Link}
-        to={`/mission/${task.id}`}
+        to={`/taska/${task.id}`}
         rightSection={
           <Flex align='center' gap='10px'>
             <Text
