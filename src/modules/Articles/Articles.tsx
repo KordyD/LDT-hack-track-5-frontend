@@ -35,6 +35,9 @@ export const Articles = () => {
           >
             Добавить статью
           </Button>
+          {/* <Button variant='white' rightSection={<LuFilter />} onClick={open}>
+            Фильтр
+          </Button> */}
         </IconContext.Provider>
         <AddArticleModal
           updateArticles={(articles) => setArticles(articles)}
