@@ -1,5 +1,4 @@
 import {
-  Autocomplete,
   Button,
   Group,
   Modal,
@@ -11,30 +10,29 @@ import { useForm } from '@mantine/form';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { AiOutlinePaperClip } from 'react-icons/ai';
-import { useSelector } from 'react-redux';
-import { addArticle } from '../../API/admin';
-import { articleData } from '../../API/admin/interfaces';
-import { ArticlesName } from '../../API/knowledge-base/interfaces';
-import { RootState } from '../../store';
+import { useNavigate } from 'react-router-dom';
+import { updateQuestion } from '../../API/admin';
+import { questionData } from '../../API/admin/interfaces';
 import classes from './AddArticleModal.module.css';
 
-interface AddArticleModalProps {
+interface QuestionEditModalProps {
   opened: boolean;
   close: () => void;
-  updateArticles: (articles: ArticlesName[]) => void;
+  id: number;
 }
 
-export const AddArticleModal = ({
+export const QuestionEditModal = ({
   opened,
   close,
-  updateArticles,
-}: AddArticleModalProps) => {
-  const handleSubmit = async (values: articleData) => {
+  id,
+}: QuestionEditModalProps) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (values: questionData) => {
     try {
-      const data = await addArticle(values);
-      updateArticles(data);
+      const data = await updateQuestion(id, values);
       close();
       form.reset();
+      navigate(0);
     } catch (error) {
       const err = error as AxiosError;
       console.log(err.response?.data);
@@ -42,26 +40,22 @@ export const AddArticleModal = ({
   };
 
   const [isOpenImg, setIsOpenImg] = useState(false);
-  const posts = useSelector((state: RootState) => state.postName);
   const form = useForm({
     initialValues: {
       theme: '',
-      information: '',
-      postName: '',
+      answer: '',
       imagePath: '',
     },
     validate: {
       theme: (value) =>
-        value.length > 0 ? null : 'Название не может быть пустым',
-      postName: (value) =>
-        posts.includes(value) ? null : 'Такой должности не существует',
-      information: (value) =>
-        value.length > 0 ? null : 'Описание не может быть пустым',
+        value.length > 0 ? null : 'Вопрос не может быть пустым',
+      answer: (value) =>
+        value.length > 0 ? null : 'Ответ не может быть пустым',
     },
   });
   return (
     <Modal
-      title='Добавить статью'
+      title='Изменить вопрос'
       opened={opened}
       onClose={close}
       classNames={{ title: classes.modalTitle }}
@@ -69,23 +63,17 @@ export const AddArticleModal = ({
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <Stack>
           <TextInput
-            placeholder='Название'
+            placeholder='Вопрос'
             variant='primary'
             {...form.getInputProps('theme')}
           />
-          <Autocomplete
-            placeholder='Должность'
-            variant='primary'
-            data={posts}
-            {...form.getInputProps('postName')}
-          />
           <Textarea
-            placeholder='Описание'
+            placeholder='Ответ'
             classNames={{
               root: classes.modalInputRoot,
               input: classes.modalAreaInput,
             }}
-            {...form.getInputProps('information')}
+            {...form.getInputProps('answer')}
           />
           <TextInput
             display={isOpenImg ? 'block' : 'none'}

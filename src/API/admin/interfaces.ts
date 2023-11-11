@@ -69,7 +69,7 @@ export interface department {
 
 export interface articleData {
   postName: string;
-  imagePath: string;
+  imagePath?: string;
   theme: string;
   information: string;
 }

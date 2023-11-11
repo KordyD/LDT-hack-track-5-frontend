@@ -88,7 +88,6 @@ export const Header = () => {
           </IconContext.Provider>
         </Box>
       </Box>
-      <Button onClick={() => localStorage.clear()}>Клиар</Button>
     </Container>
   );
 };

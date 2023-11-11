@@ -2,9 +2,13 @@ import { Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { AddArticleModal } from '../AddArticleModal/AddArticleModal';
+import { QuestionEditModal } from './QuestionEditModal';
 
-export const ArticleEditModal = () => {
+export interface QuestionModalProps {
+  id: number;
+}
+
+export const QuestionEdit = ({ id }: QuestionModalProps) => {
   const [opened, { open, close }] = useDisclosure(false);
   const roles = useSelector((state: RootState) => state.roles);
   const isAdmin = roles.includes('ROLE_ADMIN');
@@ -18,7 +22,7 @@ export const ArticleEditModal = () => {
       >
         Редактировать
       </Button>
-      <AddArticleModal opened={opened} close={close} />
+      <QuestionEditModal opened={opened} close={close} id={id} />
     </>
   );
 };
