@@ -86,3 +86,11 @@ export interface taskStage {
   deadline: string;
   timeFinish: string;
 }
+
+export interface addTaskForUser {
+  employeeId: number;
+  employeeName: string;
+  post: post;
+  taskStageId: number;
+  taskName: string;
+}
