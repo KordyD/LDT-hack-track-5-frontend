@@ -1,11 +1,15 @@
 import { ArticleDeleteModal } from '../../components/ArticleDeleteModal/ArticleDeleteModal';
-import { ArticleEditModal } from '../../components/ArticleEditModal/ArticleEditModal';
+import { ArticleEdit } from '../../components/ArticleEdit/ArticleEdit';
 
-export const ArticleModal = () => {
+export interface ArticleModalProps {
+  id: number;
+}
+
+export const ArticleModal = ({ id }: ArticleModalProps) => {
   return (
     <>
-      <ArticleEditModal />
-      <ArticleDeleteModal />
+      <ArticleEdit id={id} />
+      <ArticleDeleteModal id={id} />
     </>
   );
 };

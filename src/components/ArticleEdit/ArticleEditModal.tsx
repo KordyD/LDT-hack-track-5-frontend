@@ -12,29 +12,30 @@ import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { AiOutlinePaperClip } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
-import { addArticle } from '../../API/admin';
+import { useNavigate } from 'react-router-dom';
+import { updateArticle } from '../../API/admin';
 import { articleData } from '../../API/admin/interfaces';
-import { ArticlesName } from '../../API/knowledge-base/interfaces';
 import { RootState } from '../../store';
 import classes from './AddArticleModal.module.css';
 
-interface AddArticleModalProps {
+interface ArticleEditModalProps {
   opened: boolean;
   close: () => void;
-  updateArticles: (articles: ArticlesName[]) => void;
+  id: number;
 }
 
-export const AddArticleModal = ({
+export const ArticleEditModal = ({
   opened,
   close,
-  updateArticles,
-}: AddArticleModalProps) => {
+  id,
+}: ArticleEditModalProps) => {
+  const navigate = useNavigate();
   const handleSubmit = async (values: articleData) => {
     try {
-      const data = await addArticle(values);
-      updateArticles(data);
+      const data = await updateArticle(id, values);
       close();
       form.reset();
+      navigate(0);
     } catch (error) {
       const err = error as AxiosError;
       console.log(err.response?.data);
@@ -61,7 +62,7 @@ export const AddArticleModal = ({
   });
   return (
     <Modal
-      title='Добавить статью'
+      title='Редактировать статью'
       opened={opened}
       onClose={close}
       classNames={{ title: classes.modalTitle }}

@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { Root } from '../pages/Root/Root';
 import { Knowledge } from '../pages/Knowledge/Knowledge';
 import { Team } from '../pages/Team/Team';
@@ -17,10 +16,10 @@ import { TaskContainer } from '../pages/TaskContainer/TaskContainer.tsx';
 import { Audio } from '../pages/Audio/Audio.tsx';
 import { RegisterAdmin } from '../pages/RegisterAdmin/RegisterAdmin.tsx';
 import { Questions } from '../pages/Questions/Questions.tsx';
-import { PagesNotFound } from '../pages/PagesNotFound/PagesNotFound.tsx';
 import { Favourites } from '../pages/Favourites/Favourites.tsx';
 import { getArticle, getQuestion } from '../API/knowledge-base/index.ts';
 import { getPersonalData } from '../API/personal-account/index.ts';
+import { Question } from '../pages/Question/Question.tsx';
 
 interface ParamsA {
   articleId: number;
@@ -67,14 +66,16 @@ function privateRoutes() {
           }
           const article = await getArticle(typedParams.articleId);
           return {
+            articleId: article.articleId,
             theme: article.theme,
             information: article.information,
+            imagePath: article.imagePath,
           };
         },
       },
       {
         path: 'knowledge/question/:questionId',
-        element: <Article />,
+        element: <Question />,
         loader: async ({ params }) => {
           const typedParams = params as unknown as ParamsQ;
           if (!typedParams.questionId) {
@@ -82,8 +83,10 @@ function privateRoutes() {
           }
           const question = await getQuestion(typedParams.questionId);
           return {
+            questionId: question.questionId,
             theme: question.theme,
-            information: question.answer,
+            answer: question.answer,
+            imagePath: question.imagePath,
           };
         },
       },

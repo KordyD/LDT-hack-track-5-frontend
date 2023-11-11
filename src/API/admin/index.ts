@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { URL } from '..';
 import { headers } from '../';
 import { employee } from '../hr/interfaces';
-import { Article } from '../knowledge-base/interfaces';
+import { Article, ArticlesName, Question } from '../knowledge-base/interfaces';
 import {
   addMedia,
   articleData,
@@ -62,11 +62,56 @@ export const addQuestions = async (data: questionData[]) => {
   );
   return response.data;
 };
+export const addQuestion = async (data: questionData) => {
+  const response: AxiosResponse<ArticlesName[]> = await axios.post(
+    URL + `/admin/knowledge-base/question`,
+    data,
+    { headers: { ...headers } }
+  );
+  return response.data;
+};
 
 export const addArticle = async (data: articleData) => {
-  const response: AxiosResponse<Article[]> = await axios.post(
+  const response: AxiosResponse<ArticlesName[]> = await axios.post(
     URL + `/admin/knowledge-base/article`,
     data,
+    { headers: { ...headers } }
+  );
+  return response.data;
+};
+
+export const updateArticle = async (articleId: number, data: articleData) => {
+  const response: AxiosResponse<Article> = await axios.put(
+    URL + `/admin/knowledge-base/articles/${articleId}`,
+    data,
+    { headers: { ...headers } }
+  );
+  return response.data;
+};
+
+export const deleteArticle = async (articleId: number) => {
+  const response: AxiosResponse<Article[]> = await axios.delete(
+    URL + `/admin/knowledge-base/articles/${articleId}`,
+    { headers: { ...headers } }
+  );
+  return response.data;
+};
+
+export const updateQuestion = async (
+  questionId: number,
+  data: questionData
+) => {
+  const response: AxiosResponse<Question> = await axios.put(
+    URL + `/admin/knowledge-base/questions/${questionId}`,
+    data,
+    { headers: { ...headers } }
+  );
+  return response.data;
+};
+
+export const deleteQuestion = async (questionId: number) => {
+  const response: AxiosResponse<Question[]> = await axios.delete(
+    URL + `/admin/knowledge-base/questions/${questionId}`,
     { headers: { ...headers } }
   );
   return response.data;

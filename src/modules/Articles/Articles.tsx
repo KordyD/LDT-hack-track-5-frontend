@@ -36,7 +36,11 @@ export const Articles = () => {
             Добавить статью
           </Button>
         </IconContext.Provider>
-        <AddArticleModal opened={opened} close={close} />
+        <AddArticleModal
+          updateArticles={(articles) => setArticles(articles)}
+          opened={opened}
+          close={close}
+        />
       </Group>
       <ScrollAreaArticles
         articlesMain={articles}

@@ -1,7 +1,7 @@
 import { Box } from '@mantine/core';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { getPersonalData } from '../../API/personal-account';
 import { Footer } from '../../modules/Footer/Footer';
 import { Header } from '../../modules/Header/Header';
@@ -10,9 +10,12 @@ import { getPosts } from '../../API/company';
 import classes from './Root.module.css';
 
 export const Root = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
-    getPersonalData().then((value) => dispatch(setRoles(value.roles)));
+    getPersonalData()
+      .then((value) => dispatch(setRoles(value.roles)))
+      .catch(() => navigate(0));
   });
   useEffect(() => {
     getPosts().then((value) => dispatch(setPostName(value)));

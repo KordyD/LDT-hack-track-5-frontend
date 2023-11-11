@@ -4,22 +4,22 @@ import { AxiosError } from 'axios';
 import { BsTrash3 } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { deleteArticle } from '../../API/admin';
+import { deleteQuestion } from '../../API/admin';
 import { RootState } from '../../store';
 import classes from './ArticleDeleteModal.module.css';
 
-export interface ArticleModalProps {
+export interface QuestionModalProps {
   id: number;
 }
 
-export const ArticleDeleteModal = ({ id }: ArticleModalProps) => {
+export const QuestionDeleteModal = ({ id }: QuestionModalProps) => {
   const [opened, { open, close }] = useDisclosure(false);
   const roles = useSelector((state: RootState) => state.roles);
   const isAdmin = roles.includes('ROLE_ADMIN');
   const navigate = useNavigate();
   const handleClick = async (id: number) => {
     try {
-      const data = await deleteArticle(id);
+      const data = await deleteQuestion(id);
       navigate(-1);
     } catch (error) {
       const err = error as AxiosError;
