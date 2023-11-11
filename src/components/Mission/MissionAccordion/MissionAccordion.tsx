@@ -128,7 +128,8 @@ export const MissionAccordion = ({ stages, idIntern }: AccordionLabelProps) => {
         </Accordion>
       </>
     );
-  } else if (role === 'ROLE_INTERN') {
+  }
+  if (role === 'ROLE_INTERN') {
     return (
       <>
         <Accordion

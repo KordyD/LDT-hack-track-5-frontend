@@ -21,7 +21,7 @@ import {
 } from '../../../../theme/AdaptiveConts.ts';
 import plus from '../../../../assets/icon/add_circle_create_expand_new_plus_icon_123218 1.png';
 import classes from '../../MissionAccordion/MissionAccordion.module.css';
-import { addStageToIntern, getAllTasks } from '../../../../API/curator';
+import { addStageToIntern } from '../../../../API/curator';
 import { addStage } from '../../../../API/hr/interfaces.ts';
 
 export const AddNewStage = () => {

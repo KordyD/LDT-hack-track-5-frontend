@@ -1,6 +1,9 @@
-import { Button, Image, Modal, Select } from '@mantine/core';
+import { Button, Image, Modal, Select, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useDisclosure } from '@mantine/hooks';
+import { useState } from 'react';
+import { AxiosError } from 'axios';
+
 import plus from '../../../../assets/icon/add_circle_create_expand_new_plus_icon_123218 1.png';
 import classes from '../../MissionAccordion/MissionAccordion.module.css';
 import {
@@ -9,15 +12,52 @@ import {
   TextForInput,
   TextMiddle,
 } from '../../../../theme/AdaptiveConts.ts';
+import { addTaskToStage } from '../../../../API/curator';
+import { allTaskAndStage, task } from '../../../../API/hr/interfaces.ts';
 
-export const AddTask = () => {
+interface AddTask {
+  internId: number;
+  allTasks: task[];
+  stage: allTaskAndStage;
+}
+
+export const AddTask = ({ internId, allTasks, stage }: AddTask) => {
+  const [taskValue, setTaskValue] = useState('17 asdsdfa');
   const [opened, { open, close }] = useDisclosure(false);
+  const newTask = allTasks
+    .map((task) => `${task.taskId} ${task.name}`)
+    .sort((a, b) => {
+      const taskIdA = parseInt(a.split(' ')[0], 10);
+      const taskIdB = parseInt(b.split(' ')[0], 10);
+
+      return taskIdA - taskIdB;
+    });
+  const taskForSearch = Number(taskValue.split(' ')[0]);
+
+  const handleSubmit = () => {
+    try {
+      addTaskToStage(taskForSearch, stage.stage.stageId, taskForSearch);
+      closePopup();
+    } catch (error) {
+      const err = error as AxiosError;
+      console.log(err.response?.data);
+    }
+  };
+
   const form = useForm({
     initialValues: {
-      task: '',
+      task: taskForSearch,
     },
   });
 
+  const addTaskFunc = () => {
+    try {
+      addTaskToStage(data, internId, taskId);
+    } catch (error) {
+      const err = error as AxiosError;
+      console.log(err.response?.data);
+    }
+  };
   const closePopup = () => {
     close();
     form.reset();
@@ -64,10 +104,7 @@ export const AddTask = () => {
       >
         <form
           className={classes.newstage__form}
-          onSubmit={form.onSubmit((values) => {
-            console.log(values);
-            closePopup();
-          })}
+          onSubmit={form.onSubmit(handleSubmit)}
         >
           <Select
             withCheckIcon={false}
@@ -75,8 +112,8 @@ export const AddTask = () => {
             placeholder='Выберете задачу'
             fz={TextForInput}
             classNames={{ input: classes.newstage__input }}
-            data={['', 'React', 'Angular', 'Vue', 'Svelte']}
-            {...form.getInputProps('task')}
+            data={newTask}
+            onChange={setTaskValue}
           />
           <Button
             w='55%'

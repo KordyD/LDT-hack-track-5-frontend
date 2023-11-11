@@ -1,5 +1,5 @@
 import { Accordion, Button, Flex, Image, Progress, Text } from '@mantine/core';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import classes from '../MissionAccordion.module.css';
 import Lock from '../../../../assets/icon/Lock.png';
 import { AddTask } from '../AddTask/AddTask.tsx';
@@ -10,6 +10,7 @@ import {
   TextMiddle,
 } from '../../../../theme/AdaptiveConts.ts';
 import { allTaskAndStage } from '../../../../API/hr/interfaces.ts';
+import { getAllTasks } from '../../../../API/curator';
 import { Accordiontask } from './Accordiontask.tsx';
 
 import { AccordionLabel } from './AccordionLabel.tsx';
@@ -21,6 +22,17 @@ interface IAccordionItem {
 }
 export const AccordionItem = ({ idIntern, stage, role }: IAccordionItem) => {
   const [isEditing, setIsEditing] = useState(false);
+
+  const [allTasks, setAllTask] = useState([]);
+
+  useEffect(() => {
+    Promise.all([getAllTasks()])
+      .then(([res]) => {
+        setAllTask(res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <Accordion.Item value={stage.stage.name} key={stage.stage.stageId}>
       <Accordion.Control>
@@ -66,7 +78,15 @@ export const AccordionItem = ({ idIntern, stage, role }: IAccordionItem) => {
             role === 'ROLE_HR' ||
             role === 'ROLE_CURATOR' ? (
               <>
-                {isEditing ? <AddTask /> : ''}
+                {isEditing ? (
+                  <AddTask
+                    allTasks={allTasks}
+                    internId={idIntern}
+                    stage={stage}
+                  />
+                ) : (
+                  ''
+                )}
                 <ButtonsEditing
                   isEditing={isEditing}
                   setIsEditing={setIsEditing}

@@ -58,3 +58,16 @@ export const updateTaskToList = async (data: tasksToAdd, id: number) => {
   );
   return response.data;
 };
+
+export const addTaskToStage = async (
+  data: tasksToAdd,
+  stageId: number,
+  taskId: number
+) => {
+  const response: AxiosResponse<tasksToAdd> = await axios.post(
+    URL + `/curator/stage/${stageId}/tasks/${taskId}`,
+    data,
+    { headers: { ...headers } }
+  );
+  return response.data;
+};
