@@ -30,7 +30,10 @@ export const EmployeeCard = ({ team }: EmployeeCardProps) => {
   return (
     <Card className={classes.card}>
       <Card.Section>
-        <Image src={'image'} fallbackSrc='/src/assets/images/placeholder.jpg' />
+        <Image
+          src={team.imagePath}
+          fallbackSrc='/src/assets/images/placeholder.jpg'
+        />
       </Card.Section>
       <Text className={classes.name}>{team.name}</Text>
       <Text>{team.city}</Text>

@@ -1,16 +1,33 @@
 import { Anchor, Avatar, Box, Card, Group, Image, Text } from '@mantine/core';
-import { useLocation, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { employeeIntern } from '../../API/team/interfaces.ts';
-import { getInternById } from '../../API/team';
+import { useDisclosure } from '@mantine/hooks';
+import { useLocation } from 'react-router-dom';
+import { EmployeeData } from '../../API/personal-account/interfaces';
 import classes from './ProfileCard.module.css';
+import { EditProfileModal } from '../EditProfileModal/EditProfileModal';
 
 interface ProfileCardProps {
-  intern: employeeIntern;
+  intern: EmployeeData;
 }
 
 export const ProfileCard = ({ intern }: ProfileCardProps) => {
   const location = useLocation();
+  const [opened, { open, close }] = useDisclosure();
+  const rolesNames = intern.roles.map((item) => {
+    switch (item.name) {
+      case 'ROLE_ADMIN':
+        return 'Администратор';
+      case 'ROLE_HR':
+        return 'HR';
+      case 'ROLE_CURATOR':
+        return 'Куратор';
+      case 'ROLE_EMPLOYEE':
+        return 'Сотрудник';
+      case 'ROLE_INTERN':
+        return 'Стажер';
+      default:
+        break;
+    }
+  });
 
   return (
     <>
@@ -26,13 +43,20 @@ export const ProfileCard = ({ intern }: ProfileCardProps) => {
             />
             <Box>
               {location.pathname === '/account' ? (
-                <Anchor className={classes.link}>Редактировать</Anchor>
+                <Anchor
+                  component='button'
+                  onClick={() => open()}
+                  className={classes.link}
+                >
+                  Редактировать
+                </Anchor>
               ) : (
                 ''
               )}
+              <EditProfileModal intern={intern} opened={opened} close={close} />
               <Text className={classes.name}>{intern.name}</Text>
               <Group gap={5}>
-                <Text className={classes.grade}>{intern.roles[0].name}</Text>
+                <Text className={classes.grade}>{rolesNames}</Text>
                 <Anchor className={classes.link}>
                   {[intern.post.department.name]}
                 </Anchor>

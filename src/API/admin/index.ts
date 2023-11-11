@@ -4,12 +4,12 @@ import { headers } from '../';
 import { employee } from '../hr/interfaces';
 import { Article, ArticlesName, Question } from '../knowledge-base/interfaces';
 import {
+  AddEmployeeData,
   addMedia,
   articleData,
   company,
   department,
   departmentData,
-  employeeData,
   mediaFull,
   post,
   postData,
@@ -144,7 +144,7 @@ export const addPosts = async (data: postData[]) => {
   return response.data;
 };
 
-export const addListOfEmployees = async (data: employeeData[]) => {
+export const addListOfEmployees = async (data: AddEmployeeData[]) => {
   const response: AxiosResponse<employee[]> = await axios.post(
     URL + `/admin/company/employees`,
     data,
