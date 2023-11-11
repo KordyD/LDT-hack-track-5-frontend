@@ -1,7 +1,16 @@
-import { Button, Flex, Image, Modal, TextInput } from '@mantine/core';
+import {
+  Button,
+  Flex,
+  Image,
+  Modal,
+  NumberInput,
+  TextInput,
+} from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { DateInput } from '@mantine/dates';
 import { useForm } from '@mantine/form';
+import { AxiosError } from 'axios';
+import { useParams } from 'react-router-dom';
 import {
   Image40,
   TextForInput,
@@ -9,23 +18,40 @@ import {
 } from '../../../../theme/AdaptiveConts.ts';
 import plus from '../../../../assets/icon/add_circle_create_expand_new_plus_icon_123218 1.png';
 import classes from '../../MissionAccordion/MissionAccordion.module.css';
+import { deleteQuestion } from '../../../../API/admin';
+import { addEmployee } from '../../../../API/hr';
+import { addStageToIntern } from '../../../../API/curator';
 
 export const AddNewStage = () => {
   const [opened, { open, close }] = useDisclosure(false);
+  const id = useParams().articleId;
   const form = useForm({
     initialValues: {
-      date: '',
+      deadline: '',
       name: '',
+      levelDifficulty: '',
     },
 
     validate: {
-      date: (value) => (/.+/.test(value) ? null : 'Нужно выбрать дату'),
+      deadline: (value) => (/.+/.test(value) ? null : 'Нужно выбрать дату'),
       name: (value) =>
         /.+/.test(value)
           ? null
           : 'Название должно состоять хотя бы из 1 символа',
+      levelDifficulty: (value) =>
+        /.+/.test(value) ? null : 'Установите на каком месте будет этап',
     },
   });
+
+  const addNewStageFunc = (data) => {
+    try {
+      addStageToIntern(data);
+      closePopup();
+    } catch (error) {
+      const err = error as AxiosError;
+      console.log(err.response?.data);
+    }
+  };
 
   const closePopup = () => {
     close();
@@ -72,8 +98,8 @@ export const AddNewStage = () => {
       >
         <form
           className={classes.newstage__form}
-          onSubmit={form.onSubmit((values) => {
-            console.log(values);
+          onSubmit={form.onSubmit(({ values, id }) => {
+            addNewStageFunc({ values, id });
             closePopup();
           })}
         >
@@ -83,7 +109,7 @@ export const AddNewStage = () => {
             classNames={{ input: classes.newstage__input }}
             placeholder='Сроки выполнения до:'
             valueFormat='Сроки выполнения до: DD.MM.YYYY'
-            {...form.getInputProps('date')}
+            {...form.getInputProps('deadline')}
           />
           <TextInput
             w='100%'
@@ -91,6 +117,15 @@ export const AddNewStage = () => {
             classNames={{ input: classes.newstage__input }}
             placeholder='Название'
             {...form.getInputProps('name')}
+          />
+          <NumberInput
+            fz={TextForInput}
+            w='100%'
+            radius='xl'
+            classNames={{ input: classes.newstage__input }}
+            placeholder='Порядок'
+            min={1}
+            {...form.getInputProps('levelDifficulty')}
           />
           <Button
             w='55%'

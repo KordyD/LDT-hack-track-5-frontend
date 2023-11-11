@@ -16,10 +16,8 @@ export const MaBody = () => {
         setStage(res);
       })
       .catch((err) => console.log(err))
-      .finally(setIsLoading(false));
+      .finally(() => setIsLoading(false));
   }, []);
-  console.log(stage);
-
   return (
     <>
       {isLoading ? (
@@ -27,7 +25,7 @@ export const MaBody = () => {
       ) : (
         <Flex direction='column' align='center'>
           <MissionMap stage={stage} />
-          <MissionAccordion stage={stage} />
+          <MissionAccordion stages={stage} />
         </Flex>
       )}
     </>

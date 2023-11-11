@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { useDisclosure } from '@mantine/hooks';
 import coin from '../../../assets/icon/coin.svg';
 import chat from '../../../assets/images/chat.png';
-import { charactersList } from '../MissionAccordion/MissionAccordion.tsx';
 import { AddNewTask } from '../../Task/AddNewTask.tsx';
 import {
   EditButton,

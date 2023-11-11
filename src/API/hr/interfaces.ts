@@ -75,8 +75,21 @@ export interface employee {
 
 export interface allTaskAndStage {
   created: string;
+  stageId: number;
+  companyId: number;
+  employeeId: number;
+  taskStage: taskStage[];
+  name: string;
+  levelDifficulty: number;
+  testUrl: string;
+  status: string;
+  deadline: string;
+  timeFinish: string;
+}
+
+export interface taskStage {
+  created: string;
   taskStageId: number;
-  stage: stage;
   task: task;
   status: string;
   answerUrl: string;

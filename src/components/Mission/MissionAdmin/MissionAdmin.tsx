@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Container } from '@mantine/core';
 import { ProfileCard } from '../../ProfileCard/ProfileCard.tsx';
 import { getInternById } from '../../../API/team';
 import { employeeIntern } from '../../../API/team/interfaces.ts';
@@ -23,10 +24,10 @@ export const MissionAdmin = () => {
       {isLoading ? (
         'Wait plz'
       ) : (
-        <>
+        <Container size='xl'>
           <ProfileCard intern={intern} />
           <MaBody />
-        </>
+        </Container>
       )}
     </>
   );
