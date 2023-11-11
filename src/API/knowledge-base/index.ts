@@ -14,6 +14,7 @@ export const deleteFromFavorites = async (articleID: number) => {
 export const addToFavorites = async (articleID: number) => {
   const response = await axios.post(
     URL + `/knowledge-base/favorites/articles/${articleID}`,
+    {},
     { headers: { ...headers } }
   );
   return response;
