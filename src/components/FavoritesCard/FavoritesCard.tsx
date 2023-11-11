@@ -3,9 +3,11 @@ import { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 import { IconContext } from 'react-icons';
 import { FiStar } from 'react-icons/fi';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllFavorites } from '../../API/knowledge-base';
 import { ArticlesName } from '../../API/knowledge-base/interfaces';
+import { setError } from '../../store/userSlice';
 import { ScrollAreaCard } from '../ScrollAreaCard/ScrollAreaCard';
 import classes from './FavoritesCard.module.css';
 
@@ -17,10 +19,11 @@ export const FavoritesCard = () => {
       })
       .catch((error) => {
         const err = error as AxiosError;
-        console.log(err.response?.data);
+        dispatch(setError(err.response?.data.message));
       });
   }, []);
 
+  const dispatch = useDispatch();
   const [articles, setArticles] = useState<ArticlesName[]>([]);
 
   return (

@@ -11,12 +11,13 @@ import { useForm } from '@mantine/form';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { AiOutlinePaperClip } from 'react-icons/ai';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addArticle } from '../../API/admin';
 import { articleData } from '../../API/admin/interfaces';
 import { ArticlesName } from '../../API/knowledge-base/interfaces';
 import { RootState } from '../../store';
 import classes from './AddArticleModal.module.css';
+import { setError } from '../../store/userSlice';
 
 interface AddArticleModalProps {
   opened: boolean;
@@ -29,6 +30,7 @@ export const AddArticleModal = ({
   close,
   updateArticles,
 }: AddArticleModalProps) => {
+  const dispatch = useDispatch();
   const handleSubmit = async (values: articleData) => {
     try {
       const data = await addArticle(values);
@@ -37,7 +39,7 @@ export const AddArticleModal = ({
       form.reset();
     } catch (error) {
       const err = error as AxiosError;
-      console.log(err.response?.data);
+      dispatch(setError(err.response?.data.message));
     }
   };
 

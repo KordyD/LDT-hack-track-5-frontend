@@ -2,10 +2,11 @@ import { ActionIcon, Box, Button, Modal, Stack, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { AxiosError } from 'axios';
 import { BsTrash3 } from 'react-icons/bs';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { deleteArticle } from '../../API/admin';
 import { RootState } from '../../store';
+import { setError } from '../../store/userSlice';
 import classes from './ArticleDeleteModal.module.css';
 
 export interface ArticleModalProps {
@@ -17,13 +18,14 @@ export const ArticleDeleteModal = ({ id }: ArticleModalProps) => {
   const roles = useSelector((state: RootState) => state.roles);
   const isAdmin = roles.includes('ROLE_ADMIN');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleClick = async (id: number) => {
     try {
-      const data = await deleteArticle(id);
+      await deleteArticle(id);
       navigate(-1);
     } catch (error) {
       const err = error as AxiosError;
-      console.log(err.response?.data);
+      dispatch(setError(err.response?.data.message));
     }
   };
 

@@ -2,11 +2,13 @@ import axios, { AxiosResponse } from 'axios';
 import { headers, URL } from '../index.ts';
 import {
   addStage,
-  allTaskAndStage,
   task,
   tasksToAdd,
 } from '../hr/interfaces.ts';
 import { department, departmentData } from '../admin/interfaces.ts';
+
+import { allTaskAndStage } from '../hr/interfaces.ts';
+import { departmentAnalytitcs } from './interfaces.ts';
 
 export const getInternTasks = async (id) => {
   const response: AxiosResponse<allTaskAndStage[]> = await axios.get(
@@ -54,6 +56,10 @@ export const updateTaskToList = async (data: tasksToAdd, id: number) => {
   const response: AxiosResponse<tasksToAdd> = await axios.put(
     URL + `/curator/tasks/${id}`,
     data,
+
+export const getAnalyticByDepartment = async (departmentName: string) => {
+  const response: AxiosResponse<departmentAnalytitcs[]> = await axios.get(
+    URL + `/curator/analytic?departmentName=${departmentName}`,
     { headers: { ...headers } }
   );
   return response.data;
