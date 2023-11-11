@@ -1,11 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { headers, URL } from '../index.ts';
-import {
-  addStage,
-  task,
-  tasksToAdd,
-} from '../hr/interfaces.ts';
-import { department, departmentData } from '../admin/interfaces.ts';
+import { addStage, task, tasksToAdd } from '../hr/interfaces.ts';
 
 import { allTaskAndStage } from '../hr/interfaces.ts';
 import { departmentAnalytitcs } from './interfaces.ts';
@@ -29,7 +24,7 @@ export const addStageToIntern = async (data: addStage, id: number) => {
 
 export const addTaskToList = async (data: tasksToAdd) => {
   const response: AxiosResponse<tasksToAdd> = await axios.post(
-    URL + `/curator/tasks`,
+    URL + `/curator/task`,
     data,
     { headers: { ...headers } }
   );
@@ -56,6 +51,10 @@ export const updateTaskToList = async (data: tasksToAdd, id: number) => {
   const response: AxiosResponse<tasksToAdd> = await axios.put(
     URL + `/curator/tasks/${id}`,
     data,
+    { headers: { ...headers } }
+  );
+  return response.data;
+};
 
 export const getAnalyticByDepartment = async (departmentName: string) => {
   const response: AxiosResponse<departmentAnalytitcs[]> = await axios.get(
