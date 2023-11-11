@@ -12,9 +12,13 @@ interface Product {
 }
 
 export const buyProduct = async (productID: number) => {
-  const response = await axios.post(URL + `/market/products/${productID}`, {
-    headers: { ...headers },
-  });
+  const response = await axios.post(
+    URL + `/market/products/${productID}`,
+    {},
+    {
+      headers: { ...headers },
+    }
+  );
   return response.data;
 };
 

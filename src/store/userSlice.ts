@@ -5,11 +5,15 @@ import { post } from '../API/admin/interfaces.ts';
 interface InitialState {
   roles: string[];
   postName: string[];
+  error: string;
+  loading: boolean;
 }
 
 const initialState: InitialState = {
   roles: [],
   postName: [],
+  error: '',
+  loading: false,
 };
 
 export const userSlice = createSlice({
@@ -30,7 +34,17 @@ export const userSlice = createSlice({
       const postName = action.payload.map((item) => item.name);
       state.postName = postName;
     },
+    setError: (state, action: PayloadAction<string>) => {
+      state.error = action.payload;
+    },
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      if (!action.payload) {
+        return;
+      }
+      state.loading = action.payload;
+    },
   },
 });
 
-export const { setRoles, setPostName } = userSlice.actions;
+export const { setRoles, setPostName, setError, setLoading } =
+  userSlice.actions;
