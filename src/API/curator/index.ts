@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { headers, URL } from '../index.ts';
 import { allTaskAndStage } from '../hr/interfaces.ts';
+import { departmentAnalytitcs } from './interfaces.ts';
 
 export const getInternTasks = async (id) => {
   const response: AxiosResponse<allTaskAndStage[]> = await axios.get(
@@ -14,6 +15,14 @@ export const addStageToIntern = async ({ id, data }) => {
   const response: AxiosResponse<allTaskAndStage[]> = await axios.post(
     URL + `/curator/interns/${id}/stage`,
     data,
+    { headers: { ...headers } }
+  );
+  return response.data;
+};
+
+export const getAnalyticByDepartment = async (departmentName: string) => {
+  const response: AxiosResponse<departmentAnalytitcs[]> = await axios.get(
+    URL + `/curator/analytic?departmentName=${departmentName}`,
     { headers: { ...headers } }
   );
   return response.data;

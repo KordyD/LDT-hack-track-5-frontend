@@ -4,11 +4,12 @@ import { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 import { IconContext } from 'react-icons';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllQuestions } from '../../API/knowledge-base';
 import { ArticlesName } from '../../API/knowledge-base/interfaces';
 import { RootState } from '../../store';
+import { setError } from '../../store/userSlice';
 import { AddQuestionModal } from '../AddQuestionModal/AddQuestionModal';
 import { EditButton } from '../EditButton/EditButton';
 import { ScrollAreaCard } from '../ScrollAreaCard/ScrollAreaCard';
@@ -22,9 +23,10 @@ export const CompanyInfoCard = () => {
       })
       .catch((error) => {
         const err = error as AxiosError;
-        console.log(err.response?.data);
+        dispatch(setError(err.response?.data.message));
       });
   }, []);
+  const dispatch = useDispatch();
   const [articles, setArticles] = useState<ArticlesName[]>([]);
   const [opened, { open, close }] = useDisclosure();
   const roles = useSelector((state: RootState) => state.roles);

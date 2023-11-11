@@ -11,7 +11,7 @@ export const getPosts = async () => {
 };
 
 export const getCompanyDep = async () => {
-  const response: AxiosResponse<department> = await axios.get(
+  const response: AxiosResponse<department[]> = await axios.get(
     URL + `/company/departments`,
     { headers: { ...headers } }
   );

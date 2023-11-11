@@ -1,17 +1,20 @@
 import { SimpleGrid } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import { EmployeeCard } from '../../components/EmployeeCard/EmployeeCard';
+import { useDispatch } from 'react-redux';
 import { getTeam } from '../../API/team';
 import { employeeTeam } from '../../API/team/interfaces.ts';
+import { EmployeeCard } from '../../components/EmployeeCard/EmployeeCard';
+import { setError } from '../../store/userSlice.ts';
 
 export const CardsTeam = () => {
   const [team, setTeam] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
     Promise.all([getTeam()])
       .then(([res]) => {
         setTeam(res);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => dispatch(setError(err.response.data.message)));
   }, []);
 
   return (

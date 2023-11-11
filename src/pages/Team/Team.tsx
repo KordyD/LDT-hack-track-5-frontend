@@ -14,7 +14,11 @@ export const Team = () => {
           <InputTeam />
         </Box>
         <Box
-          display={role === 'ROLE_ADMIN' || 'ROLE_ROLE_HR' ? 'block' : 'none'}
+          display={
+            role.includes('ROLE_ADMIN') || role.includes('ROLE_ROLE_HR')
+              ? 'block'
+              : 'none'
+          }
         >
           <AddEmployee />
         </Box>
