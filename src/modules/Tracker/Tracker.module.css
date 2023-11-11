@@ -2,7 +2,6 @@
   border-radius: var(--mantine-radius-xl);
   border: 1px solid var(--mantine-color-default-border);
   padding: 25px 35px;
-  flex-grow: 1;
 }
 
 .icon {
