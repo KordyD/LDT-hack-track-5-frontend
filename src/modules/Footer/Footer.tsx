@@ -7,7 +7,7 @@ export const Footer = () => {
     <Box component='footer' className={classes.wrapper}>
       <Box component='nav' p={25}>
         <Container size='lg' className={classes.containerLinks}>
-          <Anchor component={CustomNavLink} to='knowledge'>
+          <Anchor component={CustomNavLink} to='/'>
             Справочник
           </Anchor>
           <Anchor component={CustomNavLink} to='mission'>
@@ -22,9 +22,14 @@ export const Footer = () => {
         </Container>
       </Box>
 
-      <Box my='50px' ta='center'>
+      <Box mt='50px' ta='center'>
         <Text span>Поддержка: </Text>
         <Anchor>8 999 999 99 99</Anchor>
+      </Box>
+      <Box mb='50px' ta='center'>
+        <Anchor href='https://t.me/Just_For_Junior_Support_bot'>
+          Telegram support bot
+        </Anchor>
       </Box>
       <Divider />
       <Container>

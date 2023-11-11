@@ -14,6 +14,7 @@ import { getAnalyticByDepartment } from '../../API/curator';
 import { departmentAnalytitcs } from '../../API/curator/interfaces';
 import { RootState } from '../../store';
 import classes from './Diagram.module.css';
+import { getPersonalAnalytics } from '../../API/personal-account';
 
 export const Diagram = () => {
   const roles = useSelector((state: RootState) => state.roles);
@@ -31,6 +32,17 @@ export const Diagram = () => {
           setDepartments(values);
           return getAnalyticByDepartment(values[0]);
         })
+        .then((values) => {
+          setAnalytics(values);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+          setLoading(false);
+        });
+    } else {
+      setLoading(true);
+      getPersonalAnalytics()
         .then((values) => {
           setAnalytics(values);
           setLoading(false);
@@ -85,15 +97,16 @@ export const Diagram = () => {
   if (loading) {
     return (
       <Group style={{ flexGrow: 2 }}>
-        <Loader />;
+        <Loader />
       </Group>
     );
   }
 
   return (
-    <Stack className={classes.wrapper} display={isSuper ? 'flex' : 'none'}>
-      <Group>
+    <Stack className={classes.wrapper}>
+      <Group justify='center'>
         <RingProgress size={350} thickness={30} sections={sections} />
+
         <Stack>
           {sections.map((item) => (
             <Group key={item.title}>
@@ -106,6 +119,8 @@ export const Diagram = () => {
         </Stack>
       </Group>
       <Select
+        display={isSuper ? 'block' : 'none'}
+        allowDeselect={false}
         defaultValue={departments[0]}
         data={departments}
         onChange={(value) => {

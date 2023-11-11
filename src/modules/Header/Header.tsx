@@ -32,7 +32,7 @@ export const Header = () => {
         className={classes.burgerContainer}
       >
         <Box component='nav' className={classes.burgerContainerLinks}>
-          <Anchor component={CustomNavLink} to='knowledge'>
+          <Anchor component={CustomNavLink} to='/'>
             Справочник
           </Anchor>
           <Anchor component={CustomNavLink} to='mission'>
@@ -62,7 +62,7 @@ export const Header = () => {
       <Box className={classes.container} component='header' visibleFrom='sm'>
         <Image w={80} h={12} src='/src/assets/icon/proscom-logo.svg' />
         <Box component='nav' className={classes.containerLinks}>
-          <Anchor component={CustomNavLink} to='knowledge'>
+          <Anchor component={CustomNavLink} to='/'>
             Справочник
           </Anchor>
           <Anchor component={CustomNavLink} to='mission'>

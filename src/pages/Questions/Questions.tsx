@@ -1,11 +1,8 @@
-import { Box, Button, Container, Flex, Image } from '@mantine/core';
+import { Box, Container, Flex } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { getAllQuestions } from '../../API/knowledge-base/index.ts';
 import { ArticlesName } from '../../API/knowledge-base/interfaces.ts';
-import filter from '../../assets/icon/filter.svg';
-import sort from '../../assets/icon/sort.svg';
 import { BackButton } from '../../components/BackButton/BackButton.tsx';
-import { TextMiddle } from '../../theme/AdaptiveConts.ts';
 import { ArticleList } from './ArticleList/ArticleList.tsx';
 
 export const Questions = () => {
@@ -19,7 +16,7 @@ export const Questions = () => {
         <BackButton variant='transparent' mb='15px'>
           Назад
         </BackButton>
-        <Flex w='100%' justify='space-between'>
+        {/* <Flex w='100%' justify='space-between'>
           <Button
             fz={TextMiddle}
             p='0'
@@ -38,7 +35,7 @@ export const Questions = () => {
           >
             Фильтр
           </Button>
-        </Flex>
+        </Flex> */}
         <Flex align='center' gap='15px' direction='column' mt='20px'>
           {questions.map((item) => (
             <ArticleList article={item} key={item.id} question={true} />
