@@ -1,7 +1,9 @@
 import { Accordion, Image } from '@mantine/core';
+import { useSelector } from 'react-redux';
 import Arrow from '../../../assets/icon/Arrow.svg';
 import { AddNewStage } from '../MissionAdmin/AddNewStage/AddNewStage.tsx';
-import { allTaskAndStage, taskStage } from '../../../API/hr/interfaces.ts';
+import { allTaskAndStage } from '../../../API/hr/interfaces.ts';
+import { RootState } from '../../../store';
 import { AccordionItem } from './Accordion/AccordionItem.tsx';
 import classes from './MissionAccordion.module.css';
 
@@ -88,16 +90,21 @@ import classes from './MissionAccordion.module.css';
 
 export interface AccordionLabelProps {
   stages: allTaskAndStage[];
+  idIntern: number;
 }
 
-const role = 'ADMIN';
-
-export const MissionAccordion = ({ stages }: AccordionLabelProps) => {
+export const MissionAccordion = ({ stages, idIntern }: AccordionLabelProps) => {
+  const role = useSelector((state: RootState) => state.roles[0]);
   const items = stages.map((stage: allTaskAndStage) => (
-    <AccordionItem stage={stage} key={stage.stageId} role={role} />
+    <AccordionItem
+      stage={stage}
+      key={stage.stage.stageId}
+      role={role}
+      idIntern={idIntern}
+    />
   ));
 
-  if (role === 'ADMIN') {
+  if (role === 'ROLE_ADMIN') {
     return (
       <>
         <Accordion
@@ -121,7 +128,7 @@ export const MissionAccordion = ({ stages }: AccordionLabelProps) => {
         </Accordion>
       </>
     );
-  } else if (role === 'USER') {
+  } else if (role === 'ROLE_INTERN') {
     return (
       <>
         <Accordion
@@ -143,7 +150,7 @@ export const MissionAccordion = ({ stages }: AccordionLabelProps) => {
             chevron: classes.missionAccordion__chevron,
           }}
         >
-          {/*{items}*/}
+          {items}
         </Accordion>
       </>
     );

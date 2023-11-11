@@ -9,7 +9,7 @@ import {
   TextForInput,
   TextMiddle,
 } from '../../../../theme/AdaptiveConts.ts';
-import { allTaskAndStage, taskStage } from '../../../../API/hr/interfaces.ts';
+import { allTaskAndStage } from '../../../../API/hr/interfaces.ts';
 import { Accordiontask } from './Accordiontask.tsx';
 
 import { AccordionLabel } from './AccordionLabel.tsx';
@@ -17,21 +17,17 @@ import { AccordionLabel } from './AccordionLabel.tsx';
 interface IAccordionItem {
   stage: allTaskAndStage;
   role: string;
+  idIntern: number;
 }
-export const AccordionItem = ({ stage, role }: IAccordionItem) => {
+export const AccordionItem = ({ idIntern, stage, role }: IAccordionItem) => {
   const [isEditing, setIsEditing] = useState(false);
-
-  if (stage.created === null) {
-    return <></>;
-  }
-
   return (
-    <Accordion.Item value={stage.name}>
+    <Accordion.Item value={stage.stage.name} key={stage.stage.stageId}>
       <Accordion.Control>
-        <AccordionLabel stage={stage} />
+        <AccordionLabel stage={stage.stage} />
       </Accordion.Control>
       <Accordion.Panel>
-        {stage.status === 'OPENED' ? (
+        {stage.stage.status === 'OPENED' ? (
           <Flex direction='column'>
             <Progress
               color='#EEFF87'
@@ -52,12 +48,12 @@ export const AccordionItem = ({ stage, role }: IAccordionItem) => {
               Прогресс {100} %
             </Text>
             <Flex direction='column' gap='30px'>
-              {stage.taskStage !== [] ? (
+              {stage.tasks !== undefined ? (
                 <>
-                  {stage.taskStage.map((task) => (
+                  {stage.tasks.map((task) => (
                     <Accordiontask
                       task={task}
-                      key={task.task.taskId}
+                      key={task.taskId}
                       isEditing={isEditing}
                     />
                   ))}
@@ -66,7 +62,9 @@ export const AccordionItem = ({ stage, role }: IAccordionItem) => {
                 ''
               )}
             </Flex>
-            {role === 'ADMIN' ? (
+            {role === 'ROLE_ADMIN' ||
+            role === 'ROLE_HR' ||
+            role === 'ROLE_CURATOR' ? (
               <>
                 {isEditing ? <AddTask /> : ''}
                 <ButtonsEditing

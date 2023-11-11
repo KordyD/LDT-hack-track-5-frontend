@@ -9,29 +9,33 @@ import {
   TextInput,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { AxiosError } from 'axios';
+import { useParams } from 'react-router-dom';
 import classes from '../Mission/MissionAccordion/MissionAccordion.module.css';
 import { TextForInput } from '../../theme/AdaptiveConts.ts';
 import { RootState } from '../../store';
+import { addTaskToList, updateTaskToList } from '../../API/curator';
+import { task, tasksToAdd } from '../../API/hr/interfaces.ts';
 
 interface INewTask {
   opened: boolean;
   name: string;
   close: () => void;
+  task: task;
 }
 
-export const AddNewTask = ({ close, opened, name }: INewTask) => {
+export const AddNewTask = ({ close, opened, name, task }: INewTask) => {
   const post = useSelector((state: RootState) => state.postName);
-  const [imagesValue, setImagesValue] = useState([]);
+  const idTask = Number(useParams().articleId);
   const form = useForm({
     initialValues: {
-      name: '',
-      description: '',
-      levelDifficulty: '',
-      postName: '',
-      imagePath: imagesValue,
-      rate: '',
+      name: `${task.name || ''}`,
+      description: `${task.description || ''}`,
+      levelDifficulty: `${task.levelDifficulty || ''}`,
+      postName: `${task.post || ''}`,
+      imagePath: `${task.imagePath || ''}`,
+      rate: `${task.rate || ''}`,
     },
 
     validate: {
@@ -41,15 +45,32 @@ export const AddNewTask = ({ close, opened, name }: INewTask) => {
           : 'Название должно состоять хотя бы из 1 символа',
     },
   });
-
-  const addNewTaskFunc = () => {};
-
-  const updateTaskFunc = () => {};
   const closePopup = () => {
     close();
-    setImagesValue([]);
     form.reset();
   };
+
+  const TaskFunc = (data: tasksToAdd) => {
+    if (name === 'Создать задание') {
+      try {
+        addTaskToList(data);
+        closePopup();
+      } catch (error) {
+        const err = error as AxiosError;
+        console.log(err.response?.data);
+      }
+    }
+    if (name === 'Редактировать задание') {
+      try {
+        updateTaskToList(data, idTask);
+        closePopup();
+      } catch (error) {
+        const err = error as AxiosError;
+        console.log(err.response?.data);
+      }
+    }
+  };
+
   return (
     <Modal
       radius='32px'
@@ -72,7 +93,7 @@ export const AddNewTask = ({ close, opened, name }: INewTask) => {
       <form
         className={classes.newstage__form}
         onSubmit={form.onSubmit((values) => {
-          console.log(values);
+          TaskFunc(values);
           closePopup();
         })}
       >
@@ -127,14 +148,16 @@ export const AddNewTask = ({ close, opened, name }: INewTask) => {
             {...form.getInputProps('levelDifficulty')}
           />
         </Flex>
-        <TagsInput
+        <TextInput
+          w='100%'
           placeholder='Введите ссылку на файл'
-          onChange={setImagesValue}
+          classNames={{ input: classes.newstage__input }}
+          {...form.getInputProps('imagePath')}
         />
 
         <Button
           fz={TextForInput}
-          w='55%'
+          w='70%'
           type='submit'
           classNames={{ root: classes.newstage__button }}
         >

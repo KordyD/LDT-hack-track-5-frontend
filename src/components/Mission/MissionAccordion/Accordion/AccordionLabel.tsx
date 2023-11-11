@@ -26,7 +26,7 @@ export const AccordionLabel = ({ stage }: IAccordionLabel) => {
             color='#FFF'
             className={classes.missionAccordion__text}
           >
-            {stage.levelDifficulty} неделя
+            {} неделя
           </Text>
           <Text
             fz={TextForInput}
@@ -34,7 +34,7 @@ export const AccordionLabel = ({ stage }: IAccordionLabel) => {
             color='#5277F6'
             className={classes.missionAccordion__text}
           >
-            {stage.taskStage.length} заданий
+            {} заданий
           </Text>
           <Text
             fz={TextForInput}
@@ -42,7 +42,7 @@ export const AccordionLabel = ({ stage }: IAccordionLabel) => {
             color='#5277F6'
             className={classes.missionAccordion__text}
           >
-            {stage.testUrl.length} тест
+            {} тест
           </Text>
         </Flex>
       </Flex>
