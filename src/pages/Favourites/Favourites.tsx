@@ -1,6 +1,6 @@
 import { Box, Button, Container, Flex, Image } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import { getAllArticles } from '../../API/knowledge-base/index.ts';
+import { getAllFavorites } from '../../API/knowledge-base/index.ts';
 import { ArticlesName } from '../../API/knowledge-base/interfaces.ts';
 import filter from '../../assets/icon/filter.svg';
 import sort from '../../assets/icon/sort.svg';
@@ -10,7 +10,7 @@ import { ArticleList } from '../Questions/ArticleList/ArticleList.tsx';
 
 export const Favourites = () => {
   useEffect(() => {
-    getAllArticles().then((values) => setArticles(values));
+    getAllFavorites().then((values) => setArticles(values));
   }, []);
   const [articles, setArticles] = useState<ArticlesName[]>([]);
 

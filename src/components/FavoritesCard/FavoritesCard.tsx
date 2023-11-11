@@ -44,7 +44,7 @@ export const FavoritesCard = () => {
           radius='xl'
           variant='light'
           component={Link}
-          to='/questions'
+          to='/favourites'
         >
           Все статьи
         </Button>

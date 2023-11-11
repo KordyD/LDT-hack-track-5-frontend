@@ -20,7 +20,7 @@ export const buyProduct = async (productID: number) => {
 
 export const getAllProducts = async () => {
   const response: AxiosResponse<Product[]> = await axios.get(
-    URL + '/login/products',
+    URL + '/market/products',
     { headers: { ...headers } }
   );
   return response.data;
