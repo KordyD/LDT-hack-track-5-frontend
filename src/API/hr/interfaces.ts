@@ -72,3 +72,14 @@ export interface employee {
   curatorId: number;
   account: number;
 }
+
+export interface allTaskAndStage {
+  created: string;
+  taskStageId: number;
+  stage: stage;
+  task: task;
+  status: string;
+  answerUrl: string;
+  deadline: string;
+  timeFinish: string;
+}

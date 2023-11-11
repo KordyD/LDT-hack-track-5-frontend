@@ -21,6 +21,7 @@ import { PagesNotFound } from '../pages/PageNotFound/PageNotFound.tsx';
 import { Favourites } from '../pages/Favourites/Favourites.tsx';
 import { getArticle, getQuestion } from '../API/knowledge-base/index.ts';
 import { getPersonalData } from '../API/personal-account/index.ts';
+import { MissionAdmin } from '../components/Mission/MissionAdmin/MissionAdmin.tsx';
 
 interface ParamsA {
   articleId: number;
@@ -94,7 +95,7 @@ function privateRoutes() {
         element: <Team />,
       },
       {
-        path: 'mission/:articleId',
+        path: 'tasks/:articleId',
         element: <PopupMission />,
       },
       {
@@ -102,8 +103,8 @@ function privateRoutes() {
         element: <MissionPage />,
       },
       {
-        path: 'tasks',
-        element: <TaskContainer />,
+        path: 'mission/:articleId',
+        element: <MissionAdmin />,
       },
       {
         path: 'shop',

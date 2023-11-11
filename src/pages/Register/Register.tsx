@@ -108,6 +108,7 @@ export const Register = () => {
           classNames={{
             root: classes.register__inputRoot,
             input: classes.register__input,
+            innerInput: classes.register__input,
           }}
           placeholder='Пароль'
           {...form.getInputProps('password')}
@@ -118,6 +119,7 @@ export const Register = () => {
           classNames={{
             root: classes.register__inputRoot,
             input: classes.register__input,
+            innerInput: classes.register__input,
           }}
           placeholder='Повторите пароль'
           {...form.getInputProps('againPassword')}

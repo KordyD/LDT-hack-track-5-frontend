@@ -1,6 +1,7 @@
 import { Accordion, Image } from '@mantine/core';
 import Arrow from '../../../assets/icon/Arrow.svg';
 import { AddNewStage } from '../MissionAdmin/AddNewStage/AddNewStage.tsx';
+import { allTaskAndStage } from '../../../API/hr/interfaces.ts';
 import { AccordionItem } from './Accordion/AccordionItem.tsx';
 import classes from './MissionAccordion.module.css';
 
@@ -96,17 +97,12 @@ interface ContentProps {
 }
 
 export interface AccordionLabelProps {
-  id: number;
-  week: string;
-  label: string;
-  task: string;
-  test: string;
-  content: ContentProps;
+  stage: allTaskAndStage[];
 }
 
 const role = 'ADMIN';
 
-export const MissionAccordion = () => {
+export const MissionAccordion = ({ stage }: AccordionLabelProps) => {
   const items = charactersList.map((item) => (
     <AccordionItem item={item} key={item.label} role={role} />
   ));

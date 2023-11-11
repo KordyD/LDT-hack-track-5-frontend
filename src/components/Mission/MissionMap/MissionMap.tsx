@@ -7,9 +7,13 @@ import part4 from '../../../assets/icon/Part4.svg';
 import part5 from '../../../assets/icon/Part5.svg';
 import part6 from '../../../assets/icon/Part6.svg';
 import StartPart from '../../../assets/icon/StarPart.svg';
+import { allTaskAndStage } from '../../../API/hr/interfaces.ts';
 import classes from './MissionMap.module.css';
 
-export const MissionMap = () => {
+interface IMissionMap {
+  stage: allTaskAndStage[];
+}
+export const MissionMap = ({ stage }: IMissionMap) => {
   const [isActive, setIsActive] = useState(false);
   return (
     <Flex
