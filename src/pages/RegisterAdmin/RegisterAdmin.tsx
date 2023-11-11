@@ -12,9 +12,10 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerCompany } from '../../API/auth/index.ts';
 import { registerCompanyData } from '../../API/auth/interfaces.ts';
-import { setRoles } from '../../store/userSlice.ts';
+import { setError, setRoles } from '../../store/userSlice.ts';
 import { HeadingH3, TextLarge, TextMiddle } from '../../theme/AdaptiveConts.ts';
 import classes from '../Register/Register.module.css';
+import { Error } from '../../components/Error/Error.tsx';
 
 export const RegisterAdmin = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ export const RegisterAdmin = () => {
       navigate(0);
     } catch (error) {
       const err = error as AxiosError;
-      console.log(err.response?.data);
+      dispatch(setError(err.response?.data.message));
     }
   };
 
@@ -86,111 +87,123 @@ export const RegisterAdmin = () => {
   });
 
   return (
-    <Container className={classes.register} h='100%' m={{ base: '30px auto' }}>
-      <form
-        className={classes.register__form}
-        onSubmit={form.onSubmit(handleSubmit)}
+    <>
+      <Error />
+      <Container
+        className={classes.register}
+        h='100%'
+        m={{ base: '30px auto' }}
       >
-        <Text className={classes.register__title} fz={HeadingH3}>
-          Регистрация компании
-        </Text>
-        <Flex gap='30px' direction={{ xs: 'row', base: 'column' }}>
-          <Flex direction='column' gap='30px'>
-            <Text className={classes.register__title} fz={TextLarge}>
-              Данные компании
-            </Text>
-            <TextInput
-              variant='filled'
-              classNames={{
-                root: classes.register__inputRoot,
-                input: classes.register__input,
-              }}
-              placeholder='Название'
-              {...form.getInputProps('companyDTO.name')}
-            />
-            <TextInput
-              variant='filled'
-              classNames={{
-                root: classes.register__inputRoot,
-                input: classes.register__input,
-              }}
-              placeholder='Описание'
-              {...form.getInputProps('companyDTO.description')}
-            />
-            <TextInput
-              variant='filled'
-              classNames={{
-                root: classes.register__inputRoot,
-                input: classes.register__input,
-              }}
-              placeholder='Email'
-              {...form.getInputProps('companyDTO.email')}
-            />
-            <TextInput
-              variant='filled'
-              classNames={{
-                root: classes.register__inputRoot,
-                input: classes.register__input,
-              }}
-              placeholder='Телефон'
-              {...form.getInputProps('companyDTO.phone')}
-            />
-            <TextInput
-              variant='filled'
-              classNames={{
-                root: classes.register__inputRoot,
-                input: classes.register__input,
-              }}
-              placeholder='Сайт'
-              {...form.getInputProps('companyDTO.website')}
-            />
-          </Flex>
-          <Flex direction='column' gap='30px'>
-            <Text className={classes.register__title} fz={TextLarge}>
-              Данные админа
-            </Text>
-            <TextInput
-              variant='filled'
-              classNames={{
-                root: classes.register__inputRoot,
-                input: classes.register__input,
-              }}
-              placeholder='Имя'
-              {...form.getInputProps('registrationAdminDTO.name')}
-            />
-            <TextInput
-              variant='filled'
-              classNames={{
-                root: classes.register__inputRoot,
-                input: classes.register__input,
-              }}
-              placeholder='Email'
-              {...form.getInputProps('registrationAdminDTO.email')}
-            />
-            <PasswordInput
-              variant='filled'
-              classNames={{
-                root: classes.register__inputRoot,
-                input: classes.register__input,
-                innerInput: classes.register__input,
-              }}
-              placeholder='Пароль'
-              {...form.getInputProps('registrationAdminDTO.password')}
-            />
-          </Flex>
-        </Flex>
-        <Button
-          w='50%'
-          type='submit'
-          className={classes.register__button}
-          fz={TextMiddle}
+        <form
+          className={classes.register__form}
+          onSubmit={form.onSubmit(handleSubmit)}
         >
-          Далее
-        </Button>
-        <Button fz={TextMiddle} variant={'white'} component={Link} to='/login'>
-          Есть аккаунт? Войти
-        </Button>
-      </form>
-    </Container>
+          <Text className={classes.register__title} fz={HeadingH3}>
+            Регистрация компании
+          </Text>
+          <Flex gap='30px' direction={{ xs: 'row', base: 'column' }}>
+            <Flex direction='column' gap='30px'>
+              <Text className={classes.register__title} fz={TextLarge}>
+                Данные компании
+              </Text>
+              <TextInput
+                variant='filled'
+                classNames={{
+                  root: classes.register__inputRoot,
+                  input: classes.register__input,
+                }}
+                placeholder='Название'
+                {...form.getInputProps('companyDTO.name')}
+              />
+              <TextInput
+                variant='filled'
+                classNames={{
+                  root: classes.register__inputRoot,
+                  input: classes.register__input,
+                }}
+                placeholder='Описание'
+                {...form.getInputProps('companyDTO.description')}
+              />
+              <TextInput
+                variant='filled'
+                classNames={{
+                  root: classes.register__inputRoot,
+                  input: classes.register__input,
+                }}
+                placeholder='Email'
+                {...form.getInputProps('companyDTO.email')}
+              />
+              <TextInput
+                variant='filled'
+                classNames={{
+                  root: classes.register__inputRoot,
+                  input: classes.register__input,
+                }}
+                placeholder='Телефон'
+                {...form.getInputProps('companyDTO.phone')}
+              />
+              <TextInput
+                variant='filled'
+                classNames={{
+                  root: classes.register__inputRoot,
+                  input: classes.register__input,
+                }}
+                placeholder='Сайт'
+                {...form.getInputProps('companyDTO.website')}
+              />
+            </Flex>
+            <Flex direction='column' gap='30px'>
+              <Text className={classes.register__title} fz={TextLarge}>
+                Данные админа
+              </Text>
+              <TextInput
+                variant='filled'
+                classNames={{
+                  root: classes.register__inputRoot,
+                  input: classes.register__input,
+                }}
+                placeholder='Имя'
+                {...form.getInputProps('registrationAdminDTO.name')}
+              />
+              <TextInput
+                variant='filled'
+                classNames={{
+                  root: classes.register__inputRoot,
+                  input: classes.register__input,
+                }}
+                placeholder='Email'
+                {...form.getInputProps('registrationAdminDTO.email')}
+              />
+              <PasswordInput
+                variant='filled'
+                classNames={{
+                  root: classes.register__inputRoot,
+                  input: classes.register__input,
+                  innerInput: classes.register__input,
+                }}
+                placeholder='Пароль'
+                {...form.getInputProps('registrationAdminDTO.password')}
+              />
+            </Flex>
+          </Flex>
+          <Button
+            w='50%'
+            type='submit'
+            className={classes.register__button}
+            fz={TextMiddle}
+          >
+            Далее
+          </Button>
+          <Button
+            fz={TextMiddle}
+            variant={'white'}
+            component={Link}
+            to='/login'
+          >
+            Есть аккаунт? Войти
+          </Button>
+        </form>
+      </Container>
+    </>
   );
 };

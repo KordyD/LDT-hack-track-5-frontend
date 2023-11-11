@@ -11,7 +11,8 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { register } from '../../API/auth/index.ts';
 import { registerData } from '../../API/auth/interfaces.ts';
-import { setRoles } from '../../store/userSlice.ts';
+import { Error } from '../../components/Error/Error.tsx';
+import { setError, setRoles } from '../../store/userSlice.ts';
 import { HeadingH3, TextMiddle } from '../../theme/AdaptiveConts.ts';
 import classes from './Register.module.css';
 
@@ -35,14 +36,13 @@ export const Register = () => {
         password: values.password,
       };
       const data = await register(registerData);
-      console.log(data);
       localStorage.setItem('token', data.token);
       dispatch(setRoles(data.roleName));
       form.reset();
       navigate(0);
     } catch (error) {
       const err = error as AxiosError;
-      console.log(err.response?.data);
+      dispatch(setError(err.response?.data.message));
     }
   };
 
@@ -73,68 +73,76 @@ export const Register = () => {
   });
 
   return (
-    <Container
-      className={classes.register}
-      h='100vh'
-      maw={{ lg: '550px', md: '450px', xs: '400px', base: '350px' }}
-    >
-      <form
-        className={classes.register__form}
-        onSubmit={form.onSubmit(handleSubmit)}
+    <>
+      <Error />
+      <Container
+        className={classes.register}
+        h='100vh'
+        maw={{ lg: '550px', md: '450px', xs: '400px', base: '350px' }}
       >
-        <Text className={classes.register__title} fz={HeadingH3}>
-          Регистрация
-        </Text>
-        <TextInput
-          variant='filled'
-          classNames={{
-            root: classes.register__inputRoot,
-            input: classes.register__input,
-          }}
-          placeholder='Ваше имя'
-          {...form.getInputProps('name')}
-        />
-        <TextInput
-          variant='filled'
-          classNames={{
-            root: classes.register__inputRoot,
-            input: classes.register__input,
-          }}
-          placeholder='Email'
-          {...form.getInputProps('email')}
-        />
-        <PasswordInput
-          variant='filled'
-          classNames={{
-            root: classes.register__inputRoot,
-            input: classes.register__input,
-            innerInput: classes.register__input,
-          }}
-          placeholder='Пароль'
-          {...form.getInputProps('password')}
-        />
-        <PasswordInput
-          variant='filled'
-          w='100%'
-          classNames={{
-            root: classes.register__inputRoot,
-            input: classes.register__input,
-            innerInput: classes.register__input,
-          }}
-          placeholder='Повторите пароль'
-          {...form.getInputProps('againPassword')}
-        />
-        <Button
-          type='submit'
-          className={classes.register__button}
-          fz={TextMiddle}
+        <form
+          className={classes.register__form}
+          onSubmit={form.onSubmit(handleSubmit)}
         >
-          Далее
-        </Button>
-        <Button fz={TextMiddle} variant={'white'} component={Link} to='/login'>
-          Есть аккаунт? Войти
-        </Button>
-      </form>
-    </Container>
+          <Text className={classes.register__title} fz={HeadingH3}>
+            Регистрация
+          </Text>
+          <TextInput
+            variant='filled'
+            classNames={{
+              root: classes.register__inputRoot,
+              input: classes.register__input,
+            }}
+            placeholder='Ваше имя'
+            {...form.getInputProps('name')}
+          />
+          <TextInput
+            variant='filled'
+            classNames={{
+              root: classes.register__inputRoot,
+              input: classes.register__input,
+            }}
+            placeholder='Email'
+            {...form.getInputProps('email')}
+          />
+          <PasswordInput
+            variant='filled'
+            classNames={{
+              root: classes.register__inputRoot,
+              input: classes.register__input,
+              innerInput: classes.register__input,
+            }}
+            placeholder='Пароль'
+            {...form.getInputProps('password')}
+          />
+          <PasswordInput
+            variant='filled'
+            w='100%'
+            classNames={{
+              root: classes.register__inputRoot,
+              input: classes.register__input,
+              innerInput: classes.register__input,
+            }}
+            placeholder='Повторите пароль'
+            {...form.getInputProps('againPassword')}
+          />
+          <Button
+            type='submit'
+            className={classes.register__button}
+            fz={TextMiddle}
+          >
+            Далее
+          </Button>
+          <Button
+            fz={TextMiddle}
+            variant={'white'}
+            component={Link}
+            to='/login'
+          >
+            Есть аккаунт? Войти
+          </Button>
+        </form>
+      </Container>
+    </>
   );
 };

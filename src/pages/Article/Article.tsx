@@ -48,7 +48,6 @@ export const Article = () => {
 
   const favoritesRef = useRef<ArticlesName[]>([]);
   const [isFav, setIsFav] = useState(false);
-  console.log(isFav);
   const { theme, information, imagePath, articleId } =
     useLoaderData() as IArticle;
   const roles = useSelector((state: RootState) => state.roles);

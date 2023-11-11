@@ -1,6 +1,9 @@
 import { Box, Button, Flex, Image, Stack, Text } from '@mantine/core';
 import { AxiosError } from 'axios';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { buyProduct } from '../../API/market';
+import { setError } from '../../store/userSlice';
 import classes from './CardProduct.module.css';
 
 interface CardProduct {
@@ -10,12 +13,15 @@ interface CardProduct {
 }
 
 export const CardProduct = ({ price, image, id }: CardProduct) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleClick = async (productId: number) => {
     try {
-      const data = await buyProduct(productId);
+      await buyProduct(productId);
+      navigate(0);
     } catch (error) {
       const err = error as AxiosError;
-      console.log(err.response?.data);
+      dispatch(setError(err.response?.data.message));
     }
   };
   return (

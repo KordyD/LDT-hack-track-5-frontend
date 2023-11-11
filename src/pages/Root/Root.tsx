@@ -2,11 +2,12 @@ import { Box } from '@mantine/core';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { getPosts } from '../../API/company';
 import { getPersonalData } from '../../API/personal-account';
+import { Error } from '../../components/Error/Error';
 import { Footer } from '../../modules/Footer/Footer';
 import { Header } from '../../modules/Header/Header';
-import { setPostName, setRoles } from '../../store/userSlice';
-import { getPosts } from '../../API/company';
+import { setError, setPostName, setRoles } from '../../store/userSlice';
 import classes from './Root.module.css';
 
 export const Root = () => {
@@ -15,7 +16,10 @@ export const Root = () => {
   useEffect(() => {
     getPersonalData()
       .then((value) => dispatch(setRoles(value.roles)))
-      .catch(() => navigate(0));
+      .catch((err) => {
+        dispatch(setError(err));
+        navigate(0);
+      });
   });
   useEffect(() => {
     getPosts().then((value) => dispatch(setPostName(value)));
@@ -30,6 +34,7 @@ export const Root = () => {
           <Outlet />
         </Box>
         <Footer />
+        <Error />
       </Box>
     </>
   );
