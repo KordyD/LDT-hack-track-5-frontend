@@ -3,20 +3,20 @@ import { URL } from '..';
 import { headers } from '../';
 import { Article, ArticlesName, Question, media } from './interfaces';
 
-export const addToFavorites = async (articleID: number) => {
-  const response: boolean = await axios.post(
+export const deleteFromFavorites = async (articleID: number) => {
+  const response = await axios.delete(
     URL + `/knowledge-base/favorites/articles/${articleID}`,
     { headers: { ...headers } }
   );
   return response;
 };
 
-export const deleteFromFavorites = async (articleID: number) => {
-  const response = await axios.delete(
+export const addToFavorites = async (articleID: number) => {
+  const response = await axios.post(
     URL + `/knowledge-base/favorites/articles/${articleID}`,
     { headers: { ...headers } }
   );
-  return response.data;
+  return response;
 };
 
 export const getAllVideo = async () => {
